@@ -1,7 +1,9 @@
 import { buildHelper } from 'build'
 
-const entryPoints = [
-  "./vendors.mjs"
-]
+const options = {
+  entryPoints: ['vendors.mjs'],
+  outDir: 'libs',
+  version: 'v00'
+}
 
-await buildHelper({entryPoints, outDir: 'libs'})
+await buildHelper(options)

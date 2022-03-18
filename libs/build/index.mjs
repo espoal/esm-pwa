@@ -17,7 +17,6 @@ let vendorsResolver = {
 export const baseOptions = {
   entryPoints: [ 'No entrypoints specified' ],
   plugins: [vendorsResolver, pnpPlugin()],
-  // entryNames: '[dir]/[name]-[hash]',
   bundle: true,
   splitting: true,
   format: "esm",
@@ -54,7 +53,8 @@ export const buildHelper = async ({
   external = [''],
   outDir = '',
   outBase = '../../dist/public/',
-  watch = true
+  watch = true,
+  version = false
 }) => {
 
   const options = {
@@ -62,7 +62,8 @@ export const buildHelper = async ({
     entryPoints,
     external,
     outdir: outBase + outDir,
-    watch: watch ? watchHelper : false
+    watch: watch ? watchHelper : false,
+    entryNames: version ? `[dir]/[name]-${version}` : ''
   }
 
   await esbuild.build(options)
