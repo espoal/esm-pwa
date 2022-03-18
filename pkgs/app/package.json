@@ -1,0 +1,9 @@
+{
+  "name": "@espoal/app",
+  "packageManager": "yarn@3.2.0",
+  "dependencies": {
+    "@espoal/vendors": "workspace:libs/vendors",
+    "react": "experimental",
+    "react-dom": "experimental"
+  }
+}

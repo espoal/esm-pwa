@@ -1,0 +1,15 @@
+# Yarn without zero-installs
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
+
+
+# Firebase
+firebase-debug.log
+
+# IntelliJ
+.idea
