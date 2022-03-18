@@ -17,6 +17,16 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@espoal/esm-pwa@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "@espoal/esm-pwa@workspace:."
+  dependencies:
+    "@espoal/app": "workspace:pkgs/app"
+    "@yarnpkg/esbuild-plugin-pnp": ^2.0.1
+    esbuild: ^0.14.27
+  languageName: unknown
+  linkType: soft
+
 "@espoal/vendors@workspace:^, @espoal/vendors@workspace:libs/vendors":
   version: 0.0.0-use.local
   resolution: "@espoal/vendors@workspace:libs/vendors"
@@ -279,16 +289,6 @@ __metadata:
   checksum: 19386ba13536ca69845989c981a44e006cf4aa79cf8186fe2af6fdb8f43f7b7ca708c443360fe18b455b4da71b473ad135bc3bc20b892485b2a27455d2287555
   languageName: node
   linkType: hard
-
-"esm-pwa@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "esm-pwa@workspace:."
-  dependencies:
-    "@espoal/app": "workspace:pkgs/app"
-    "@yarnpkg/esbuild-plugin-pnp": ^2.0.1
-    esbuild: ^0.14.27
-  languageName: unknown
-  linkType: soft
 
 "js-tokens@npm:^3.0.0 || ^4.0.0":
   version: 4.0.0

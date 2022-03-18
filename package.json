@@ -1,7 +1,7 @@
 {
-  "name": "esm-pwa",
+  "name": "@espoal/esm-pwa",
   "scripts": {
-    "watch": "node build.mjs",
+    "watch": "yarn workspace @espoal/app node build.mjs",
     "start": "firebase emulators:start"
   },
   "workspaces": [
