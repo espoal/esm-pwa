@@ -3,7 +3,7 @@
 Example of progressive web app - batteries included
 
 Goals:
-- Ease of use
+- High Delivery
 - Scalability
 - High Performance
 
