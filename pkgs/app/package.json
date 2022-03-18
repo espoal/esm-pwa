@@ -2,6 +2,7 @@
   "name": "@espoal/app",
   "packageManager": "yarn@3.2.0",
   "dependencies": {
+    "@components/sidebar": "workspace:^",
     "@espoal/vendors": "workspace:libs/vendors",
     "@pages/dash": "workspace:^",
     "@pages/login": "workspace:pkgs/pages/login",

@@ -1,5 +1,8 @@
 import esbuild from 'esbuild'
 import { pnpPlugin } from '@yarnpkg/esbuild-plugin-pnp'
+import pkg from '../../package.json' assert { type: 'json' }
+
+const currentVersion = 'v00'
 
 let vendorsResolver = {
   name: 'example',
@@ -7,7 +10,7 @@ let vendorsResolver = {
     // Mark all paths starting with "http://" or "https://" as external
     build.onResolve({ filter: /^@espoal\/vendors$/ }, args => {
       // console.log({args})
-      return { path: '/libs/vendors.mjs', external: true }
+      return { path: '/libs/vendors-v00.mjs', external: true }
     })
   },
 }
@@ -26,7 +29,7 @@ export const baseOptions = {
   minify: false,
   treeShaking: true,
   watch: true,
-  loader: {'.mjs': 'jsx'},
+  loader: {'.mjs': 'jsx', '.json': 'json'},
   outExtension: { '.js': '.mjs' }
 }
 
@@ -63,7 +66,7 @@ export const buildHelper = async ({
     external,
     outdir: outBase + outDir,
     watch: watch ? watchHelper : false,
-    entryNames: version ? `[dir]/[name]-${version}` : ''
+    entryNames: version ? `[dir]/[name]-${currentVersion}` : ''
   }
 
   await esbuild.build(options)

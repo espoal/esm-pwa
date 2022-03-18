@@ -5,10 +5,19 @@ __metadata:
   version: 6
   cacheKey: 8
 
+"@components/sidebar@workspace:^, @components/sidebar@workspace:pkgs/components/sidebar":
+  version: 0.0.0-use.local
+  resolution: "@components/sidebar@workspace:pkgs/components/sidebar"
+  dependencies:
+    "@espoal/vendors": "workspace:^"
+  languageName: unknown
+  linkType: soft
+
 "@espoal/app@workspace:pkgs/app":
   version: 0.0.0-use.local
   resolution: "@espoal/app@workspace:pkgs/app"
   dependencies:
+    "@components/sidebar": "workspace:^"
     "@espoal/vendors": "workspace:libs/vendors"
     "@pages/dash": "workspace:^"
     "@pages/login": "workspace:pkgs/pages/login"
@@ -337,12 +346,6 @@ __metadata:
   checksum: db6f80ea7262517c5454b085e7256066236ec4bc51b1702604a894a421966effe9cb56f6f2b97d524c192b4b7b146de1ad3afbf53afcb7858e5e4ad70d5edd92
   languageName: node
   linkType: hard
-
-"sidebar@workspace:pkgs/components/sidebar":
-  version: 0.0.0-use.local
-  resolution: "sidebar@workspace:pkgs/components/sidebar"
-  languageName: unknown
-  linkType: soft
 
 "tslib@npm:^1.13.0":
   version: 1.14.1

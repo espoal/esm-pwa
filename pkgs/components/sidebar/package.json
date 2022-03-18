@@ -1,4 +1,7 @@
 {
-  "name": "sidebar",
-  "packageManager": "yarn@3.2.0"
+  "name": "@components/sidebar",
+  "packageManager": "yarn@3.2.0",
+  "dependencies": {
+    "@espoal/vendors": "workspace:^"
+  }
 }
