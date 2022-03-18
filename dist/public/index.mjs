@@ -1,21 +1,15 @@
-// pnp:/home/mamluk/3pass/esm-pwa/pkgs/app/index.mjs
-import { React, createRoot } from "/libs/vendors.mjs";
-var App = () => {
-  const ref = React.useRef();
-  function logichandler() {
-    console.log("I handle some logic!!!");
-  }
-  const secondHandler = {
-    hello: "world",
-    logichandler
-  };
-  return /* @__PURE__ */ React.createElement("error-modal", {
-    ref: (el) => {
-      el.refHandler = secondHandler;
-    },
-    logicHandler: secondHandler,
-    test: "test"
-  });
+// pnp:/home/mamluk/3pass/esm-pwa/pkgs/app/src/index.mjs
+import { React as React3, createRoot } from "/libs/vendors.mjs";
+
+// pnp:/home/mamluk/3pass/esm-pwa/pkgs/pages/login/Login.mjs
+import { React } from "/libs/vendors.mjs";
+var Login = () => {
+  return /* @__PURE__ */ React.createElement("h1", null, "Login page!");
 };
+
+// pnp:/home/mamluk/3pass/esm-pwa/pkgs/pages/dash/Dash.mjs
+import { React as React2 } from "/libs/vendors.mjs";
+
+// pnp:/home/mamluk/3pass/esm-pwa/pkgs/app/src/index.mjs
 var rootElement = document.getElementById("react-app");
-createRoot(rootElement).render(/* @__PURE__ */ React.createElement(App, null));
+createRoot(rootElement).render(/* @__PURE__ */ React3.createElement(Login, null));

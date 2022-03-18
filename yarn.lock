@@ -10,20 +10,36 @@ __metadata:
   resolution: "@espoal/app@workspace:pkgs/app"
   dependencies:
     "@espoal/vendors": "workspace:libs/vendors"
+    "@pages/dash": "workspace:^"
+    "@pages/login": "workspace:pkgs/pages/login"
     build: "workspace:libs/build"
     esbuild: ^0.14.27
-    react: experimental
-    react-dom: experimental
   languageName: unknown
   linkType: soft
 
-"@espoal/vendors@workspace:libs/vendors":
+"@espoal/vendors@workspace:^, @espoal/vendors@workspace:libs/vendors":
   version: 0.0.0-use.local
   resolution: "@espoal/vendors@workspace:libs/vendors"
   dependencies:
     build: "workspace:libs/build"
     react: experimental
     react-dom: experimental
+  languageName: unknown
+  linkType: soft
+
+"@pages/dash@workspace:^, @pages/dash@workspace:pkgs/pages/dash":
+  version: 0.0.0-use.local
+  resolution: "@pages/dash@workspace:pkgs/pages/dash"
+  dependencies:
+    "@espoal/vendors": "workspace:^"
+  languageName: unknown
+  linkType: soft
+
+"@pages/login@workspace:pkgs/pages/login":
+  version: 0.0.0-use.local
+  resolution: "@pages/login@workspace:pkgs/pages/login"
+  dependencies:
+    "@espoal/vendors": "workspace:^"
   languageName: unknown
   linkType: soft
 
@@ -321,6 +337,12 @@ __metadata:
   checksum: db6f80ea7262517c5454b085e7256066236ec4bc51b1702604a894a421966effe9cb56f6f2b97d524c192b4b7b146de1ad3afbf53afcb7858e5e4ad70d5edd92
   languageName: node
   linkType: hard
+
+"sidebar@workspace:pkgs/components/sidebar":
+  version: 0.0.0-use.local
+  resolution: "sidebar@workspace:pkgs/components/sidebar"
+  languageName: unknown
+  linkType: soft
 
 "tslib@npm:^1.13.0":
   version: 1.14.1

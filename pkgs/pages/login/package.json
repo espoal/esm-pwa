@@ -1,0 +1,7 @@
+{
+  "name": "@pages/login",
+  "packageManager": "yarn@3.2.0",
+  "dependencies": {
+    "@espoal/vendors": "workspace:^"
+  }
+}

@@ -34,7 +34,7 @@ export const baseOptions = {
 const time = (date) => `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
 
 
-baseOptions.watch = {
+const watchHelper = {
   onRebuild(error, result) {
     if (error) console.error('watch build failed:', error)
     else {
@@ -62,7 +62,7 @@ export const buildHelper = async ({
     entryPoints,
     external,
     outdir: outBase + outDir,
-    watch
+    watch: watch ? watchHelper : false
   }
 
   await esbuild.build(options)

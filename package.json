@@ -6,6 +6,8 @@
   },
   "workspaces": [
     "pkgs/*",
+    "pkgs/components/*",
+    "pkgs/pages/*",
     "libs/*",
     "dist"
   ],

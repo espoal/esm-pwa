@@ -3,9 +3,9 @@
   "packageManager": "yarn@3.2.0",
   "dependencies": {
     "@espoal/vendors": "workspace:libs/vendors",
-    "build": "workspace:libs/build",
-    "react": "experimental",
-    "react-dom": "experimental"
+    "@pages/dash": "workspace:^",
+    "@pages/login": "workspace:pkgs/pages/login",
+    "build": "workspace:libs/build"
   },
   "devDependencies": {
     "esbuild": "^0.14.27"

@@ -1,6 +1,7 @@
-import { React, createRoot } from '@espoal/vendors'
+import { React } from '@espoal/vendors'
 
-const App = () => {
+
+export const Dash = () => {
   const ref = React.useRef()
 
   function logichandler() {
@@ -22,8 +23,3 @@ const App = () => {
     />
   );
 }
-
-
-const rootElement = document.getElementById("react-app")
-// React 18+
-createRoot(rootElement).render(<App />);
