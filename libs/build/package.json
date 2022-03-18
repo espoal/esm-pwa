@@ -1,0 +1,9 @@
+{
+  "name": "build",
+  "main": "index.mjs",
+  "packageManager": "yarn@3.2.0",
+  "dependencies": {
+    "@yarnpkg/esbuild-plugin-pnp": "^2.0.1",
+    "esbuild": "^0.14.27"
+  }
+}

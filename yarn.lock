@@ -10,6 +10,8 @@ __metadata:
   resolution: "@espoal/app@workspace:pkgs/app"
   dependencies:
     "@espoal/vendors": "workspace:libs/vendors"
+    build: "workspace:libs/build"
+    esbuild: ^0.14.27
     react: experimental
     react-dom: experimental
   languageName: unknown
@@ -18,6 +20,10 @@ __metadata:
 "@espoal/vendors@workspace:libs/vendors":
   version: 0.0.0-use.local
   resolution: "@espoal/vendors@workspace:libs/vendors"
+  dependencies:
+    build: "workspace:libs/build"
+    react: experimental
+    react-dom: experimental
   languageName: unknown
   linkType: soft
 
@@ -31,6 +37,15 @@ __metadata:
   checksum: ff081f65e01d5720dc17faf4dee3b055ea81235344b32322e095eec8d8472b36109cc27e6bfd8463933acde00c9bdcab008df662db020dec7bdef25a75dc5aaf
   languageName: node
   linkType: hard
+
+"build@workspace:libs/build":
+  version: 0.0.0-use.local
+  resolution: "build@workspace:libs/build"
+  dependencies:
+    "@yarnpkg/esbuild-plugin-pnp": ^2.0.1
+    esbuild: ^0.14.27
+  languageName: unknown
+  linkType: soft
 
 "dist@workspace:dist":
   version: 0.0.0-use.local

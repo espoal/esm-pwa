@@ -1,4 +1,4 @@
-import { React, createRoot } from './vendors.mjs'
+import { React, createRoot } from '@espoal/vendors'
 
 const App = () => {
   const ref = React.useRef()

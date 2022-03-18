@@ -1,4 +1,12 @@
 {
   "name": "@espoal/vendors",
-  "packageManager": "yarn@3.2.0"
+  "main": "vendors.mjs",
+  "packageManager": "yarn@3.2.0",
+  "dependencies": {
+    "react": "experimental",
+    "react-dom": "experimental"
+  },
+  "devDependencies": {
+    "build": "workspace:libs/build"
+  }
 }

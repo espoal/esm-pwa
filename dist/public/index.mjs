@@ -1,5 +1,5 @@
-// pnp:/home/mamluk/3pass/esm-pwa/pkgs/app/src/index.mjs
-import { React, createRoot } from "./vendors.mjs";
+// pnp:/home/mamluk/3pass/esm-pwa/pkgs/app/index.mjs
+import { React, createRoot } from "/libs/vendors.mjs";
 var App = () => {
   const ref = React.useRef();
   function logichandler() {

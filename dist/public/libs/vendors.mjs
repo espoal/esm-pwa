@@ -1,7 +1,21 @@
-import {
-  __commonJS,
-  __toESM
-} from "./chunk-ICSNCPDD.mjs";
+var __create = Object.create;
+var __defProp = Object.defineProperty;
+var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+var __getOwnPropNames = Object.getOwnPropertyNames;
+var __getProtoOf = Object.getPrototypeOf;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __commonJS = (cb, mod) => function __require() {
+  return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+};
+var __copyProps = (to, from, except, desc) => {
+  if (from && typeof from === "object" || typeof from === "function") {
+    for (let key of __getOwnPropNames(from))
+      if (!__hasOwnProp.call(to, key) && key !== except)
+        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+  }
+  return to;
+};
+var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target, mod));
 
 // pnp:/home/mamluk/3pass/esm-pwa/.yarn/cache/react-npm-0.0.0-experimental-645ec5d6f-20220317-735e6bfc88-17504497cc.zip/node_modules/react/cjs/react.development.js
 var require_react_development = __commonJS({
@@ -2363,9 +2377,9 @@ var require_scheduler = __commonJS({
   }
 });
 
-// pnp:/home/mamluk/3pass/esm-pwa/.yarn/__virtual__/react-dom-virtual-4cce7312da/0/cache/react-dom-npm-0.0.0-experimental-645ec5d6f-20220317-d1c7279913-bb04de0bea.zip/node_modules/react-dom/cjs/react-dom.development.js
+// pnp:/home/mamluk/3pass/esm-pwa/.yarn/__virtual__/react-dom-virtual-16507c5d4d/0/cache/react-dom-npm-0.0.0-experimental-645ec5d6f-20220317-d1c7279913-bb04de0bea.zip/node_modules/react-dom/cjs/react-dom.development.js
 var require_react_dom_development = __commonJS({
-  "pnp:/home/mamluk/3pass/esm-pwa/.yarn/__virtual__/react-dom-virtual-4cce7312da/0/cache/react-dom-npm-0.0.0-experimental-645ec5d6f-20220317-d1c7279913-bb04de0bea.zip/node_modules/react-dom/cjs/react-dom.development.js"(exports) {
+  "pnp:/home/mamluk/3pass/esm-pwa/.yarn/__virtual__/react-dom-virtual-16507c5d4d/0/cache/react-dom-npm-0.0.0-experimental-645ec5d6f-20220317-d1c7279913-bb04de0bea.zip/node_modules/react-dom/cjs/react-dom.development.js"(exports) {
     "use strict";
     if (true) {
       (function() {
@@ -23077,9 +23091,9 @@ var require_react_dom_development = __commonJS({
   }
 });
 
-// pnp:/home/mamluk/3pass/esm-pwa/.yarn/__virtual__/react-dom-virtual-4cce7312da/0/cache/react-dom-npm-0.0.0-experimental-645ec5d6f-20220317-d1c7279913-bb04de0bea.zip/node_modules/react-dom/index.js
+// pnp:/home/mamluk/3pass/esm-pwa/.yarn/__virtual__/react-dom-virtual-16507c5d4d/0/cache/react-dom-npm-0.0.0-experimental-645ec5d6f-20220317-d1c7279913-bb04de0bea.zip/node_modules/react-dom/index.js
 var require_react_dom = __commonJS({
-  "pnp:/home/mamluk/3pass/esm-pwa/.yarn/__virtual__/react-dom-virtual-4cce7312da/0/cache/react-dom-npm-0.0.0-experimental-645ec5d6f-20220317-d1c7279913-bb04de0bea.zip/node_modules/react-dom/index.js"(exports, module) {
+  "pnp:/home/mamluk/3pass/esm-pwa/.yarn/__virtual__/react-dom-virtual-16507c5d4d/0/cache/react-dom-npm-0.0.0-experimental-645ec5d6f-20220317-d1c7279913-bb04de0bea.zip/node_modules/react-dom/index.js"(exports, module) {
     "use strict";
     if (false) {
       checkDCE();
@@ -23090,9 +23104,9 @@ var require_react_dom = __commonJS({
   }
 });
 
-// pnp:/home/mamluk/3pass/esm-pwa/.yarn/__virtual__/react-dom-virtual-4cce7312da/0/cache/react-dom-npm-0.0.0-experimental-645ec5d6f-20220317-d1c7279913-bb04de0bea.zip/node_modules/react-dom/client.js
+// pnp:/home/mamluk/3pass/esm-pwa/.yarn/__virtual__/react-dom-virtual-16507c5d4d/0/cache/react-dom-npm-0.0.0-experimental-645ec5d6f-20220317-d1c7279913-bb04de0bea.zip/node_modules/react-dom/client.js
 var require_client = __commonJS({
-  "pnp:/home/mamluk/3pass/esm-pwa/.yarn/__virtual__/react-dom-virtual-4cce7312da/0/cache/react-dom-npm-0.0.0-experimental-645ec5d6f-20220317-d1c7279913-bb04de0bea.zip/node_modules/react-dom/client.js"(exports) {
+  "pnp:/home/mamluk/3pass/esm-pwa/.yarn/__virtual__/react-dom-virtual-16507c5d4d/0/cache/react-dom-npm-0.0.0-experimental-645ec5d6f-20220317-d1c7279913-bb04de0bea.zip/node_modules/react-dom/client.js"(exports) {
     "use strict";
     var m = require_react_dom();
     if (false) {
@@ -23121,9 +23135,69 @@ var require_client = __commonJS({
   }
 });
 
-// pnp:/home/mamluk/3pass/esm-pwa/pkgs/app/src/vendors.mjs
+// pnp:/home/mamluk/3pass/esm-pwa/libs/vendors/vendors.mjs
 var React = __toESM(require_react(), 1);
 var import_client = __toESM(require_client(), 1);
+
+// pnp:/home/mamluk/3pass/esm-pwa/libs/vendors/src/error-modal.mjs
+var template = document.createElement("template");
+template.innerHTML = `
+<style>
+.error {
+background-color: chartreuse;
+width: 400px;
+height: 400px;
+}
+</style>
+<div class="error">
+<h1>something went wrong, try again</h1>
+<button id="okbutton">ok</button>
+<button id="refetch">refetch</button>
+</div>
+`;
+var modalHandler = (event) => {
+  event.preventDefault();
+  console.log({ event });
+  console.log("ok button");
+};
+var ErrorModal = class extends HTMLElement {
+  set logicHandler(handler) {
+    console.log({ propself: this });
+    console.log({ handler });
+    this.propLogicHandler = handler;
+  }
+  set refHandler(handler) {
+    console.log({ refself: this });
+    console.log({ refHandler: handler });
+    this.refLogicHandler = handler;
+  }
+  constructor() {
+    super();
+  }
+  connectedCallback() {
+    const element = this;
+    console.log({ element });
+    const handleLogicProp = element.propLogicHandler;
+    console.log({ handleLogicProp });
+    handleLogicProp.logichandler();
+    const handleLogicRef = element.refLogicHandler;
+    console.log({ handleLogicRef });
+    const testAttr = element.getAttribute("test");
+    console.log({ testAttr });
+    this.attachShadow({ mode: "open" });
+    this.shadowRoot?.appendChild(template.content.cloneNode(true));
+    const okbutton = this.shadowRoot?.getElementById("okbutton");
+    okbutton?.addEventListener("click", modalHandler);
+    const rebutton = this.shadowRoot?.getElementById("refetch");
+    rebutton?.addEventListener("click", handleLogicProp.logichandler);
+  }
+  disconnectedCallback() {
+  }
+  attributeChangedCallback(name, oldValue, newValue) {
+    console.log({ name, oldValue, newValue });
+  }
+};
+customElements.define("error-modal", ErrorModal);
 var export_createRoot = import_client.createRoot;
 export {
   React,
