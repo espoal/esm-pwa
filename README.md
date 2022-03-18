@@ -2,6 +2,11 @@
 ## Introduction
 Example of progressive web app - batteries included
 
+Goals:
+- Ease of use
+- Scalability
+- High Performance
+
 Highlight of features:
 - Compliant with the ecmascript module specification
 - Lightning fast build thanks to esbuild
