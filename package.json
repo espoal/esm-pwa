@@ -2,7 +2,7 @@
   "name": "@espoal/esm-pwa",
   "version": "0.0.1",
   "scripts": {
-    "watch": "yarn workspace @espoal/app node build.mjs",
+    "dev": "yarn pkgs/ watch & yarn vendors/ watch & yarn start",
     "start": "firebase emulators:start"
   },
   "workspaces": [
@@ -11,10 +11,5 @@
     "vendors",
     "dist"
   ],
-  "packageManager": "yarn@3.2.0",
-  "devDependencies": {
-    "@espoal/app": "workspace:pkgs/app",
-    "@yarnpkg/esbuild-plugin-pnp": "^2.0.1",
-    "esbuild": "^0.14.27"
-  }
+  "packageManager": "yarn@3.2.0"
 }

@@ -1,9 +1,16 @@
 {
   "name": "pkgs",
   "packageManager": "yarn@3.2.0",
+  "scripts": {
+    "watch": "node --experimental-import-meta-resolve build.mjs"
+  },
   "workspaces": [
     "app",
     "components/*",
     "pages/*"
-  ]
+  ],
+  "dependencies": {
+    "@vendors/tailwind": "workspace:^",
+    "build": "workspace:^"
+  }
 }

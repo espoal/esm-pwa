@@ -10,7 +10,7 @@ const outBase = distPath.split('file://').pop().split('package.json').shift()
 
 const pkg = await readFile(outBase + '../package.json')
 const { version } = JSON.parse(pkg)
-const currentVersion = 'v' + version
+const currentVersion = '-v' + version
 console.log({currentVersion})
 
 const vendors = vendorsResolver(currentVersion)
@@ -38,9 +38,13 @@ export const buildHelper = async ({
   external = [''],
   outDir = '',
   watch = true,
+  names = '[dir]/[name]',
   version = false,
   plugins = []
 }) => {
+
+  const entryNames = `${names}${ version ? currentVersion : ''}`
+  console.log({entryNames})
 
   const options = {
     ...baseOptions,
@@ -49,7 +53,9 @@ export const buildHelper = async ({
     plugins: [vendors, ...plugins, pnp],
     outdir: outBase + 'public/' + outDir,
     watch: watch ? watchHelper : false,
-    entryNames: version ? `[dir]/[name]-${currentVersion}` : ''
+    entryNames
+    // entryNames: '[dir]/../[name]'
+    // entryNames: version ? `[dir]/[name]-${currentVersion}` : ''
   }
 
   await esbuild.build(options)
