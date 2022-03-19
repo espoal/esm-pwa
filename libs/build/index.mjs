@@ -1,47 +1,38 @@
 import esbuild from 'esbuild'
 import { pnpPlugin } from '@yarnpkg/esbuild-plugin-pnp'
-import {sassPlugin} from 'esbuild-sass-plugin'
+import { sassPlugin } from 'esbuild-sass-plugin'
+import { vendorsResolver } from './src/vendorsResolver.mjs'
+import postcss from 'postcss'
+import autoprefixer from 'autoprefixer'
+import tailwind from 'tailwindcss'
 
 // import pkg from '../../package.json' assert { type: 'json' }
 
 
 const currentVersion = 'v00'
 
-let vendorsResolver = {
-  name: 'example',
-  setup(build) {
-    // Mark all paths starting with 'http://' or 'https://' as external
-    build.onResolve({ filter: /^@espoal\/vendors$/ }, args => {
-      // console.log({args})
-      return { path: `/libs/vendors-${currentVersion}.mjs`, external: true }
-    })
-    // Mark all paths starting with 'http://' or 'https://' as external
-    build.onResolve({ filter: /^https?:\/\// }, args => {
-      // console.log({args})
-      return { path: args.path, external: true }
-    })
+const vendors = vendorsResolver(currentVersion)
 
-    build.onResolve({ filter: /.html/ }, async args => {
-      if (args.pluginData) return // Ignore this if we called ourselves
-      // TODO: dont treeshake files
-
-      console.log({args})
-
-      const { path, ...rest } = args
-      rest.pluginData = true // Avoid infinite recursion
-      const result = await build.resolve(path, rest)
-
-      result.sideEffects = true
-      return result
-    })
+const tail = tailwind({
+  theme: {
+    extend: {},
   },
-}
+  plugins: [],
+})
 
+const pnp = pnpPlugin()
+const sass = sassPlugin({async transform(source, resolveDir) {
+    const {css} = await postcss([
+      tail,
+      autoprefixer
+    ]).process(source)
+    return css
+  }})
 
 
 export const baseOptions = {
   entryPoints: [ 'No entrypoint specified' ],
-  plugins: [vendorsResolver, sassPlugin(), pnpPlugin() ],
+  plugins: [ vendorsResolver, sass, pnp ],
   bundle: true,
   splitting: true,
   format: 'esm',
