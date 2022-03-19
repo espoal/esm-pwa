@@ -1,38 +1,24 @@
 import esbuild from 'esbuild'
 import { pnpPlugin } from '@yarnpkg/esbuild-plugin-pnp'
-import { sassPlugin } from 'esbuild-sass-plugin'
 import { vendorsResolver } from './src/vendorsResolver.mjs'
-import postcss from 'postcss'
-import autoprefixer from 'autoprefixer'
-import tailwind from 'tailwindcss'
+import { timeNow, watchHelper } from './src/utils.mjs'
+import { readFile } from 'fs/promises'
 
 // import pkg from '../../package.json' assert { type: 'json' }
+const distPath = await import.meta.resolve('dist/package.json')
+const outBase = distPath.split('file://').pop().split('package.json').shift()
 
-
-const currentVersion = 'v00'
+const pkg = await readFile(outBase + '../package.json')
+const { version } = JSON.parse(pkg)
+const currentVersion = 'v' + version
+console.log({currentVersion})
 
 const vendors = vendorsResolver(currentVersion)
-
-const tail = tailwind({
-  theme: {
-    extend: {},
-  },
-  plugins: [],
-})
-
 const pnp = pnpPlugin()
-const sass = sassPlugin({async transform(source, resolveDir) {
-    const {css} = await postcss([
-      tail,
-      autoprefixer
-    ]).process(source)
-    return css
-  }})
 
-
-export const baseOptions = {
+const baseOptions = {
   entryPoints: [ 'No entrypoint specified' ],
-  plugins: [ vendorsResolver, sass, pnp ],
+  plugins: [],
   bundle: true,
   splitting: true,
   format: 'esm',
@@ -47,41 +33,25 @@ export const baseOptions = {
   outExtension: { '.js': '.mjs' }
 }
 
-const time = (date) => `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
-
-
-const watchHelper = {
-  onRebuild(error, result) {
-    if (error) console.error('watch build failed:', error)
-    else {
-      console.log('watch build succeeded at time: ' + time(new Date()))
-      const {errors, warnings} = result
-      console.log({errors, warnings})
-    }
-  }
-}
-
-
-console.log('Build successful at time: ' + time(new Date()))
-
-
 export const buildHelper = async ({
   entryPoints,
   external = [''],
   outDir = '',
-  outBase = '../../dist/public/',
   watch = true,
-  version = false
+  version = false,
+  plugins = []
 }) => {
 
   const options = {
     ...baseOptions,
     entryPoints,
     external,
-    outdir: outBase + outDir,
+    plugins: [vendors, ...plugins, pnp],
+    outdir: outBase + 'public/' + outDir,
     watch: watch ? watchHelper : false,
     entryNames: version ? `[dir]/[name]-${currentVersion}` : ''
   }
 
   await esbuild.build(options)
+  console.log('Build successful at time: ' + timeNow())
 }

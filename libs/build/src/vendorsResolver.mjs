@@ -1,11 +1,11 @@
 
-export const vendorsResolver = (version) => ({
+export const vendorsResolver = (currentVersion) => ({
   name: 'example',
   setup(build) {
     // Mark all paths starting with 'http://' or 'https://' as external
-    build.onResolve({ filter: /^@espoal\/vendors$/ }, args => {
+    build.onResolve({ filter: /^@vendors\/react$/ }, args => {
       // console.log({args})
-      return { path: `/libs/vendors-${currentVersion}.mjs`, external: true }
+      return { path: `/libs/react-${currentVersion}.mjs`, external: true }
     })
     // Mark all paths starting with 'http://' or 'https://' as external
     build.onResolve({ filter: /^https?:\/\// }, args => {
@@ -17,7 +17,7 @@ export const vendorsResolver = (version) => ({
       if (args.pluginData) return // Ignore this if we called ourselves
       // TODO: dont treeshake files
 
-      console.log({args})
+      // console.log({args})
 
       const { path, ...rest } = args
       rest.pluginData = true // Avoid infinite recursion

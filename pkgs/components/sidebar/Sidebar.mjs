@@ -1,4 +1,4 @@
-import { React } from '@espoal/vendors'
+import { React } from '@vendors/react'
 
 export const Sidebar = () => {
 

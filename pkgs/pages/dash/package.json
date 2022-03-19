@@ -2,6 +2,6 @@
   "name": "@pages/dash",
   "packageManager": "yarn@3.2.0",
   "dependencies": {
-    "@espoal/vendors": "workspace:^"
+    "@vendors/react": "workspace:^"
   }
 }

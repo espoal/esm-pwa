@@ -1,9 +1,9 @@
 import { buildHelper } from 'build'
 
 const options = {
-  entryPoints: ['vendors.mjs'],
+  entryPoints: ['react.mjs'],
   outDir: 'libs',
-  version: 'aaa'
+  version: true
 }
 
 await buildHelper(options)

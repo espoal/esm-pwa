@@ -1,4 +1,4 @@
-import { React, createRoot } from '@espoal/vendors'
+import { React, createRoot } from '@vendors/react'
 import { Login } from '@pages/login/Login.mjs'
 // import { Dash } from '@pages/dash/Dash.mjs'
 import { Sidebar } from '@components/sidebar/Sidebar.mjs'

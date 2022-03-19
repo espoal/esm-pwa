@@ -36,7 +36,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@components/sidebar@workspace:pkgs/components/sidebar"
   dependencies:
-    "@espoal/vendors": "workspace:^"
+    "@vendors/react": "workspace:^"
   languageName: unknown
   linkType: soft
 
@@ -45,11 +45,11 @@ __metadata:
   resolution: "@espoal/app@workspace:pkgs/app"
   dependencies:
     "@components/sidebar": "workspace:^"
-    "@espoal/vendors": "workspace:libs/vendors"
     "@pages/dash": "workspace:^"
     "@pages/login": "workspace:pkgs/pages/login"
+    "@vendors/react": "workspace:^"
+    "@vendors/tailwind": "workspace:^"
     build: "workspace:libs/build"
-    esbuild: ^0.14.27
   languageName: unknown
   linkType: soft
 
@@ -60,16 +60,6 @@ __metadata:
     "@espoal/app": "workspace:pkgs/app"
     "@yarnpkg/esbuild-plugin-pnp": ^2.0.1
     esbuild: ^0.14.27
-  languageName: unknown
-  linkType: soft
-
-"@espoal/vendors@workspace:^, @espoal/vendors@workspace:libs/vendors":
-  version: 0.0.0-use.local
-  resolution: "@espoal/vendors@workspace:libs/vendors"
-  dependencies:
-    build: "workspace:libs/build"
-    react: experimental
-    react-dom: experimental
   languageName: unknown
   linkType: soft
 
@@ -131,7 +121,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@pages/dash@workspace:pkgs/pages/dash"
   dependencies:
-    "@espoal/vendors": "workspace:^"
+    "@vendors/react": "workspace:^"
   languageName: unknown
   linkType: soft
 
@@ -139,7 +129,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@pages/login@workspace:pkgs/pages/login"
   dependencies:
-    "@espoal/vendors": "workspace:^"
+    "@vendors/react": "workspace:^"
   languageName: unknown
   linkType: soft
 
@@ -156,6 +146,32 @@ __metadata:
   checksum: fd6bce2b674b6efc3db4c7c3d336bd70c90838e8439de639b909ce22f3720d21344f52427f1d9e57b265fcb7f6c018699b99e5e0c208a1a4823014269a6bf35b
   languageName: node
   linkType: hard
+
+"@vendors/components@workspace:vendors/components":
+  version: 0.0.0-use.local
+  resolution: "@vendors/components@workspace:vendors/components"
+  languageName: unknown
+  linkType: soft
+
+"@vendors/react@workspace:^, @vendors/react@workspace:vendors/react":
+  version: 0.0.0-use.local
+  resolution: "@vendors/react@workspace:vendors/react"
+  dependencies:
+    react: experimental
+    react-dom: experimental
+  languageName: unknown
+  linkType: soft
+
+"@vendors/tailwind@workspace:^, @vendors/tailwind@workspace:vendors/tailwind":
+  version: 0.0.0-use.local
+  resolution: "@vendors/tailwind@workspace:vendors/tailwind"
+  dependencies:
+    autoprefixer: ^10.4.4
+    esbuild-sass-plugin: ^2.2.5
+    postcss: ^8.4.12
+    tailwindcss: ^3.0.23
+  languageName: unknown
+  linkType: soft
 
 "@yarnpkg/esbuild-plugin-pnp@npm:^2.0.1":
   version: 2.0.1
@@ -362,11 +378,8 @@ __metadata:
   resolution: "build@workspace:libs/build"
   dependencies:
     "@yarnpkg/esbuild-plugin-pnp": ^2.0.1
-    autoprefixer: ^10.4.4
+    dist: "workspace:dist"
     esbuild: ^0.14.27
-    esbuild-sass-plugin: ^2.2.5
-    postcss: ^8.4.12
-    tailwindcss: ^3.0.23
   languageName: unknown
   linkType: soft
 
@@ -1603,6 +1616,12 @@ __metadata:
   languageName: node
   linkType: hard
 
+"pkgs@workspace:pkgs":
+  version: 0.0.0-use.local
+  resolution: "pkgs@workspace:pkgs"
+  languageName: unknown
+  linkType: soft
+
 "postcss-js@npm:^4.0.0":
   version: 4.0.0
   resolution: "postcss-js@npm:4.0.0"
@@ -2055,6 +2074,14 @@ __metadata:
   checksum: 474acf1146cb2701fe3b074892217553dfcf9a031280919ba1b8d651a068c9b15d863b7303cb15bd00a862b498e6cf4ad7b4a08fb134edd5a6f7641681cb54a2
   languageName: node
   linkType: hard
+
+"vendors@workspace:vendors":
+  version: 0.0.0-use.local
+  resolution: "vendors@workspace:vendors"
+  dependencies:
+    build: "workspace:libs/build"
+  languageName: unknown
+  linkType: soft
 
 "which@npm:^2.0.2":
   version: 2.0.2

@@ -1,0 +1,12 @@
+{
+  "name": "vendors",
+  "packageManager": "yarn@3.2.0",
+  "workspaces": [
+    "components",
+    "react",
+    "tailwind"
+  ],
+  "devDependencies": {
+    "build": "workspace:libs/build"
+  }
+}
