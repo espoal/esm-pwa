@@ -4,6 +4,7 @@
   "packageManager": "yarn@3.2.0",
   "dependencies": {
     "@yarnpkg/esbuild-plugin-pnp": "^2.0.1",
-    "esbuild": "^0.14.27"
+    "esbuild": "^0.14.27",
+    "esbuild-sass-plugin": "^2.2.5"
   }
 }

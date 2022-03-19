@@ -16,7 +16,11 @@ var Sidebar = () => {
   return /* @__PURE__ */ React3.createElement(React3.Fragment, null, /* @__PURE__ */ React3.createElement("h3", null, "Hello From Navigation!"), /* @__PURE__ */ React3.createElement("details", null, /* @__PURE__ */ React3.createElement("summary", null, "Generic React Components"), /* @__PURE__ */ React3.createElement("br", null), "Hello"), /* @__PURE__ */ React3.createElement("br", null), /* @__PURE__ */ React3.createElement("details", null, /* @__PURE__ */ React3.createElement("summary", null, "Typography"), /* @__PURE__ */ React3.createElement("br", null), "World"));
 };
 
+// pnp:/home/mamluk/3pass/esm-pwa/pkgs/app/src/index.html
+var src_default = "./index.html";
+
 // pnp:/home/mamluk/3pass/esm-pwa/pkgs/app/src/index.mjs
+console.assert(src_default);
 var rootElement = document.getElementById("react-app");
 createRoot(rootElement).render(/* @__PURE__ */ React4.createElement(Login, null));
 var sideBarElement = document.getElementById("sidebar");
