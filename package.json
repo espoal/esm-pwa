@@ -2,7 +2,8 @@
   "name": "@espoal/esm-pwa",
   "version": "0.0.1",
   "scripts": {
-    "dev": "yarn pkgs/ watch & yarn vendors/ watch & yarn start",
+    "dev": "yarn pkgs/ watch & yarn vendors/ watch & firebase emulators:start",
+    "build": "echo not implemented yet!",
     "start": "firebase emulators:start"
   },
   "workspaces": [

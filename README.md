@@ -18,9 +18,9 @@ Highlight of features:
 
 Install with `yarn`
 
-Watch changes with `yarn watch`
+Launch project with `yarn dev`
 
-Launch web server with `yarn start`
+Build with `yarn build`
 
 
 
