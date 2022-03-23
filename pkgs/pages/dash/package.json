@@ -4,6 +4,7 @@
   "dependencies": {
     "@vendors/react": "workspace:^",
     "@vendors/tailwind": "workspace:^",
-    "assets": "workspace:pkgs/assets"
+    "assets": "workspace:pkgs/assets",
+    "flatpickr": "^4.6.11"
   }
 }
