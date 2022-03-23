@@ -2,6 +2,8 @@
   "name": "@pages/dash",
   "packageManager": "yarn@3.2.0",
   "dependencies": {
-    "@vendors/react": "workspace:^"
+    "@vendors/react": "workspace:^",
+    "@vendors/tailwind": "workspace:^",
+    "assets": "workspace:pkgs/assets"
   }
 }

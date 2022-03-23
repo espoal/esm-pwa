@@ -1,5 +1,5 @@
 import { buildHelper } from 'build'
-import { tailwindPlugin } from '@vendors/tailwind'
+import { tailwindPlugin } from '@vendors/tailwind/esbuild.mjs'
 
 const options = {
   entryPoints: [
@@ -7,7 +7,8 @@ const options = {
     'sw/sw.mjs'
   ],
   names: '[dir]/../[name]',
-  plugins: [tailwindPlugin]
+  plugins: [tailwindPlugin],
+  external: ['postcss']
 }
 
 await buildHelper(options)

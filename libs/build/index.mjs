@@ -22,14 +22,14 @@ const baseOptions = {
   bundle: true,
   splitting: true,
   format: 'esm',
-  chunkNames: `chunks/[name]-${currentVersion}`,
+  chunkNames: `chunks/[name]${currentVersion}`,
   assetNames: '[dir]/[name]',
   platform: 'browser',
   target: 'esnext',
   minify: false,
   treeShaking: true,
   watch: true,
-  loader: {'.mjs': 'jsx', '.html': 'file'},
+  loader: {'.mjs': 'jsx', '.html': 'file', '.svg': 'text', '.png': 'dataurl', '.jpg': 'file'},
   outExtension: { '.js': '.mjs' }
 }
 
@@ -59,5 +59,6 @@ export const buildHelper = async ({
   }
 
   await esbuild.build(options)
+    .catch(() => {;})
   console.log('Build successful at time: ' + timeNow())
 }
