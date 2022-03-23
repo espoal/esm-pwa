@@ -29,7 +29,7 @@ const baseOptions = {
   minify: false,
   treeShaking: true,
   watch: true,
-  loader: {'.mjs': 'jsx', '.html': 'file'},
+  loader: {'.mjs': 'jsx', '.html': 'file', '.jpg': 'file', '.png': 'dataurl'},
   outExtension: { '.js': '.mjs' }
 }
 
@@ -50,7 +50,7 @@ export const buildHelper = async ({
     ...baseOptions,
     entryPoints,
     external,
-    plugins: [vendors, ...plugins, pnp],
+    plugins: [vendors, ...plugins],
     outdir: outBase + 'public/' + outDir,
     watch: watch ? watchHelper : false,
     entryNames

@@ -7,6 +7,7 @@
     "@pages/login": "workspace:pkgs/pages/login",
     "@vendors/react": "workspace:^",
     "@vendors/tailwind": "workspace:^",
-    "build": "workspace:libs/build"
+    "build": "workspace:libs/build",
+    "users": "workspace:pkgs/users"
   }
 }

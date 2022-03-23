@@ -1,13 +1,39 @@
-import { React, createRoot } from '@vendors/react'
-import { Login } from '@pages/login/Login.mjs'
-// import { Dash } from '@pages/dash/Dash.mjs'
-import { Sidebar } from '@components/sidebar/Sidebar.mjs'
+import { React, createRoot, useEffect } from '@vendors/react'
+import { BrowserRouter as Router, Route, Routes, useLocation } from '@vendors/react'
+
+import { Signin } from 'users/SignIn.mjs'
+
 import './index.scss'
-import home from './index.html' assert { type: 'html'}
-console.assert(home)
+// import home from './index.html' assert { type: 'html'}
+// console.assert(home)
 
-const rootElement = document.getElementById("react-app")
-createRoot(rootElement).render(<Login />)
+const App = () => {
 
-const sideBarElement = document.getElementById("sidebar")
-createRoot(sideBarElement).render(<Sidebar />)
+  const location = useLocation();
+
+  useEffect(() => {
+    document.querySelector('html').style.scrollBehavior = 'auto'
+    window.scroll({ top: 0 })
+    document.querySelector('html').style.scrollBehavior = ''
+  }, [location.pathname]); // triggered on route change
+
+  return (
+    <>
+      <Routes>
+        <Route exact path="/" element={<Signin />} />
+        <Route path="*" element={<Signin />} />
+      </Routes>
+    </>
+  )
+}
+
+
+const rootElement = document.getElementById('root')
+createRoot(rootElement).render(<React.StrictMode>
+  <Router>
+    <App />
+  </Router>
+</React.StrictMode>)
+
+// const sideBarElement = document.getElementById("sidebar")
+// createRoot(sideBarElement).render(<Sidebar />)

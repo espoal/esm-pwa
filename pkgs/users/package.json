@@ -1,0 +1,8 @@
+{
+  "name": "users",
+  "dependencies": {
+    "@vendors/react": "workspace:^",
+    "assets": "workspace:^"
+  },
+  "packageManager": "yarn@3.2.0"
+}

@@ -6,6 +6,8 @@
   },
   "workspaces": [
     "app",
+    "users",
+    "assets",
     "components/*",
     "pages/*"
   ],

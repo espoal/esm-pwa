@@ -6,7 +6,10 @@
 !.yarn/sdks
 !.yarn/versions
 .pnp.*
+node_modules
 
+#Project
+pkgs/assets/images
 
 # Firebase
 firebase-debug.log
