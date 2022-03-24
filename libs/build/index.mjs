@@ -50,7 +50,7 @@ export const buildHelper = async ({
     ...baseOptions,
     entryPoints,
     external,
-    plugins: [vendors, ...plugins],
+    plugins: [vendors, ...plugins, pnp],
     outdir: outBase + 'public/' + outDir,
     watch: watch ? watchHelper : false,
     entryNames

@@ -13,6 +13,12 @@ export const vendorsResolver = (currentVersion) => ({
       return { path: args.path, external: true }
     })
 
+    // Mark all paths starting with 'data:' as external
+    build.onResolve({ filter: /^data:/ }, args => {
+      // console.log({args})
+      return { path: args.path, external: true }
+    })
+
     build.onResolve({ filter: /.html/ }, async args => {
       if (args.pluginData) return // Ignore this if we called ourselves
       // TODO: dont treeshake files

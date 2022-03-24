@@ -1,5 +1,5 @@
 {
-  "name": "users",
+  "name": "@pkgs/users",
   "dependencies": {
     "@vendors/react": "workspace:^",
     "assets": "workspace:^"

@@ -56,10 +56,10 @@ __metadata:
     "@components/sidebar": "workspace:^"
     "@pages/dash": "workspace:^"
     "@pages/login": "workspace:pkgs/pages/login"
+    "@pkgs/users": "workspace:pkgs/users"
     "@vendors/react": "workspace:^"
     "@vendors/tailwind": "workspace:^"
     build: "workspace:libs/build"
-    users: "workspace:pkgs/users"
   languageName: unknown
   linkType: soft
 
@@ -69,7 +69,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@gar/promisify@npm:^1.0.1":
+"@gar/promisify@npm:^1.1.3":
   version: 1.1.3
   resolution: "@gar/promisify@npm:1.1.3"
   checksum: 4059f790e2d07bf3c3ff3e0fec0daa8144fe35c1f6e0111c9921bd32106adaa97a4ab096ad7dab1e28ee6a9060083c4d1a4ada42a7f5f3f7a96b8812e2b757c1
@@ -103,13 +103,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@npmcli/fs@npm:^1.0.0":
-  version: 1.1.1
-  resolution: "@npmcli/fs@npm:1.1.1"
+"@npmcli/fs@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "@npmcli/fs@npm:2.1.0"
   dependencies:
-    "@gar/promisify": ^1.0.1
+    "@gar/promisify": ^1.1.3
     semver: ^7.3.5
-  checksum: f5ad92f157ed222e4e31c352333d0901df02c7c04311e42a81d8eb555d4ec4276ea9c635011757de20cc476755af33e91622838de573b17e52e2e7703f0a9965
+  checksum: 6ec6d678af6da49f9dac50cd882d7f661934dd278972ffbaacde40d9eaa2871292d634000a0cca9510f6fc29855fbd4af433e1adbff90a524ec3eaf140f1219b
   languageName: node
   linkType: hard
 
@@ -136,6 +136,15 @@ __metadata:
   resolution: "@pages/login@workspace:pkgs/pages/login"
   dependencies:
     "@vendors/react": "workspace:^"
+  languageName: unknown
+  linkType: soft
+
+"@pkgs/users@workspace:pkgs/users":
+  version: 0.0.0-use.local
+  resolution: "@pkgs/users@workspace:pkgs/users"
+  dependencies:
+    "@vendors/react": "workspace:^"
+    assets: "workspace:^"
   languageName: unknown
   linkType: soft
 
@@ -409,16 +418,16 @@ __metadata:
   linkType: soft
 
 "cacache@npm:^16.0.0":
-  version: 16.0.2
-  resolution: "cacache@npm:16.0.2"
+  version: 16.0.3
+  resolution: "cacache@npm:16.0.3"
   dependencies:
-    "@npmcli/fs": ^1.0.0
+    "@npmcli/fs": ^2.1.0
     "@npmcli/move-file": ^1.1.2
     chownr: ^2.0.0
     fs-minipass: ^2.1.0
     glob: ^7.2.0
     infer-owner: ^1.0.4
-    lru-cache: ^7.5.1
+    lru-cache: ^7.7.1
     minipass: ^3.1.6
     minipass-collect: ^1.0.2
     minipass-flush: ^1.0.5
@@ -430,7 +439,7 @@ __metadata:
     ssri: ^8.0.1
     tar: ^6.1.11
     unique-filename: ^1.1.1
-  checksum: dced60dc532ed6a6da3feeb7736c5cb38bbbc900e273a04e68e510cc9bd1acab8e61ee86df7b4fe959ef35e39fd74abb4cb4834d221a9a59afa8029f3773eab3
+  checksum: 9bb9a0bd1b8bee3284c6fa9dcb4b28a62b528dd181f7cd482319611b5d6df295a3594dcefc24d1a4f16162bac50d6facc183ed21935f3d09af6d16f620ea54d3
   languageName: node
   linkType: hard
 
@@ -653,9 +662,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.4.84":
-  version: 1.4.88
-  resolution: "electron-to-chromium@npm:1.4.88"
-  checksum: a93d364efae8e6f718f1aae0f47914028178ed0b643cc583344127dc547bf1f7fc8df066834233e04629e8df2141eb192bcb2070abdbeeb872e551acbaba2bbf
+  version: 1.4.91
+  resolution: "electron-to-chromium@npm:1.4.91"
+  checksum: 48396dc8b1aff87671853c9b39432402079e99f62da1c5f136231c292c43012965f0bc14ff7ae8fcad5a8af437c21912b0fc5399bde98ed3d4c2b871a0ae781d
   languageName: node
   linkType: hard
 
@@ -1332,7 +1341,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lru-cache@npm:^7.5.1":
+"lru-cache@npm:^7.5.1, lru-cache@npm:^7.7.1":
   version: 7.7.1
   resolution: "lru-cache@npm:7.7.1"
   checksum: f362c5a2cfa8ad6fe557ec43dc1b7a9695cce84a5652a43ff813609f782f5da576631e7dfad41878bf19a7a69438f38375178635ee80de269aa314280ca2f59e
@@ -1399,9 +1408,9 @@ __metadata:
   linkType: hard
 
 "minimist@npm:^1.1.1":
-  version: 1.2.5
-  resolution: "minimist@npm:1.2.5"
-  checksum: 86706ce5b36c16bfc35c5fe3dbb01d5acdc9a22f2b6cc810b6680656a1d2c0e44a0159c9a3ba51fb072bb5c203e49e10b51dcd0eec39c481f4c42086719bae52
+  version: 1.2.6
+  resolution: "minimist@npm:1.2.6"
+  checksum: d15428cd1e11eb14e1233bcfb88ae07ed7a147de251441d61158619dfb32c4d7e9061d09cab4825fdee18ecd6fce323228c8c47b5ba7cd20af378ca4048fb3fb
   languageName: node
   linkType: hard
 
@@ -1765,14 +1774,14 @@ __metadata:
   linkType: hard
 
 "react-dom@npm:experimental":
-  version: 0.0.0-experimental-645ec5d6f-20220317
-  resolution: "react-dom@npm:0.0.0-experimental-645ec5d6f-20220317"
+  version: 0.0.0-experimental-3f8990898-20220323
+  resolution: "react-dom@npm:0.0.0-experimental-3f8990898-20220323"
   dependencies:
     loose-envify: ^1.1.0
-    scheduler: 0.0.0-experimental-645ec5d6f-20220317
+    scheduler: 0.0.0-experimental-3f8990898-20220323
   peerDependencies:
-    react: 0.0.0-experimental-645ec5d6f-20220317
-  checksum: bb04de0bea594c12eb3865148a77d4839dd21b7bd287ffad7cab40f24f4e9bac4e2267c25949e54768806648e29819da4ee25016a0e57a19a3d9ba328759c498
+    react: 0.0.0-experimental-3f8990898-20220323
+  checksum: 89448c8fd1d3914b2fd92bd555442d5ef17caaabdb4da626ee4182fc0fec86c855abc74c1e2bde7076e42b1a3109ce25c78dc85ae55a7614f51fe744b08cc456
   languageName: node
   linkType: hard
 
@@ -1801,11 +1810,11 @@ __metadata:
   linkType: hard
 
 "react@npm:experimental":
-  version: 0.0.0-experimental-645ec5d6f-20220317
-  resolution: "react@npm:0.0.0-experimental-645ec5d6f-20220317"
+  version: 0.0.0-experimental-3f8990898-20220323
+  resolution: "react@npm:0.0.0-experimental-3f8990898-20220323"
   dependencies:
     loose-envify: ^1.1.0
-  checksum: 17504497ccc695fe2998b4e8dcd788c7cdd6648fd4910a18cb644756c52804437806ec255e8f124a39ea4bc7552b99c9646ad30831290ef198d1bbf5f2a3b618
+  checksum: dbf2dac76c779855d8ed14919a44cd77775f42912bb61d71d2290cd0907b85d412a303c838f2040374a53e4047f403eb91f4e9264f4a283e23b9582547207daf
   languageName: node
   linkType: hard
 
@@ -1930,12 +1939,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"scheduler@npm:0.0.0-experimental-645ec5d6f-20220317":
-  version: 0.0.0-experimental-645ec5d6f-20220317
-  resolution: "scheduler@npm:0.0.0-experimental-645ec5d6f-20220317"
+"scheduler@npm:0.0.0-experimental-3f8990898-20220323":
+  version: 0.0.0-experimental-3f8990898-20220323
+  resolution: "scheduler@npm:0.0.0-experimental-3f8990898-20220323"
   dependencies:
     loose-envify: ^1.1.0
-  checksum: db6f80ea7262517c5454b085e7256066236ec4bc51b1702604a894a421966effe9cb56f6f2b97d524c192b4b7b146de1ad3afbf53afcb7858e5e4ad70d5edd92
+  checksum: f48a5d0b71fd35953a400eacac9f02885c8a827237110435d3b6e837c2d2252322e3dac855433f2fc5b6eb4e06eb14a87527ee78a9f85630c739913fc9290fc0
   languageName: node
   linkType: hard
 
@@ -2145,15 +2154,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"users@workspace:pkgs/users":
-  version: 0.0.0-use.local
-  resolution: "users@workspace:pkgs/users"
-  dependencies:
-    "@vendors/react": "workspace:^"
-    assets: "workspace:^"
-  languageName: unknown
-  linkType: soft
-
 "util-deprecate@npm:^1.0.1, util-deprecate@npm:^1.0.2":
   version: 1.0.2
   resolution: "util-deprecate@npm:1.0.2"
@@ -2166,6 +2166,9 @@ __metadata:
   resolution: "vendors@workspace:vendors"
   dependencies:
     build: "workspace:libs/build"
+    react: experimental
+    react-dom: experimental
+    react-router-dom: ^6.2.2
   languageName: unknown
   linkType: soft
 

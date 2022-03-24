@@ -11,8 +11,7 @@
     "components/*",
     "pages/*"
   ],
-  "dependencies": {
-    "@vendors/tailwind": "workspace:^",
+  "devDependencies": {
     "build": "workspace:^"
   }
 }

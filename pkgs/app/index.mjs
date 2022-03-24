@@ -1,7 +1,7 @@
 import { React, createRoot, useEffect } from '@vendors/react'
 import { BrowserRouter as Router, Route, Routes, useLocation } from '@vendors/react'
 
-import { Signin } from 'users/SignIn.mjs'
+import { SignIn } from '@pkgs/users/SignIn'
 
 import './index.scss'
 // import home from './index.html' assert { type: 'html'}
@@ -20,8 +20,8 @@ const App = () => {
   return (
     <>
       <Routes>
-        <Route exact path="/" element={<Signin />} />
-        <Route path="*" element={<Signin />} />
+        <Route exact path="/" element={<SignIn />} />
+        <Route path="*" element={<SignIn />} />
       </Routes>
     </>
   )

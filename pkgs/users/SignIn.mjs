@@ -3,7 +3,7 @@ import { React, Link } from '@vendors/react'
 import AuthImage from 'assets/images/auth-image.jpg'
 import AuthDecoration from 'assets/images/auth-decoration.png'
 
-export const Signin = () => {
+export const SignIn = () => {
   return (
     <main className="bg-white">
 
