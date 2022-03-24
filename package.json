@@ -8,8 +8,10 @@
   },
   "workspaces": [
     "pkgs",
+    "pkgs/*",
     "libs/*",
     "vendors",
+    "vendors/*",
     "dist"
   ],
   "packageManager": "yarn@3.2.0"

@@ -5,12 +5,11 @@
     "watch": "node --experimental-import-meta-resolve build.mjs"
   },
   "workspaces": [
-    "app",
-    "users",
-    "assets",
-    "components/*",
-    "pages/*"
+    "components/*"
   ],
+  "dependencies": {
+    "@vendors/tailwind": "workspace:^"
+  },
   "devDependencies": {
     "build": "workspace:^"
   }

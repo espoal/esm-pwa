@@ -4,11 +4,6 @@
   "scripts": {
     "watch": "node --experimental-import-meta-resolve build.mjs"
   },
-  "workspaces": [
-    "components",
-    "react",
-    "tailwind"
-  ],
   "devDependencies": {
     "build": "workspace:libs/build"
   }

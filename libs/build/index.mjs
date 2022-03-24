@@ -4,6 +4,7 @@ import { vendorsResolver } from './src/vendorsResolver.mjs'
 import { timeNow, watchHelper } from './src/utils.mjs'
 import { readFile } from 'fs/promises'
 
+// TODO: find a better approach to detect package version
 // import pkg from '../../package.json' assert { type: 'json' }
 const distPath = await import.meta.resolve('dist/package.json')
 const outBase = distPath.split('file://').pop().split('package.json').shift()
@@ -29,7 +30,7 @@ const baseOptions = {
   minify: false,
   treeShaking: true,
   watch: true,
-  loader: {'.mjs': 'jsx', '.html': 'file', '.jpg': 'file', '.png': 'dataurl'},
+  loader: {'.mjs': 'jsx', '.html': 'file', '.jpg': 'file', '.png': 'dataurl', '.svg': 'dataurl'},
   outExtension: { '.js': '.mjs' }
 }
 

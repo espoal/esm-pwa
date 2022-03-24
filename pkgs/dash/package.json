@@ -1,0 +1,13 @@
+{
+  "name": "@pkgs/dash",
+  "dependencies": {
+    "@libs/charts": "workspace:^",
+    "@libs/components": "workspace:^",
+    "@libs/partials": "workspace:^",
+    "@libs/utils": "workspace:^",
+    "@vendors/react": "workspace:vendors/react",
+    "@vendors/tailwind": "workspace:vendors/tailwind",
+    "assets": "workspace:^"
+  },
+  "packageManager": "yarn@3.2.0"
+}
