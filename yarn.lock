@@ -212,7 +212,9 @@ __metadata:
   dependencies:
     chart.js: ^3.7.1
     chartjs-adapter-moment: ^1.0.0
+    flatpickr: ^4.6.11
     moment: ^2.29.1
+    prop-types: ^15.8.1
     react: experimental
     react-dom: experimental
     react-flatpickr: ^3.10.9
@@ -1039,7 +1041,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"flatpickr@npm:^4.6.2":
+"flatpickr@npm:^4.6.11, flatpickr@npm:^4.6.2":
   version: 4.6.11
   resolution: "flatpickr@npm:4.6.11"
   checksum: d540590c0eb5797d2896553c321ac40010759ba5d04f24931819252ce5c0c21408fc3c073516d9b6178f17b6470d74e78d10aba018952d4739665505e745108b
@@ -1846,7 +1848,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.5.10, prop-types@npm:^15.6.2":
+"prop-types@npm:^15.5.10, prop-types@npm:^15.6.2, prop-types@npm:^15.8.1":
   version: 15.8.1
   resolution: "prop-types@npm:15.8.1"
   dependencies:
@@ -1872,14 +1874,14 @@ __metadata:
   linkType: hard
 
 "react-dom@npm:experimental":
-  version: 0.0.0-experimental-3f8990898-20220323
-  resolution: "react-dom@npm:0.0.0-experimental-3f8990898-20220323"
+  version: 0.0.0-experimental-033fe52b4-20220325
+  resolution: "react-dom@npm:0.0.0-experimental-033fe52b4-20220325"
   dependencies:
     loose-envify: ^1.1.0
-    scheduler: 0.0.0-experimental-3f8990898-20220323
+    scheduler: 0.0.0-experimental-033fe52b4-20220325
   peerDependencies:
-    react: 0.0.0-experimental-3f8990898-20220323
-  checksum: 89448c8fd1d3914b2fd92bd555442d5ef17caaabdb4da626ee4182fc0fec86c855abc74c1e2bde7076e42b1a3109ce25c78dc85ae55a7614f51fe744b08cc456
+    react: 0.0.0-experimental-033fe52b4-20220325
+  checksum: 5ac6c929f1d09b399b8b46ea1d6a0e556aeab6122849e60a1f3872814315ca71a6320698b19987a0f7fa4c8562d8b6c1ecad2c0f8421f6016a42b1ef021d713b
   languageName: node
   linkType: hard
 
@@ -1942,11 +1944,11 @@ __metadata:
   linkType: hard
 
 "react@npm:experimental":
-  version: 0.0.0-experimental-3f8990898-20220323
-  resolution: "react@npm:0.0.0-experimental-3f8990898-20220323"
+  version: 0.0.0-experimental-033fe52b4-20220325
+  resolution: "react@npm:0.0.0-experimental-033fe52b4-20220325"
   dependencies:
     loose-envify: ^1.1.0
-  checksum: dbf2dac76c779855d8ed14919a44cd77775f42912bb61d71d2290cd0907b85d412a303c838f2040374a53e4047f403eb91f4e9264f4a283e23b9582547207daf
+  checksum: 2dcc39e9810e37cc79d92c8cdfbd1285f277c9ef50cb93aefee9690e549d3eb0ca81f92554b35833cc147a9b0f83bbc5f486a49b38c85c9e3bb8c35404ab3531
   languageName: node
   linkType: hard
 
@@ -2071,12 +2073,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"scheduler@npm:0.0.0-experimental-3f8990898-20220323":
-  version: 0.0.0-experimental-3f8990898-20220323
-  resolution: "scheduler@npm:0.0.0-experimental-3f8990898-20220323"
+"scheduler@npm:0.0.0-experimental-033fe52b4-20220325":
+  version: 0.0.0-experimental-033fe52b4-20220325
+  resolution: "scheduler@npm:0.0.0-experimental-033fe52b4-20220325"
   dependencies:
     loose-envify: ^1.1.0
-  checksum: f48a5d0b71fd35953a400eacac9f02885c8a827237110435d3b6e837c2d2252322e3dac855433f2fc5b6eb4e06eb14a87527ee78a9f85630c739913fc9290fc0
+  checksum: 12786fdd8c1aa3b6f26cc7a20b9a1d626e136ba51025a3c8250352e48b41ef191c7abb143c8480cf0d17e4b139195e60aebdf6a5fc93d4d1a67af1cd02e0189a
   languageName: node
   linkType: hard
 

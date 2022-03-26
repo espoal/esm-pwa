@@ -5,7 +5,9 @@
   "dependencies": {
     "chart.js": "^3.7.1",
     "chartjs-adapter-moment": "^1.0.0",
+    "flatpickr": "^4.6.11",
     "moment": "^2.29.1",
+    "prop-types": "^15.8.1",
     "react": "experimental",
     "react-dom": "experimental",
     "react-flatpickr": "^3.10.9",

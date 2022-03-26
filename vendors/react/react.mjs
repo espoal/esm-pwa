@@ -1,7 +1,8 @@
 export * as React from 'react'
 export { createRoot } from 'react-dom/client'
+// export { render } from 'react-dom'
 
-export { useEffect, useState, useRef, useContext } from 'react'
+export { useEffect, useState, useRef, useContext, Component } from 'react'
 
 export {
   useLocation,
@@ -25,3 +26,6 @@ export {
 
 import 'chartjs-adapter-moment'
 
+export * as PropTypes from 'prop-types'
+
+export * as flatpickr from 'flatpickr/dist/esm/index.js'

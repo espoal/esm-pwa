@@ -30,7 +30,9 @@ const baseOptions = {
   minify: false,
   treeShaking: true,
   watch: true,
-  loader: {'.mjs': 'jsx', '.html': 'file', '.jpg': 'file', '.png': 'dataurl', '.svg': 'dataurl'},
+  loader: {'.mjs': 'jsx', '.js': 'jsx',
+    '.html': 'file', '.jpg': 'file',
+    '.png': 'dataurl', '.svg': 'dataurl'},
   outExtension: { '.js': '.mjs' }
 }
 
