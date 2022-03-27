@@ -32,7 +32,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.7.6":
+"@babel/runtime@npm:^7.5.5, @babel/runtime@npm:^7.7.6, @babel/runtime@npm:^7.8.7":
   version: 7.17.8
   resolution: "@babel/runtime@npm:7.17.8"
   dependencies:
@@ -41,24 +41,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@components/sidebar@workspace:^, @components/sidebar@workspace:pkgs/components/sidebar":
-  version: 0.0.0-use.local
-  resolution: "@components/sidebar@workspace:pkgs/components/sidebar"
-  dependencies:
-    "@vendors/react": "workspace:^"
-  languageName: unknown
-  linkType: soft
-
 "@espoal/app@workspace:pkgs/app":
   version: 0.0.0-use.local
   resolution: "@espoal/app@workspace:pkgs/app"
   dependencies:
-    "@components/sidebar": "workspace:^"
-    "@pages/dash": "workspace:^"
-    "@pages/login": "workspace:pkgs/pages/login"
-    "@vendors/react": "workspace:^"
-    "@vendors/tailwind": "workspace:^"
-    build: "workspace:libs/build"
+    "@libs/build": "workspace:libs/build"
+    "@libs/tailwind": "workspace:libs/tailwind"
+    "@libs/vendors": "workspace:libs/vendors"
+    "@pkgs/3stats": "workspace:pkgs/3stats"
+    "@pkgs/auth": "workspace:pkgs/auth"
+    "@pkgs/dash": "workspace:pkgs/dash"
   languageName: unknown
   linkType: soft
 
@@ -68,12 +60,97 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@gar/promisify@npm:^1.0.1":
+"@gar/promisify@npm:^1.1.3":
   version: 1.1.3
   resolution: "@gar/promisify@npm:1.1.3"
   checksum: 4059f790e2d07bf3c3ff3e0fec0daa8144fe35c1f6e0111c9921bd32106adaa97a4ab096ad7dab1e28ee6a9060083c4d1a4ada42a7f5f3f7a96b8812e2b757c1
   languageName: node
   linkType: hard
+
+"@libs/assets@workspace:^, @libs/assets@workspace:libs/assets":
+  version: 0.0.0-use.local
+  resolution: "@libs/assets@workspace:libs/assets"
+  languageName: unknown
+  linkType: soft
+
+"@libs/build@workspace:^, @libs/build@workspace:libs/build":
+  version: 0.0.0-use.local
+  resolution: "@libs/build@workspace:libs/build"
+  dependencies:
+    "@yarnpkg/esbuild-plugin-pnp": ^2.0.1
+    dist: "workspace:dist"
+    esbuild: ^0.14.27
+  languageName: unknown
+  linkType: soft
+
+"@libs/charts@workspace:^, @libs/charts@workspace:libs/charts":
+  version: 0.0.0-use.local
+  resolution: "@libs/charts@workspace:libs/charts"
+  dependencies:
+    "@libs/utils": "workspace:^"
+    "@libs/vendors": "workspace:^"
+  languageName: unknown
+  linkType: soft
+
+"@libs/components@workspace:^, @libs/components@workspace:libs/components":
+  version: 0.0.0-use.local
+  resolution: "@libs/components@workspace:libs/components"
+  dependencies:
+    "@libs/assets": "workspace:libs/assets"
+    "@libs/tailwind": "workspace:libs/tailwind"
+    "@libs/utils": "workspace:^"
+    "@libs/vendors": "workspace:libs/vendors"
+  languageName: unknown
+  linkType: soft
+
+"@libs/partials@workspace:^, @libs/partials@workspace:libs/partials":
+  version: 0.0.0-use.local
+  resolution: "@libs/partials@workspace:libs/partials"
+  dependencies:
+    "@libs/assets": "workspace:^"
+    "@libs/components": "workspace:^"
+    "@libs/vendors": "workspace:^"
+  languageName: unknown
+  linkType: soft
+
+"@libs/tailwind@workspace:^, @libs/tailwind@workspace:libs/tailwind":
+  version: 0.0.0-use.local
+  resolution: "@libs/tailwind@workspace:libs/tailwind"
+  dependencies:
+    "@tailwindcss/forms": ^0.5.0
+    autoprefixer: ^10.4.4
+    esbuild-sass-plugin: ^2.2.5
+    postcss: ^8.4.12
+    tailwindcss: ^3.0.23
+  languageName: unknown
+  linkType: soft
+
+"@libs/utils@workspace:^, @libs/utils@workspace:libs/utils":
+  version: 0.0.0-use.local
+  resolution: "@libs/utils@workspace:libs/utils"
+  dependencies:
+    "@libs/tailwind": "workspace:^"
+    "@libs/vendors": "workspace:^"
+  languageName: unknown
+  linkType: soft
+
+"@libs/vendors@workspace:^, @libs/vendors@workspace:libs/vendors":
+  version: 0.0.0-use.local
+  resolution: "@libs/vendors@workspace:libs/vendors"
+  dependencies:
+    "@libs/build": "workspace:^"
+    chart.js: ^3.7.1
+    chartjs-adapter-moment: ^1.0.0
+    flatpickr: ^4.6.11
+    moment: ^2.29.1
+    prop-types: ^15.8.1
+    react: experimental
+    react-dom: experimental
+    react-flatpickr: ^3.10.9
+    react-router-dom: ^6.2.2
+    react-transition-group: ^4.4.2
+  languageName: unknown
+  linkType: soft
 
 "@nodelib/fs.scandir@npm:2.1.5":
   version: 2.1.5
@@ -102,13 +179,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@npmcli/fs@npm:^1.0.0":
-  version: 1.1.1
-  resolution: "@npmcli/fs@npm:1.1.1"
+"@npmcli/fs@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "@npmcli/fs@npm:2.1.0"
   dependencies:
-    "@gar/promisify": ^1.0.1
+    "@gar/promisify": ^1.1.3
     semver: ^7.3.5
-  checksum: f5ad92f157ed222e4e31c352333d0901df02c7c04311e42a81d8eb555d4ec4276ea9c635011757de20cc476755af33e91622838de573b17e52e2e7703f0a9965
+  checksum: 6ec6d678af6da49f9dac50cd882d7f661934dd278972ffbaacde40d9eaa2871292d634000a0cca9510f6fc29855fbd4af433e1adbff90a524ec3eaf140f1219b
   languageName: node
   linkType: hard
 
@@ -122,21 +199,53 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pages/dash@workspace:^, @pages/dash@workspace:pkgs/pages/dash":
+"@pkgs/3stats@workspace:pkgs/3stats":
   version: 0.0.0-use.local
-  resolution: "@pages/dash@workspace:pkgs/pages/dash"
+  resolution: "@pkgs/3stats@workspace:pkgs/3stats"
   dependencies:
-    "@vendors/react": "workspace:^"
+    "@libs/assets": "workspace:^"
+    "@libs/charts": "workspace:^"
+    "@libs/components": "workspace:^"
+    "@libs/partials": "workspace:^"
+    "@libs/tailwind": "workspace:libs/tailwind"
+    "@libs/utils": "workspace:^"
+    "@libs/vendors": "workspace:^"
   languageName: unknown
   linkType: soft
 
-"@pages/login@workspace:pkgs/pages/login":
+"@pkgs/auth@workspace:pkgs/auth":
   version: 0.0.0-use.local
-  resolution: "@pages/login@workspace:pkgs/pages/login"
+  resolution: "@pkgs/auth@workspace:pkgs/auth"
   dependencies:
-    "@vendors/react": "workspace:^"
+    "@libs/assets": "workspace:^"
+    "@libs/vendors": "workspace:^"
   languageName: unknown
   linkType: soft
+
+"@pkgs/dash@workspace:pkgs/dash":
+  version: 0.0.0-use.local
+  resolution: "@pkgs/dash@workspace:pkgs/dash"
+  dependencies:
+    "@libs/assets": "workspace:^"
+    "@libs/charts": "workspace:^"
+    "@libs/components": "workspace:^"
+    "@libs/partials": "workspace:^"
+    "@libs/tailwind": "workspace:libs/tailwind"
+    "@libs/utils": "workspace:^"
+    "@libs/vendors": "workspace:^"
+  languageName: unknown
+  linkType: soft
+
+"@tailwindcss/forms@npm:^0.5.0":
+  version: 0.5.0
+  resolution: "@tailwindcss/forms@npm:0.5.0"
+  dependencies:
+    mini-svg-data-uri: ^1.2.3
+  peerDependencies:
+    tailwindcss: ">=3.0.0 || >= 3.0.0-alpha.1"
+  checksum: 3e57584871bc41947f2a1518deaf69894b75745dee959bb2ba475c819eadec2b86f8bf6e73a051ddab627df4c8c3ad1d18239d48b3a95211be3b11a04dee0511
+  languageName: node
+  linkType: hard
 
 "@tootallnate/once@npm:2":
   version: 2.0.0
@@ -151,33 +260,6 @@ __metadata:
   checksum: fd6bce2b674b6efc3db4c7c3d336bd70c90838e8439de639b909ce22f3720d21344f52427f1d9e57b265fcb7f6c018699b99e5e0c208a1a4823014269a6bf35b
   languageName: node
   linkType: hard
-
-"@vendors/components@workspace:vendors/components":
-  version: 0.0.0-use.local
-  resolution: "@vendors/components@workspace:vendors/components"
-  languageName: unknown
-  linkType: soft
-
-"@vendors/react@workspace:^, @vendors/react@workspace:vendors/react":
-  version: 0.0.0-use.local
-  resolution: "@vendors/react@workspace:vendors/react"
-  dependencies:
-    react: experimental
-    react-dom: experimental
-    react-router-dom: ^6.2.2
-  languageName: unknown
-  linkType: soft
-
-"@vendors/tailwind@workspace:^, @vendors/tailwind@workspace:vendors/tailwind":
-  version: 0.0.0-use.local
-  resolution: "@vendors/tailwind@workspace:vendors/tailwind"
-  dependencies:
-    autoprefixer: ^10.4.4
-    esbuild-sass-plugin: ^2.2.5
-    postcss: ^8.4.12
-    tailwindcss: ^3.0.23
-  languageName: unknown
-  linkType: soft
 
 "@yarnpkg/esbuild-plugin-pnp@npm:^2.0.1":
   version: 2.0.1
@@ -379,27 +461,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"build@workspace:^, build@workspace:libs/build":
-  version: 0.0.0-use.local
-  resolution: "build@workspace:libs/build"
-  dependencies:
-    "@yarnpkg/esbuild-plugin-pnp": ^2.0.1
-    dist: "workspace:dist"
-    esbuild: ^0.14.27
-  languageName: unknown
-  linkType: soft
-
 "cacache@npm:^16.0.0":
-  version: 16.0.2
-  resolution: "cacache@npm:16.0.2"
+  version: 16.0.3
+  resolution: "cacache@npm:16.0.3"
   dependencies:
-    "@npmcli/fs": ^1.0.0
+    "@npmcli/fs": ^2.1.0
     "@npmcli/move-file": ^1.1.2
     chownr: ^2.0.0
     fs-minipass: ^2.1.0
     glob: ^7.2.0
     infer-owner: ^1.0.4
-    lru-cache: ^7.5.1
+    lru-cache: ^7.7.1
     minipass: ^3.1.6
     minipass-collect: ^1.0.2
     minipass-flush: ^1.0.5
@@ -411,7 +483,7 @@ __metadata:
     ssri: ^8.0.1
     tar: ^6.1.11
     unique-filename: ^1.1.1
-  checksum: dced60dc532ed6a6da3feeb7736c5cb38bbbc900e273a04e68e510cc9bd1acab8e61ee86df7b4fe959ef35e39fd74abb4cb4834d221a9a59afa8029f3773eab3
+  checksum: 9bb9a0bd1b8bee3284c6fa9dcb4b28a62b528dd181f7cd482319611b5d6df295a3594dcefc24d1a4f16162bac50d6facc183ed21935f3d09af6d16f620ea54d3
   languageName: node
   linkType: hard
 
@@ -454,6 +526,23 @@ __metadata:
     ansi-styles: ^4.1.0
     supports-color: ^7.1.0
   checksum: fe75c9d5c76a7a98d45495b91b2172fa3b7a09e0cc9370e5c8feb1c567b85c4288e2b3fded7cfdd7359ac28d6b3844feb8b82b8686842e93d23c827c417e83fc
+  languageName: node
+  linkType: hard
+
+"chart.js@npm:^3.7.1":
+  version: 3.7.1
+  resolution: "chart.js@npm:3.7.1"
+  checksum: f9d118d3b7dd3c36b6da7a8d71ac9e5d9673b81095cc66c3f61ff91674e20020c6700f8c9c6f93713fa8474eb471ded106114346ccc6afa88b4a7d0eb73dcea4
+  languageName: node
+  linkType: hard
+
+"chartjs-adapter-moment@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "chartjs-adapter-moment@npm:1.0.0"
+  peerDependencies:
+    chart.js: ^3.0.0
+    moment: ^2.10.2
+  checksum: d1efe7d9d7b08e93111db93e684cf3b3aa656144b2e0d4cd9efcaaf62a7493799762d6467c85a6410dda21438ccaad5d1e887243ce8130f8bc384e775a9edd00
   languageName: node
   linkType: hard
 
@@ -567,6 +656,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"csstype@npm:^3.0.2":
+  version: 3.0.11
+  resolution: "csstype@npm:3.0.11"
+  checksum: 95e56abfe9ca219ae065acb4e43f61771a03170eed919127f558dfa168240867aba7629c8d98a201a0dd06d9a5ce82686f0570031c928516c61816adbc7c877f
+  languageName: node
+  linkType: hard
+
 "debug@npm:4, debug@npm:^4.1.0, debug@npm:^4.3.1":
   version: 4.3.4
   resolution: "debug@npm:4.3.4"
@@ -633,10 +729,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"dom-helpers@npm:^5.0.1":
+  version: 5.2.1
+  resolution: "dom-helpers@npm:5.2.1"
+  dependencies:
+    "@babel/runtime": ^7.8.7
+    csstype: ^3.0.2
+  checksum: 863ba9e086f7093df3376b43e74ce4422571d404fc9828bf2c56140963d5edf0e56160f9b2f3bb61b282c07f8fc8134f023c98fd684bddcb12daf7b0f14d951c
+  languageName: node
+  linkType: hard
+
 "electron-to-chromium@npm:^1.4.84":
-  version: 1.4.88
-  resolution: "electron-to-chromium@npm:1.4.88"
-  checksum: a93d364efae8e6f718f1aae0f47914028178ed0b643cc583344127dc547bf1f7fc8df066834233e04629e8df2141eb192bcb2070abdbeeb872e551acbaba2bbf
+  version: 1.4.91
+  resolution: "electron-to-chromium@npm:1.4.91"
+  checksum: 48396dc8b1aff87671853c9b39432402079e99f62da1c5f136231c292c43012965f0bc14ff7ae8fcad5a8af437c21912b0fc5399bde98ed3d4c2b871a0ae781d
   languageName: node
   linkType: hard
 
@@ -942,6 +1048,13 @@ __metadata:
   dependencies:
     to-regex-range: ^5.0.1
   checksum: cc283f4e65b504259e64fd969bcf4def4eb08d85565e906b7d36516e87819db52029a76b6363d0f02d0d532f0033c9603b9e2d943d56ee3b0d4f7ad3328ff917
+  languageName: node
+  linkType: hard
+
+"flatpickr@npm:^4.6.11, flatpickr@npm:^4.6.2":
+  version: 4.6.11
+  resolution: "flatpickr@npm:4.6.11"
+  checksum: d540590c0eb5797d2896553c321ac40010759ba5d04f24931819252ce5c0c21408fc3c073516d9b6178f17b6470d74e78d10aba018952d4739665505e745108b
   languageName: node
   linkType: hard
 
@@ -1293,7 +1406,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"loose-envify@npm:^1.1.0":
+"loose-envify@npm:^1.1.0, loose-envify@npm:^1.4.0":
   version: 1.4.0
   resolution: "loose-envify@npm:1.4.0"
   dependencies:
@@ -1313,7 +1426,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lru-cache@npm:^7.5.1":
+"lru-cache@npm:^7.5.1, lru-cache@npm:^7.7.1":
   version: 7.7.1
   resolution: "lru-cache@npm:7.7.1"
   checksum: f362c5a2cfa8ad6fe557ec43dc1b7a9695cce84a5652a43ff813609f782f5da576631e7dfad41878bf19a7a69438f38375178635ee80de269aa314280ca2f59e
@@ -1361,6 +1474,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"mini-svg-data-uri@npm:^1.2.3":
+  version: 1.4.4
+  resolution: "mini-svg-data-uri@npm:1.4.4"
+  bin:
+    mini-svg-data-uri: cli.js
+  checksum: 997f1fbd8d59a70f03761e18626d335197a3479cb9d1ff75678e4b64b864d32a0b8fc18115eabde035e5299b8b4a354a78e57dd6ac10f9d604162a6170898d09
+  languageName: node
+  linkType: hard
+
 "minimatch@npm:^3.0.4":
   version: 3.1.2
   resolution: "minimatch@npm:3.1.2"
@@ -1371,9 +1493,9 @@ __metadata:
   linkType: hard
 
 "minimist@npm:^1.1.1":
-  version: 1.2.5
-  resolution: "minimist@npm:1.2.5"
-  checksum: 86706ce5b36c16bfc35c5fe3dbb01d5acdc9a22f2b6cc810b6680656a1d2c0e44a0159c9a3ba51fb072bb5c203e49e10b51dcd0eec39c481f4c42086719bae52
+  version: 1.2.6
+  resolution: "minimist@npm:1.2.6"
+  checksum: d15428cd1e11eb14e1233bcfb88ae07ed7a147de251441d61158619dfb32c4d7e9061d09cab4825fdee18ecd6fce323228c8c47b5ba7cd20af378ca4048fb3fb
   languageName: node
   linkType: hard
 
@@ -1453,6 +1575,13 @@ __metadata:
   bin:
     mkdirp: bin/cmd.js
   checksum: a96865108c6c3b1b8e1d5e9f11843de1e077e57737602de1b82030815f311be11f96f09cce59bd5b903d0b29834733e5313f9301e3ed6d6f6fba2eae0df4298f
+  languageName: node
+  linkType: hard
+
+"moment@npm:^2.29.1":
+  version: 2.29.1
+  resolution: "moment@npm:2.29.1"
+  checksum: 1e14d5f422a2687996be11dd2d50c8de3bd577c4a4ca79ba5d02c397242a933e5b941655de6c8cb90ac18f01cc4127e55b4a12ae3c527a6c0a274e455979345e
   languageName: node
   linkType: hard
 
@@ -1550,6 +1679,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"object-assign@npm:^4.1.1":
+  version: 4.1.1
+  resolution: "object-assign@npm:4.1.1"
+  checksum: fcc6e4ea8c7fe48abfbb552578b1c53e0d194086e2e6bbbf59e0a536381a292f39943c6e9628af05b5528aa5e3318bb30d6b2e53cadaf5b8fe9e12c4b69af23f
+  languageName: node
+  linkType: hard
+
 "object-hash@npm:^2.2.0":
   version: 2.2.0
   resolution: "object-hash@npm:2.2.0"
@@ -1635,8 +1771,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "pkgs@workspace:pkgs"
   dependencies:
-    "@vendors/tailwind": "workspace:^"
-    build: "workspace:^"
+    "@libs/build": "workspace:^"
+    "@libs/tailwind": "workspace:^"
   languageName: unknown
   linkType: soft
 
@@ -1722,6 +1858,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"prop-types@npm:^15.5.10, prop-types@npm:^15.6.2, prop-types@npm:^15.8.1":
+  version: 15.8.1
+  resolution: "prop-types@npm:15.8.1"
+  dependencies:
+    loose-envify: ^1.4.0
+    object-assign: ^4.1.1
+    react-is: ^16.13.1
+  checksum: c056d3f1c057cb7ff8344c645450e14f088a915d078dcda795041765047fa080d38e5d626560ccaac94a4e16e3aa15f3557c1a9a8d1174530955e992c675e459
+  languageName: node
+  linkType: hard
+
 "queue-microtask@npm:^1.2.2":
   version: 1.2.3
   resolution: "queue-microtask@npm:1.2.3"
@@ -1737,14 +1884,33 @@ __metadata:
   linkType: hard
 
 "react-dom@npm:experimental":
-  version: 0.0.0-experimental-645ec5d6f-20220317
-  resolution: "react-dom@npm:0.0.0-experimental-645ec5d6f-20220317"
+  version: 0.0.0-experimental-033fe52b4-20220325
+  resolution: "react-dom@npm:0.0.0-experimental-033fe52b4-20220325"
   dependencies:
     loose-envify: ^1.1.0
-    scheduler: 0.0.0-experimental-645ec5d6f-20220317
+    scheduler: 0.0.0-experimental-033fe52b4-20220325
   peerDependencies:
-    react: 0.0.0-experimental-645ec5d6f-20220317
-  checksum: bb04de0bea594c12eb3865148a77d4839dd21b7bd287ffad7cab40f24f4e9bac4e2267c25949e54768806648e29819da4ee25016a0e57a19a3d9ba328759c498
+    react: 0.0.0-experimental-033fe52b4-20220325
+  checksum: 5ac6c929f1d09b399b8b46ea1d6a0e556aeab6122849e60a1f3872814315ca71a6320698b19987a0f7fa4c8562d8b6c1ecad2c0f8421f6016a42b1ef021d713b
+  languageName: node
+  linkType: hard
+
+"react-flatpickr@npm:^3.10.9":
+  version: 3.10.9
+  resolution: "react-flatpickr@npm:3.10.9"
+  dependencies:
+    flatpickr: ^4.6.2
+    prop-types: ^15.5.10
+  peerDependencies:
+    react: ^17.0.1
+  checksum: 5dbfd383431141acdda9d89fe21d9466bb864a33f2cbdf85e2088242c76deb91d7511b7bfc751eb9794f20c9349b169a0ffabad917a88c50454e1b11edd7fe8d
+  languageName: node
+  linkType: hard
+
+"react-is@npm:^16.13.1":
+  version: 16.13.1
+  resolution: "react-is@npm:16.13.1"
+  checksum: f7a19ac3496de32ca9ae12aa030f00f14a3d45374f1ceca0af707c831b2a6098ef0d6bdae51bd437b0a306d7f01d4677fcc8de7c0d331eb47ad0f46130e53c5f
   languageName: node
   linkType: hard
 
@@ -1772,12 +1938,27 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-transition-group@npm:^4.4.2":
+  version: 4.4.2
+  resolution: "react-transition-group@npm:4.4.2"
+  dependencies:
+    "@babel/runtime": ^7.5.5
+    dom-helpers: ^5.0.1
+    loose-envify: ^1.4.0
+    prop-types: ^15.6.2
+  peerDependencies:
+    react: ">=16.6.0"
+    react-dom: ">=16.6.0"
+  checksum: b67bf5b3e86dbab72d658b9a52a3589e5960583ab28c7c66272427d8fe30d4c7de422d5046ae96bd2683cdf80cc3264b2516f5ce80cae1dbe6cf3ca6dda392c5
+  languageName: node
+  linkType: hard
+
 "react@npm:experimental":
-  version: 0.0.0-experimental-645ec5d6f-20220317
-  resolution: "react@npm:0.0.0-experimental-645ec5d6f-20220317"
+  version: 0.0.0-experimental-033fe52b4-20220325
+  resolution: "react@npm:0.0.0-experimental-033fe52b4-20220325"
   dependencies:
     loose-envify: ^1.1.0
-  checksum: 17504497ccc695fe2998b4e8dcd788c7cdd6648fd4910a18cb644756c52804437806ec255e8f124a39ea4bc7552b99c9646ad30831290ef198d1bbf5f2a3b618
+  checksum: 2dcc39e9810e37cc79d92c8cdfbd1285f277c9ef50cb93aefee9690e549d3eb0ca81f92554b35833cc147a9b0f83bbc5f486a49b38c85c9e3bb8c35404ab3531
   languageName: node
   linkType: hard
 
@@ -1902,12 +2083,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"scheduler@npm:0.0.0-experimental-645ec5d6f-20220317":
-  version: 0.0.0-experimental-645ec5d6f-20220317
-  resolution: "scheduler@npm:0.0.0-experimental-645ec5d6f-20220317"
+"scheduler@npm:0.0.0-experimental-033fe52b4-20220325":
+  version: 0.0.0-experimental-033fe52b4-20220325
+  resolution: "scheduler@npm:0.0.0-experimental-033fe52b4-20220325"
   dependencies:
     loose-envify: ^1.1.0
-  checksum: db6f80ea7262517c5454b085e7256066236ec4bc51b1702604a894a421966effe9cb56f6f2b97d524c192b4b7b146de1ad3afbf53afcb7858e5e4ad70d5edd92
+  checksum: 12786fdd8c1aa3b6f26cc7a20b9a1d626e136ba51025a3c8250352e48b41ef191c7abb143c8480cf0d17e4b139195e60aebdf6a5fc93d4d1a67af1cd02e0189a
   languageName: node
   linkType: hard
 
@@ -2034,6 +2215,12 @@ __metadata:
   languageName: node
   linkType: hard
 
+"sw@workspace:pkgs/sw":
+  version: 0.0.0-use.local
+  resolution: "sw@workspace:pkgs/sw"
+  languageName: unknown
+  linkType: soft
+
 "tailwindcss@npm:^3.0.23":
   version: 3.0.23
   resolution: "tailwindcss@npm:3.0.23"
@@ -2123,14 +2310,6 @@ __metadata:
   checksum: 474acf1146cb2701fe3b074892217553dfcf9a031280919ba1b8d651a068c9b15d863b7303cb15bd00a862b498e6cf4ad7b4a08fb134edd5a6f7641681cb54a2
   languageName: node
   linkType: hard
-
-"vendors@workspace:vendors":
-  version: 0.0.0-use.local
-  resolution: "vendors@workspace:vendors"
-  dependencies:
-    build: "workspace:libs/build"
-  languageName: unknown
-  linkType: soft
 
 "which@npm:^2.0.2":
   version: 2.0.2

@@ -1,5 +1,5 @@
-import { buildHelper } from 'build'
-import { tailwindPlugin } from '@vendors/tailwind'
+import { buildHelper } from '@libs/build'
+import { tailwindPlugin } from '@libs/tailwind'
 
 const options = {
   entryPoints: [

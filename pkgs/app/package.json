@@ -2,11 +2,13 @@
   "name": "@espoal/app",
   "packageManager": "yarn@3.2.0",
   "dependencies": {
-    "@components/sidebar": "workspace:^",
-    "@pages/dash": "workspace:^",
-    "@pages/login": "workspace:pkgs/pages/login",
-    "@vendors/react": "workspace:^",
-    "@vendors/tailwind": "workspace:^",
-    "build": "workspace:libs/build"
+    "@libs/tailwind": "workspace:libs/tailwind",
+    "@libs/vendors": "workspace:libs/vendors",
+    "@pkgs/3stats": "workspace:pkgs/3stats",
+    "@pkgs/auth": "workspace:pkgs/auth",
+    "@pkgs/dash": "workspace:pkgs/dash"
+  },
+  "devDependencies": {
+    "@libs/build": "workspace:libs/build"
   }
 }

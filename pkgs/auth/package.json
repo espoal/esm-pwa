@@ -1,0 +1,8 @@
+{
+  "name": "@pkgs/auth",
+  "dependencies": {
+    "@libs/assets": "workspace:^",
+    "@libs/vendors": "workspace:^"
+  },
+  "packageManager": "yarn@3.2.0"
+}

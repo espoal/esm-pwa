@@ -1,5 +1,5 @@
 {
-  "name": "build",
+  "name": "@libs/build",
   "main": "index.mjs",
   "packageManager": "yarn@3.2.0",
   "dependencies": {

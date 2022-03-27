@@ -1,13 +1,54 @@
-import { React, createRoot } from '@vendors/react'
-import { Login } from '@pages/login/Login.mjs'
-// import { Dash } from '@pages/dash/Dash.mjs'
-import { Sidebar } from '@components/sidebar/Sidebar.mjs'
+import { React, createRoot, useEffect } from '@libs/vendors'
+import { BrowserRouter as Router, Route, Routes, useLocation } from '@libs/vendors'
+
+import { SignIn } from '@pkgs/auth/SignIn'
+import { RequireAuth, AuthProvider } from '@pkgs/auth/AuthProvider'
+
+// import { Dashboard } from '@pkgs/dash/Dashboard'
+import { DashboardPage } from '@pkgs/3stats/Dashboard'
+
 import './index.scss'
-import home from './index.html' assert { type: 'html'}
-console.assert(home)
+// import home from './index.html' assert { type: 'html'}
+// console.assert(home)
 
-const rootElement = document.getElementById("react-app")
-createRoot(rootElement).render(<Login />)
+const App = () => {
 
-const sideBarElement = document.getElementById("sidebar")
-createRoot(sideBarElement).render(<Sidebar />)
+  const location = useLocation();
+
+  useEffect(() => {
+    document.querySelector('html').style.scrollBehavior = 'auto'
+    window.scroll({ top: 0 })
+    document.querySelector('html').style.scrollBehavior = ''
+  }, [location.pathname]); // triggered on route change
+
+  return (
+    <>
+      <AuthProvider>
+        <Routes>
+          <Route exact path="/" element={<SignIn />} />
+          <Route
+            path="/protected"
+            element={
+              <RequireAuth>
+                <DashboardPage />
+              </RequireAuth>
+            }
+          />
+          <Route path="*" element={<h1>Not Found</h1>} />
+        </Routes>
+      </AuthProvider>
+
+    </>
+  )
+}
+
+
+const rootElement = document.getElementById('root')
+createRoot(rootElement).render(<React.StrictMode>
+  <Router>
+    <App />
+  </Router>
+</React.StrictMode>)
+
+// const sideBarElement = document.getElementById("sidebar")
+// createRoot(sideBarElement).render(<Sidebar />)

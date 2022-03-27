@@ -1,0 +1,10 @@
+{
+  "name": "@libs/components",
+  "dependencies": {
+    "@libs/assets": "workspace:libs/assets",
+    "@libs/tailwind": "workspace:libs/tailwind",
+    "@libs/utils": "workspace:^",
+    "@libs/vendors": "workspace:libs/vendors"
+  },
+  "packageManager": "yarn@3.2.0"
+}
