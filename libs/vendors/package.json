@@ -1,8 +1,11 @@
 {
-  "name": "@vendors/react",
-  "packageManager": "yarn@3.2.0",
-  "main": "react.mjs",
+  "name": "@libs/vendors",
+  "main": "vendors.mjs",
+  "scripts": {
+    "watch": "node --experimental-import-meta-resolve build.mjs"
+  },
   "dependencies": {
+    "@libs/build": "workspace:^",
     "chart.js": "^3.7.1",
     "chartjs-adapter-moment": "^1.0.0",
     "flatpickr": "^4.6.11",
@@ -13,5 +16,6 @@
     "react-flatpickr": "^3.10.9",
     "react-router-dom": "^6.2.2",
     "react-transition-group": "^4.4.2"
-  }
+  },
+  "packageManager": "yarn@3.2.0"
 }

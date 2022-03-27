@@ -1,4 +1,4 @@
-import { React } from '@vendors/react'
+import { React } from '@libs/vendors'
 import { Flatpickr } from './Flatpickr.mjs'
 
 export const Datepicker = ({

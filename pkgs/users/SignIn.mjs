@@ -1,7 +1,7 @@
-import { React, Link } from '@vendors/react'
+import { React, Link } from '@libs/vendors'
 
-import AuthImage from 'assets/images/auth-image.jpg'
-import AuthDecoration from 'assets/images/auth-decoration.png'
+import AuthImage from '@libs/assets/images/auth-image.jpg'
+import AuthDecoration from '@libs/assets/images/auth-decoration.png'
 
 export const SignIn = () => {
   return (

@@ -1,4 +1,4 @@
-import {React, useState } from '@vendors/react'
+import {React, useState } from '@libs/vendors'
 
 import {
   Sidebar, Header

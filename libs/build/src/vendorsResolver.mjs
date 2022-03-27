@@ -3,9 +3,9 @@ export const vendorsResolver = (currentVersion) => ({
   name: 'example',
   setup(build) {
     // Mark all paths starting with 'http://' or 'https://' as external
-    build.onResolve({ filter: /^@vendors\/react$/ }, args => {
+    build.onResolve({ filter: /^@libs\/vendors$/ }, args => {
       // console.log({args})
-      return { path: `/libs/react${currentVersion}.mjs`, external: true }
+      return { path: `/libs/vendors${currentVersion}.mjs`, external: true }
     })
     // Mark all paths starting with 'http://' or 'https://' as external
     build.onResolve({ filter: /^https?:\/\// }, args => {

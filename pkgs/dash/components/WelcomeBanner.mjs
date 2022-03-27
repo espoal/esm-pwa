@@ -1,4 +1,4 @@
-import { React } from '@vendors/react'
+import { React } from '@libs/vendors'
 
 export const WelcomeBanner = () => {
   return (

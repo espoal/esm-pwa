@@ -1,8 +1,8 @@
-import { React, useRef, useEffect } from '@vendors/react'
+import { React, useRef, useEffect } from '@libs/vendors'
 
 import {
   Chart, LineController, LineElement, Filler, PointElement, LinearScale, TimeScale, Tooltip,
-} from '@vendors/react'
+} from '@libs/vendors'
 
 // Import utilities
 import { tailwindConfig, formatValue } from '@libs/utils/Utils'

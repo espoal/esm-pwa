@@ -9,7 +9,7 @@
 node_modules
 
 #Project
-pkgs/assets/images
+libs/assets/images
 
 # Firebase
 firebase-debug.log

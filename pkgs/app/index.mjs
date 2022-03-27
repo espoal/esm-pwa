@@ -1,12 +1,12 @@
-import { React, createRoot, useEffect } from '@vendors/react'
-import { BrowserRouter as Router, Route, Routes, useLocation } from '@vendors/react'
+import { React, createRoot, useEffect } from '@libs/vendors'
+import { BrowserRouter as Router, Route, Routes, useLocation } from '@libs/vendors'
 
 import { SignIn } from '@pkgs/users/SignIn'
 import { Dashboard } from '@pkgs/dash/Dashboard'
 
 import './index.scss'
-import home from './index.html' assert { type: 'html'}
-console.assert(home)
+// import home from './index.html' assert { type: 'html'}
+// console.assert(home)
 
 const App = () => {
 

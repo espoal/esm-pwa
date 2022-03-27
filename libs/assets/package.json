@@ -1,4 +1,4 @@
 {
-  "name": "assets",
+  "name": "@libs/assets",
   "packageManager": "yarn@3.2.0"
 }

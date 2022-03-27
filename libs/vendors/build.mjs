@@ -1,7 +1,7 @@
-import { buildHelper } from 'build'
+import { buildHelper } from '@libs/build'
 
 const options = {
-  entryPoints: ['react.mjs'],
+  entryPoints: ['vendors.mjs'],
   outDir: 'libs',
   version: true
 }

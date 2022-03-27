@@ -1,8 +1,8 @@
-import { React, useRef, useEffect } from '@vendors/react'
+import { React, useRef, useEffect } from '@libs/vendors'
 
 import {
   Chart, DoughnutController, ArcElement, TimeScale, Tooltip,
-} from '@vendors/react'
+} from '@libs/vendors'
 
 // Import utilities
 import { tailwindConfig } from '@libs/utils/Utils'

@@ -1,8 +1,8 @@
-import { React, Link } from '@vendors/react'
+import { React, Link } from '@libs/vendors'
 import { LineChart01 as LineChart } from '@libs/charts'
 import { DropdownEditMenu as EditMenu } from '@libs/components'
 
-import Icon from 'assets/images/icon-03.svg'
+import Icon from '@libs/assets/images/icon-03.svg'
 
 // Import utilities
 import { tailwindConfig, hexToRGB } from '@libs/utils/Utils'

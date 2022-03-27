@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from '@vendors/react'
+import { React, useState, useEffect } from '@libs/vendors'
 
 import { Tooltip } from '@libs/components'
 import { RealtimeChart } from '@libs/charts'

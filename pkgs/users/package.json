@@ -1,8 +1,8 @@
 {
   "name": "@pkgs/users",
   "dependencies": {
-    "@vendors/react": "workspace:^",
-    "assets": "workspace:^"
+    "@libs/assets": "workspace:^",
+    "@libs/vendors": "workspace:^"
   },
   "packageManager": "yarn@3.2.0"
 }

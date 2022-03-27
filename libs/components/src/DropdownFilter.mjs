@@ -1,4 +1,4 @@
-import { React, useState, useRef, useEffect } from '@vendors/react'
+import { React, useState, useRef, useEffect } from '@libs/vendors'
 import { Transition } from '@libs/utils/Transition'
 
 export const DropdownFilter = ({

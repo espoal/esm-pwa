@@ -1,4 +1,4 @@
-import { React } from '@vendors/react'
+import { React } from '@libs/vendors'
 import { Tooltip } from '@libs/components'
 import { BarChart02 as BarChart } from '@libs/charts'
 

@@ -1,4 +1,4 @@
-import { resolvedConfig } from '@vendors/tailwind/resolvedConfig'
+import { resolvedConfig } from '@libs/tailwind/resolvedConfig'
 
 export const tailwindConfig = () => {
   // Tailwind config

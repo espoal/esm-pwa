@@ -1,5 +1,5 @@
-import { React, useRef, useEffect, useContext } from '@vendors/react'
-import { CSSTransition as ReactCSSTransition } from '@vendors/react'
+import { React, useRef, useEffect, useContext } from '@libs/vendors'
+import { CSSTransition as ReactCSSTransition } from '@libs/vendors'
 
 const TransitionContext = React.createContext({
   parent: {},

@@ -2,12 +2,12 @@
   "name": "@espoal/app",
   "packageManager": "yarn@3.2.0",
   "dependencies": {
+    "@libs/tailwind": "workspace:libs/tailwind",
+    "@libs/vendors": "workspace:libs/vendors",
     "@pkgs/dash": "workspace:pkgs/dash",
-    "@pkgs/users": "workspace:pkgs/users",
-    "@vendors/react": "workspace:vendors/react",
-    "@vendors/tailwind": "workspace:vendors/tailwind"
+    "@pkgs/users": "workspace:pkgs/users"
   },
   "devDependencies": {
-    "build": "workspace:libs/build"
+    "@libs/build": "workspace:libs/build"
   }
 }

@@ -1,7 +1,7 @@
-import { React, useState, useRef, useEffect, Link } from '@vendors/react'
+import { React, useState, useRef, useEffect, Link } from '@libs/vendors'
 import { Transition } from '@libs/utils/Transition'
 
-import UserAvatar from 'assets/images/user-avatar-32.png'
+import UserAvatar from '@libs/assets/images/user-avatar-32.png'
 
 export const DropdownProfile = ({
   align

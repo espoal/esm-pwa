@@ -1,5 +1,5 @@
-import { React, Component } from '@vendors/react'
-import { PropTypes, flatpickr as flat } from '@vendors/react'
+import { React, Component } from '@libs/vendors'
+import { PropTypes, flatpickr as flat } from '@libs/vendors'
 
 import './styles.css'
 

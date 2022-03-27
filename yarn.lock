@@ -45,11 +45,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@espoal/app@workspace:pkgs/app"
   dependencies:
+    "@libs/build": "workspace:libs/build"
+    "@libs/tailwind": "workspace:libs/tailwind"
+    "@libs/vendors": "workspace:libs/vendors"
     "@pkgs/dash": "workspace:pkgs/dash"
     "@pkgs/users": "workspace:pkgs/users"
-    "@vendors/react": "workspace:vendors/react"
-    "@vendors/tailwind": "workspace:vendors/tailwind"
-    build: "workspace:libs/build"
   languageName: unknown
   linkType: soft
 
@@ -66,12 +66,28 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@libs/assets@workspace:^, @libs/assets@workspace:libs/assets":
+  version: 0.0.0-use.local
+  resolution: "@libs/assets@workspace:libs/assets"
+  languageName: unknown
+  linkType: soft
+
+"@libs/build@workspace:^, @libs/build@workspace:libs/build":
+  version: 0.0.0-use.local
+  resolution: "@libs/build@workspace:libs/build"
+  dependencies:
+    "@yarnpkg/esbuild-plugin-pnp": ^2.0.1
+    dist: "workspace:dist"
+    esbuild: ^0.14.27
+  languageName: unknown
+  linkType: soft
+
 "@libs/charts@workspace:^, @libs/charts@workspace:libs/charts":
   version: 0.0.0-use.local
   resolution: "@libs/charts@workspace:libs/charts"
   dependencies:
     "@libs/utils": "workspace:^"
-    "@vendors/react": "workspace:^"
+    "@libs/vendors": "workspace:^"
   languageName: unknown
   linkType: soft
 
@@ -79,10 +95,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@libs/components@workspace:libs/components"
   dependencies:
+    "@libs/assets": "workspace:libs/assets"
+    "@libs/tailwind": "workspace:libs/tailwind"
     "@libs/utils": "workspace:^"
-    "@vendors/react": "workspace:vendors/react"
-    "@vendors/tailwind": "workspace:vendors/tailwind"
-    assets: "workspace:vendors/assets"
+    "@libs/vendors": "workspace:libs/vendors"
   languageName: unknown
   linkType: soft
 
@@ -90,9 +106,21 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@libs/partials@workspace:libs/partials"
   dependencies:
+    "@libs/assets": "workspace:^"
     "@libs/components": "workspace:^"
-    "@vendors/react": "workspace:^"
-    assets: "workspace:^"
+    "@libs/vendors": "workspace:^"
+  languageName: unknown
+  linkType: soft
+
+"@libs/tailwind@workspace:^, @libs/tailwind@workspace:libs/tailwind":
+  version: 0.0.0-use.local
+  resolution: "@libs/tailwind@workspace:libs/tailwind"
+  dependencies:
+    "@tailwindcss/forms": ^0.5.0
+    autoprefixer: ^10.4.4
+    esbuild-sass-plugin: ^2.2.5
+    postcss: ^8.4.12
+    tailwindcss: ^3.0.23
   languageName: unknown
   linkType: soft
 
@@ -100,8 +128,26 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@libs/utils@workspace:libs/utils"
   dependencies:
-    "@vendors/react": "workspace:^"
-    "@vendors/tailwind": "workspace:^"
+    "@libs/tailwind": "workspace:^"
+    "@libs/vendors": "workspace:^"
+  languageName: unknown
+  linkType: soft
+
+"@libs/vendors@workspace:^, @libs/vendors@workspace:libs/vendors":
+  version: 0.0.0-use.local
+  resolution: "@libs/vendors@workspace:libs/vendors"
+  dependencies:
+    "@libs/build": "workspace:^"
+    chart.js: ^3.7.1
+    chartjs-adapter-moment: ^1.0.0
+    flatpickr: ^4.6.11
+    moment: ^2.29.1
+    prop-types: ^15.8.1
+    react: experimental
+    react-dom: experimental
+    react-flatpickr: ^3.10.9
+    react-router-dom: ^6.2.2
+    react-transition-group: ^4.4.2
   languageName: unknown
   linkType: soft
 
@@ -156,13 +202,13 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@pkgs/dash@workspace:pkgs/dash"
   dependencies:
+    "@libs/assets": "workspace:^"
     "@libs/charts": "workspace:^"
     "@libs/components": "workspace:^"
     "@libs/partials": "workspace:^"
+    "@libs/tailwind": "workspace:libs/tailwind"
     "@libs/utils": "workspace:^"
-    "@vendors/react": "workspace:vendors/react"
-    "@vendors/tailwind": "workspace:vendors/tailwind"
-    assets: "workspace:^"
+    "@libs/vendors": "workspace:^"
   languageName: unknown
   linkType: soft
 
@@ -170,8 +216,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@pkgs/users@workspace:pkgs/users"
   dependencies:
-    "@vendors/react": "workspace:^"
-    assets: "workspace:^"
+    "@libs/assets": "workspace:^"
+    "@libs/vendors": "workspace:^"
   languageName: unknown
   linkType: soft
 
@@ -199,41 +245,6 @@ __metadata:
   checksum: fd6bce2b674b6efc3db4c7c3d336bd70c90838e8439de639b909ce22f3720d21344f52427f1d9e57b265fcb7f6c018699b99e5e0c208a1a4823014269a6bf35b
   languageName: node
   linkType: hard
-
-"@vendors/components@workspace:vendors/components":
-  version: 0.0.0-use.local
-  resolution: "@vendors/components@workspace:vendors/components"
-  languageName: unknown
-  linkType: soft
-
-"@vendors/react@workspace:^, @vendors/react@workspace:vendors/react":
-  version: 0.0.0-use.local
-  resolution: "@vendors/react@workspace:vendors/react"
-  dependencies:
-    chart.js: ^3.7.1
-    chartjs-adapter-moment: ^1.0.0
-    flatpickr: ^4.6.11
-    moment: ^2.29.1
-    prop-types: ^15.8.1
-    react: experimental
-    react-dom: experimental
-    react-flatpickr: ^3.10.9
-    react-router-dom: ^6.2.2
-    react-transition-group: ^4.4.2
-  languageName: unknown
-  linkType: soft
-
-"@vendors/tailwind@workspace:^, @vendors/tailwind@workspace:vendors/tailwind":
-  version: 0.0.0-use.local
-  resolution: "@vendors/tailwind@workspace:vendors/tailwind"
-  dependencies:
-    "@tailwindcss/forms": ^0.5.0
-    autoprefixer: ^10.4.4
-    esbuild-sass-plugin: ^2.2.5
-    postcss: ^8.4.12
-    tailwindcss: ^3.0.23
-  languageName: unknown
-  linkType: soft
 
 "@yarnpkg/esbuild-plugin-pnp@npm:^2.0.1":
   version: 2.0.1
@@ -369,12 +380,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"assets@workspace:^, assets@workspace:vendors/assets":
-  version: 0.0.0-use.local
-  resolution: "assets@workspace:vendors/assets"
-  languageName: unknown
-  linkType: soft
-
 "autoprefixer@npm:^10.4.4":
   version: 10.4.4
   resolution: "autoprefixer@npm:10.4.4"
@@ -440,16 +445,6 @@ __metadata:
   checksum: 18e09beeae32e69fea45fc3642240fb63027b1460d90e24da86377177dca3d82c80f8fa44469d95109e3962f08eb2a23e03037bd5e1f1ec38e4866e2a8572435
   languageName: node
   linkType: hard
-
-"build@workspace:^, build@workspace:libs/build":
-  version: 0.0.0-use.local
-  resolution: "build@workspace:libs/build"
-  dependencies:
-    "@yarnpkg/esbuild-plugin-pnp": ^2.0.1
-    dist: "workspace:dist"
-    esbuild: ^0.14.27
-  languageName: unknown
-  linkType: soft
 
 "cacache@npm:^16.0.0":
   version: 16.0.3
@@ -1761,8 +1756,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "pkgs@workspace:pkgs"
   dependencies:
-    "@vendors/tailwind": "workspace:^"
-    build: "workspace:^"
+    "@libs/build": "workspace:^"
+    "@libs/tailwind": "workspace:^"
   languageName: unknown
   linkType: soft
 
@@ -2300,14 +2295,6 @@ __metadata:
   checksum: 474acf1146cb2701fe3b074892217553dfcf9a031280919ba1b8d651a068c9b15d863b7303cb15bd00a862b498e6cf4ad7b4a08fb134edd5a6f7641681cb54a2
   languageName: node
   linkType: hard
-
-"vendors@workspace:vendors":
-  version: 0.0.0-use.local
-  resolution: "vendors@workspace:vendors"
-  dependencies:
-    build: "workspace:libs/build"
-  languageName: unknown
-  linkType: soft
 
 "which@npm:^2.0.2":
   version: 2.0.2

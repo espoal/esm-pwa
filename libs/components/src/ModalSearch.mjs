@@ -1,4 +1,4 @@
-import { React, useRef, useEffect, Link } from '@vendors/react'
+import { React, useRef, useEffect, Link } from '@libs/vendors'
 import { Transition } from '@libs/utils/Transition'
 
 export const ModalSearch = ({

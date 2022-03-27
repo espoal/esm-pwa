@@ -1,5 +1,5 @@
-import {React, useState, useEffect, useRef } from '@vendors/react'
-import { NavLink, useLocation } from '@vendors/react'
+import {React, useState, useEffect, useRef } from '@libs/vendors'
+import { NavLink, useLocation } from '@libs/vendors'
 
 import { SidebarLinkGroup } from './SidebarLinkGroup'
 

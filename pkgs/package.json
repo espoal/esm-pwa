@@ -8,9 +8,9 @@
     "components/*"
   ],
   "dependencies": {
-    "@vendors/tailwind": "workspace:^"
+    "@libs/tailwind": "workspace:^"
   },
   "devDependencies": {
-    "build": "workspace:^"
+    "@libs/build": "workspace:^"
   }
 }

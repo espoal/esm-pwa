@@ -24,7 +24,7 @@ const baseOptions = {
   splitting: true,
   format: 'esm',
   chunkNames: `chunks/[name]-${currentVersion}`,
-  assetNames: '[dir]/[name]',
+  assetNames: 'assets/[dir]/[name]',
   platform: 'browser',
   target: 'esnext',
   minify: false,

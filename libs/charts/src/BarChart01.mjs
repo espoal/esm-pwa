@@ -1,8 +1,8 @@
-import { React, useRef, useEffect } from '@vendors/react'
+import { React, useRef, useEffect } from '@libs/vendors'
 
 import {
   Chart, BarController, BarElement, LinearScale, TimeScale, Tooltip, Legend,
-} from '@vendors/react'
+} from '@libs/vendors'
 
 // Import utilities
 import { tailwindConfig, formatValue } from '@libs/utils/Utils'
