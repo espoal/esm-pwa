@@ -40,9 +40,16 @@ export const SignIn = () => {
 
             <div className="max-w-sm mx-auto px-4 py-8">
               <h1 className="text-3xl text-slate-800 font-bold mb-6">Welcome back! ✨</h1>
+
+              <div className="flex items-center justify-end mt-6">
+                <Link className="btn bg-indigo-500 hover:bg-indigo-600 text-white ml-3" to="/">Google</Link>
+                <Link className="btn bg-indigo-500 hover:bg-indigo-600 text-white ml-3" to="/">Guest</Link>
+              </div>
+
+
               {/* Form */}
               <form>
-                <div className="space-y-4">
+                <div className="space-y-4 pt-2">
                   <div>
                     <label className="block text-sm font-medium mb-1" htmlFor="email">Email Address</label>
                     <input id="email" className="form-input w-full" type="email" />

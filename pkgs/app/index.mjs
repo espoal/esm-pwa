@@ -1,8 +1,11 @@
 import { React, createRoot, useEffect } from '@libs/vendors'
 import { BrowserRouter as Router, Route, Routes, useLocation } from '@libs/vendors'
 
-import { SignIn } from '@pkgs/users/SignIn'
-import { Dashboard } from '@pkgs/dash/Dashboard'
+import { SignIn } from '@pkgs/auth/SignIn'
+import { RequireAuth, AuthProvider } from '@pkgs/auth/AuthProvider'
+
+// import { Dashboard } from '@pkgs/dash/Dashboard'
+import { DashboardPage } from '@pkgs/3stats/Dashboard'
 
 import './index.scss'
 // import home from './index.html' assert { type: 'html'}
@@ -20,11 +23,21 @@ const App = () => {
 
   return (
     <>
-      <Routes>
-        <Route exact path="/" element={<SignIn />} />
-        <Route exact path="/dash" element={<Dashboard />} />
-        <Route path="*" element={<SignIn />} />
-      </Routes>
+      <AuthProvider>
+        <Routes>
+          <Route exact path="/" element={<SignIn />} />
+          <Route
+            path="/protected"
+            element={
+              <RequireAuth>
+                <DashboardPage />
+              </RequireAuth>
+            }
+          />
+          <Route path="*" element={<h1>Not Found</h1>} />
+        </Routes>
+      </AuthProvider>
+
     </>
   )
 }

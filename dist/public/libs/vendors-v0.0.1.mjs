@@ -23801,7 +23801,7 @@ var require_react_router_development = __commonJS({
           navigator: history$1
         });
       }
-      function Navigate(_ref2) {
+      function Navigate2(_ref2) {
         let {
           to,
           replace,
@@ -24346,7 +24346,7 @@ var require_react_router_development = __commonJS({
         }
       });
       exports2.MemoryRouter = MemoryRouter;
-      exports2.Navigate = Navigate;
+      exports2.Navigate = Navigate2;
       exports2.Outlet = Outlet;
       exports2.Route = Route2;
       exports2.Router = Router;
@@ -48633,6 +48633,7 @@ var export_LineElement = import_chart.LineElement;
 var export_LinearScale = import_chart.LinearScale;
 var export_Link = import_react_router_dom.Link;
 var export_NavLink = import_react_router_dom.NavLink;
+var export_Navigate = import_react_router_dom.Navigate;
 var export_PointElement = import_chart.PointElement;
 var export_Route = import_react_router_dom.Route;
 var export_Routes = import_react_router_dom.Routes;
@@ -48661,6 +48662,7 @@ export {
   export_LinearScale as LinearScale,
   export_Link as Link,
   export_NavLink as NavLink,
+  export_Navigate as Navigate,
   export_PointElement as PointElement,
   PropTypes,
   React,

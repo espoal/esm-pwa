@@ -1,0 +1,13 @@
+{
+  "name": "@pkgs/3stats",
+  "dependencies": {
+    "@libs/assets": "workspace:^",
+    "@libs/charts": "workspace:^",
+    "@libs/components": "workspace:^",
+    "@libs/partials": "workspace:^",
+    "@libs/tailwind": "workspace:libs/tailwind",
+    "@libs/utils": "workspace:^",
+    "@libs/vendors": "workspace:^"
+  },
+  "packageManager": "yarn@3.2.0"
+}

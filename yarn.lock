@@ -48,8 +48,9 @@ __metadata:
     "@libs/build": "workspace:libs/build"
     "@libs/tailwind": "workspace:libs/tailwind"
     "@libs/vendors": "workspace:libs/vendors"
+    "@pkgs/3stats": "workspace:pkgs/3stats"
+    "@pkgs/auth": "workspace:pkgs/auth"
     "@pkgs/dash": "workspace:pkgs/dash"
-    "@pkgs/users": "workspace:pkgs/users"
   languageName: unknown
   linkType: soft
 
@@ -198,9 +199,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pkgs/dash@workspace:pkgs/dash":
+"@pkgs/3stats@workspace:pkgs/3stats":
   version: 0.0.0-use.local
-  resolution: "@pkgs/dash@workspace:pkgs/dash"
+  resolution: "@pkgs/3stats@workspace:pkgs/3stats"
   dependencies:
     "@libs/assets": "workspace:^"
     "@libs/charts": "workspace:^"
@@ -212,11 +213,25 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@pkgs/users@workspace:pkgs/users":
+"@pkgs/auth@workspace:pkgs/auth":
   version: 0.0.0-use.local
-  resolution: "@pkgs/users@workspace:pkgs/users"
+  resolution: "@pkgs/auth@workspace:pkgs/auth"
   dependencies:
     "@libs/assets": "workspace:^"
+    "@libs/vendors": "workspace:^"
+  languageName: unknown
+  linkType: soft
+
+"@pkgs/dash@workspace:pkgs/dash":
+  version: 0.0.0-use.local
+  resolution: "@pkgs/dash@workspace:pkgs/dash"
+  dependencies:
+    "@libs/assets": "workspace:^"
+    "@libs/charts": "workspace:^"
+    "@libs/components": "workspace:^"
+    "@libs/partials": "workspace:^"
+    "@libs/tailwind": "workspace:libs/tailwind"
+    "@libs/utils": "workspace:^"
     "@libs/vendors": "workspace:^"
   languageName: unknown
   linkType: soft

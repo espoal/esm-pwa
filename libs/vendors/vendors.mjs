@@ -7,7 +7,8 @@ export { useEffect, useState, useRef, useContext, Component } from 'react'
 export {
   useLocation,
   Routes, Route,
-  Link, NavLink, BrowserRouter
+  Link, NavLink, BrowserRouter,
+  Navigate
 } from 'react-router-dom'
 
 export { CSSTransition } from 'react-transition-group'

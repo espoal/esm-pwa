@@ -4,8 +4,9 @@
   "dependencies": {
     "@libs/tailwind": "workspace:libs/tailwind",
     "@libs/vendors": "workspace:libs/vendors",
-    "@pkgs/dash": "workspace:pkgs/dash",
-    "@pkgs/users": "workspace:pkgs/users"
+    "@pkgs/3stats": "workspace:pkgs/3stats",
+    "@pkgs/auth": "workspace:pkgs/auth",
+    "@pkgs/dash": "workspace:pkgs/dash"
   },
   "devDependencies": {
     "@libs/build": "workspace:libs/build"
