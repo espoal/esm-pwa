@@ -22,33 +22,36 @@ const App = () => {
   }, [location.pathname]); // triggered on route change
 
   return (
-    <>
-      <AuthProvider>
-        <Routes>
-          <Route exact path="/" element={<SignIn />} />
-          <Route
-            path="/protected"
-            element={
-              <RequireAuth>
-                <DashboardPage />
-              </RequireAuth>
-            }
-          />
-          <Route path="*" element={<h1>Not Found</h1>} />
-        </Routes>
-      </AuthProvider>
-
-    </>
+    <React.StrictMode>
+      <Router>
+        <AuthProvider>
+          <Routes>
+            <Route
+              exact path="/"
+              element={<SignIn />}
+            />
+            <Route
+              path="/protected"
+              element={
+                <RequireAuth>
+                  <DashboardPage />
+                </RequireAuth>
+              }
+            />
+            <Route
+              path="*" 
+              element={<h1>Not Found</h1>}
+            />
+          </Routes>
+        </AuthProvider>
+      </Router>
+    </React.StrictMode>
   )
 }
 
 
 const rootElement = document.getElementById('root')
-createRoot(rootElement).render(<React.StrictMode>
-  <Router>
-    <App />
-  </Router>
-</React.StrictMode>)
+createRoot(rootElement).render(<App />)
 
 // const sideBarElement = document.getElementById("sidebar")
 // createRoot(sideBarElement).render(<Sidebar />)
