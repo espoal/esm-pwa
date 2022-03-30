@@ -33,7 +33,8 @@ const baseOptions = {
   loader: {'.mjs': 'jsx', '.js': 'jsx',
     '.html': 'file', '.jpg': 'file',
     '.png': 'dataurl', '.svg': 'dataurl'},
-  outExtension: { '.js': '.mjs' }
+  outExtension: { '.js': '.mjs' },
+  sourcemap: true
 }
 
 export const buildHelper = async ({

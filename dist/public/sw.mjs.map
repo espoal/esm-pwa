@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["pnp:/home/mamluk/3pass/esm-pwa/pkgs/sw/sw.mjs"],
+  "sourcesContent": ["console.log('this is a service worker')\n"],
+  "mappings": ";AAAA,QAAQ,IAAI,0BAA0B;",
+  "names": []
+}

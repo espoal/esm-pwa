@@ -7,7 +7,8 @@ export { DropdownProfile } from './src/DropdownProfile'
 export { DropdownFilter } from './src/DropdownFilter'
 export { DropdownEditMenu } from './src/DropdownEditMenu'
 
-export { Tooltip } from './src/Tooltip.mjs'
+export { Tooltip } from './src/Tooltip'
 
+export { ModalAction } from './src/ModalAction'
 
 export { Datepicker } from './src/Datepicker'

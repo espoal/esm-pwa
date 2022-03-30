@@ -1,12 +1,12 @@
-import React, { useRef, useEffect } from 'react';
-import Transition from '../utils/Transition';
+import { React, useRef, useEffect } from '@libs/vendors'
+import { Transition } from '@libs/utils/Transition'
 
-function ModalAction({
+export const ModalAction = ({
   children,
   id,
   modalOpen,
   setModalOpen
-}) {
+}) => {
 
   const modalContent = useRef(null);
 
@@ -77,4 +77,3 @@ function ModalAction({
   );
 }
 
-export default ModalAction;

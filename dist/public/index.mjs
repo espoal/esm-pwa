@@ -6,7 +6,7 @@ var __publicField = (obj, key, value) => {
 };
 
 // pnp:/home/mamluk/3pass/esm-pwa/pkgs/app/index.mjs
-import { React as React25, createRoot, useEffect as useEffect15 } from "/libs/vendors-v0.0.1.mjs";
+import { React as React47, createRoot, useEffect as useEffect21 } from "/libs/vendors-v0.0.1.mjs";
 import { BrowserRouter as Router, Route, Routes, useLocation as useLocation3 } from "/libs/vendors-v0.0.1.mjs";
 
 // pnp:/home/mamluk/3pass/esm-pwa/pkgs/auth/SignIn.mjs
@@ -179,7 +179,7 @@ var AuthProvider = ({ children }) => {
 var RequireAuth = ({ children }) => {
   const auth = React2.useContext(AuthContext);
   const location = useLocation();
-  if (!auth.user) {
+  if (auth.user) {
     return /* @__PURE__ */ React2.createElement(Navigate, {
       to: "/",
       state: { from: location },
@@ -189,8 +189,8 @@ var RequireAuth = ({ children }) => {
   return children;
 };
 
-// pnp:/home/mamluk/3pass/esm-pwa/pkgs/3stats/Dashboard.mjs
-import { React as React24, useState as useState10 } from "/libs/vendors-v0.0.1.mjs";
+// pnp:/home/mamluk/3pass/esm-pwa/pkgs/dash/Dashboard.mjs
+import { React as React37, useState as useState11 } from "/libs/vendors-v0.0.1.mjs";
 
 // pnp:/home/mamluk/3pass/esm-pwa/libs/partials/src/Sidebar.mjs
 import { React as React4, useState as useState2, useEffect, useRef } from "/libs/vendors-v0.0.1.mjs";
@@ -220,8 +220,9 @@ var Sidebar = ({
   const { pathname } = location;
   const trigger = useRef(null);
   const sidebar = useRef(null);
-  const storedSidebarExpanded = localStorage.getItem("sidebar-expanded");
-  const [sidebarExpanded, setSidebarExpanded] = useState2(storedSidebarExpanded === null ? false : storedSidebarExpanded === "true");
+  const storedSidebarExpanded = localStorage.getItem("sidebar-expanded") ?? true;
+  const [sidebarExpanded, setSidebarExpanded] = useState2(storedSidebarExpanded);
+  setSidebarOpen(false);
   useEffect(() => {
     const clickHandler = ({ target }) => {
       if (!sidebar.current || !trigger.current)
@@ -330,14 +331,14 @@ var Sidebar = ({
     "aria-hidden": "true"
   }, "\u2022\u2022\u2022"), /* @__PURE__ */ React4.createElement("span", {
     className: "lg:hidden lg:sidebar-expanded:block 2xl:block"
-  }, "Pages")), /* @__PURE__ */ React4.createElement("ul", {
+  }, "Navigation")), /* @__PURE__ */ React4.createElement("ul", {
     className: "mt-3"
   }, /* @__PURE__ */ React4.createElement(SidebarLinkGroup, {
-    activecondition: pathname === "/" || pathname.includes("dashboard")
+    activecondition: pathname === "/3stats" || pathname.includes("/3stats")
   }, (handleClick, open) => {
     return /* @__PURE__ */ React4.createElement(React4.Fragment, null, /* @__PURE__ */ React4.createElement("a", {
       href: "#0",
-      className: `block text-slate-200 hover:text-white truncate transition duration-150 ${(pathname === "/" || pathname.includes("dashboard")) && "hover:text-slate-200"}`,
+      className: `block text-slate-200 hover:text-white truncate transition duration-150 ${(pathname === "/3stats" || pathname.includes("/3stats")) && "hover:text-slate-200"}`,
       onClick: (e) => {
         e.preventDefault();
         sidebarExpanded ? handleClick() : setSidebarExpanded(true);
@@ -350,17 +351,17 @@ var Sidebar = ({
       className: "shrink-0 h-6 w-6",
       viewBox: "0 0 24 24"
     }, /* @__PURE__ */ React4.createElement("path", {
-      className: `fill-current text-slate-400 ${(pathname === "/" || pathname.includes("dashboard")) && "!text-indigo-500"}`,
+      className: `fill-current text-slate-400 ${(pathname === "/3stats" || pathname.includes("/3stats")) && "!text-indigo-500"}`,
       d: "M12 0C5.383 0 0 5.383 0 12s5.383 12 12 12 12-5.383 12-12S18.617 0 12 0z"
     }), /* @__PURE__ */ React4.createElement("path", {
-      className: `fill-current text-slate-600 ${(pathname === "/" || pathname.includes("dashboard")) && "text-indigo-600"}`,
+      className: `fill-current text-slate-600 ${(pathname === "/3stats" || pathname.includes("/3stats")) && "text-indigo-600"}`,
       d: "M12 3c-4.963 0-9 4.037-9 9s4.037 9 9 9 9-4.037 9-9-4.037-9-9-9z"
     }), /* @__PURE__ */ React4.createElement("path", {
-      className: `fill-current text-slate-400 ${(pathname === "/" || pathname.includes("dashboard")) && "text-indigo-200"}`,
+      className: `fill-current text-slate-400 ${(pathname === "/3stats" || pathname.includes("/3stats")) && "text-indigo-200"}`,
       d: "M12 15c-1.654 0-3-1.346-3-3 0-.462.113-.894.3-1.285L6 6l4.714 3.301A2.973 2.973 0 0112 9c1.654 0 3 1.346 3 3s-1.346 3-3 3z"
     })), /* @__PURE__ */ React4.createElement("span", {
       className: "text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
-    }, "Dashboard")), /* @__PURE__ */ React4.createElement("div", {
+    }, "[3stats]")), /* @__PURE__ */ React4.createElement("div", {
       className: "flex shrink-0 ml-2"
     }, /* @__PURE__ */ React4.createElement("svg", {
       className: `w-3 h-3 shrink-0 ml-1 fill-current text-slate-400 ${open && "transform rotate-180"}`,
@@ -375,11 +376,11 @@ var Sidebar = ({
       className: "mb-1 last:mb-0"
     }, /* @__PURE__ */ React4.createElement(NavLink, {
       end: true,
-      to: "/",
+      to: "/3stats",
       className: ({ isActive }) => "block text-slate-400 hover:text-slate-200 transition duration-150 truncate " + (isActive ? "!text-indigo-500" : "")
     }, /* @__PURE__ */ React4.createElement("span", {
       className: "text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
-    }, "Main"))), /* @__PURE__ */ React4.createElement("li", {
+    }, "Dashboard"))), /* @__PURE__ */ React4.createElement("li", {
       className: "mb-1 last:mb-0"
     }, /* @__PURE__ */ React4.createElement(NavLink, {
       end: true,
@@ -395,7 +396,7 @@ var Sidebar = ({
       className: ({ isActive }) => "block text-slate-400 hover:text-slate-200 transition duration-150 truncate " + (isActive ? "!text-indigo-500" : "")
     }, /* @__PURE__ */ React4.createElement("span", {
       className: "text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
-    }, "Fintech"))))));
+    }, "Add item"))))));
   }), /* @__PURE__ */ React4.createElement(SidebarLinkGroup, {
     activecondition: pathname.includes("ecommerce")
   }, (handleClick, open) => {
@@ -424,7 +425,7 @@ var Sidebar = ({
       d: "M13 15.047V24l10.573-7.181A.999.999 0 0024 16V8l-11 7.047z"
     })), /* @__PURE__ */ React4.createElement("span", {
       className: "text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
-    }, "E-Commerce")), /* @__PURE__ */ React4.createElement("div", {
+    }, "[3rent]")), /* @__PURE__ */ React4.createElement("div", {
       className: "flex shrink-0 ml-2"
     }, /* @__PURE__ */ React4.createElement("svg", {
       className: `w-3 h-3 shrink-0 ml-1 fill-current text-slate-400 ${open && "transform rotate-180"}`,
@@ -451,71 +452,7 @@ var Sidebar = ({
       className: ({ isActive }) => "block text-slate-400 hover:text-slate-200 transition duration-150 truncate " + (isActive ? "!text-indigo-500" : "")
     }, /* @__PURE__ */ React4.createElement("span", {
       className: "text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
-    }, "Orders"))), /* @__PURE__ */ React4.createElement("li", {
-      className: "mb-1 last:mb-0"
-    }, /* @__PURE__ */ React4.createElement(NavLink, {
-      end: true,
-      to: "/ecommerce/invoices",
-      className: ({ isActive }) => "block text-slate-400 hover:text-slate-200 transition duration-150 truncate " + (isActive ? "!text-indigo-500" : "")
-    }, /* @__PURE__ */ React4.createElement("span", {
-      className: "text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
-    }, "Invoices"))), /* @__PURE__ */ React4.createElement("li", {
-      className: "mb-1 last:mb-0"
-    }, /* @__PURE__ */ React4.createElement(NavLink, {
-      end: true,
-      to: "/ecommerce/shop",
-      className: ({ isActive }) => "block text-slate-400 hover:text-slate-200 transition duration-150 truncate " + (isActive ? "!text-indigo-500" : "")
-    }, /* @__PURE__ */ React4.createElement("span", {
-      className: "text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
-    }, "Shop"))), /* @__PURE__ */ React4.createElement("li", {
-      className: "mb-1 last:mb-0"
-    }, /* @__PURE__ */ React4.createElement(NavLink, {
-      end: true,
-      to: "/ecommerce/shop-2",
-      className: ({ isActive }) => "block text-slate-400 hover:text-slate-200 transition duration-150 truncate " + (isActive ? "!text-indigo-500" : "")
-    }, /* @__PURE__ */ React4.createElement("span", {
-      className: "text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
-    }, "Shop 2"))), /* @__PURE__ */ React4.createElement("li", {
-      className: "mb-1 last:mb-0"
-    }, /* @__PURE__ */ React4.createElement(NavLink, {
-      end: true,
-      to: "/ecommerce/product",
-      className: ({ isActive }) => "block text-slate-400 hover:text-slate-200 transition duration-150 truncate " + (isActive ? "!text-indigo-500" : "")
-    }, /* @__PURE__ */ React4.createElement("span", {
-      className: "text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
-    }, "Single Product"))), /* @__PURE__ */ React4.createElement("li", {
-      className: "mb-1 last:mb-0"
-    }, /* @__PURE__ */ React4.createElement(NavLink, {
-      end: true,
-      to: "/ecommerce/cart",
-      className: ({ isActive }) => "block text-slate-400 hover:text-slate-200 transition duration-150 truncate " + (isActive ? "!text-indigo-500" : "")
-    }, /* @__PURE__ */ React4.createElement("span", {
-      className: "text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
-    }, "Cart"))), /* @__PURE__ */ React4.createElement("li", {
-      className: "mb-1 last:mb-0"
-    }, /* @__PURE__ */ React4.createElement(NavLink, {
-      end: true,
-      to: "/ecommerce/cart-2",
-      className: ({ isActive }) => "block text-slate-400 hover:text-slate-200 transition duration-150 truncate " + (isActive ? "!text-indigo-500" : "")
-    }, /* @__PURE__ */ React4.createElement("span", {
-      className: "text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
-    }, "Cart 2"))), /* @__PURE__ */ React4.createElement("li", {
-      className: "mb-1 last:mb-0"
-    }, /* @__PURE__ */ React4.createElement(NavLink, {
-      end: true,
-      to: "/ecommerce/cart-3",
-      className: ({ isActive }) => "block text-slate-400 hover:text-slate-200 transition duration-150 truncate " + (isActive ? "!text-indigo-500" : "")
-    }, /* @__PURE__ */ React4.createElement("span", {
-      className: "text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
-    }, "Cart 3"))), /* @__PURE__ */ React4.createElement("li", {
-      className: "mb-1 last:mb-0"
-    }, /* @__PURE__ */ React4.createElement(NavLink, {
-      end: true,
-      to: "/ecommerce/pay",
-      className: ({ isActive }) => "block text-slate-400 hover:text-slate-200 transition duration-150 truncate " + (isActive ? "!text-indigo-500" : "")
-    }, /* @__PURE__ */ React4.createElement("span", {
-      className: "text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
-    }, "Pay"))))));
+    }, "Orders"))))));
   }), /* @__PURE__ */ React4.createElement("li", {
     className: `px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname.includes("campaigns") && "bg-slate-900"}`
   }, /* @__PURE__ */ React4.createElement(NavLink, {
@@ -535,7 +472,7 @@ var Sidebar = ({
     d: "M17 23a1 1 0 01-1-1 4 4 0 00-4-4 1 1 0 010-2 4 4 0 004-4 1 1 0 012 0 4 4 0 004 4 1 1 0 010 2 4 4 0 00-4 4 1 1 0 01-1 1zM7 13a1 1 0 01-1-1 4 4 0 00-4-4 1 1 0 110-2 4 4 0 004-4 1 1 0 112 0 4 4 0 004 4 1 1 0 010 2 4 4 0 00-4 4 1 1 0 01-1 1z"
   })), /* @__PURE__ */ React4.createElement("span", {
     className: "text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
-  }, "Campaigns")))), /* @__PURE__ */ React4.createElement(SidebarLinkGroup, {
+  }, "Launch Event")))), /* @__PURE__ */ React4.createElement(SidebarLinkGroup, {
     activecondition: pathname.includes("settings")
   }, (handleClick, open) => {
     return /* @__PURE__ */ React4.createElement(React4.Fragment, null, /* @__PURE__ */ React4.createElement("a", {
@@ -626,105 +563,6 @@ var Sidebar = ({
     }, /* @__PURE__ */ React4.createElement("span", {
       className: "text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
     }, "Give Feedback"))))));
-  }), /* @__PURE__ */ React4.createElement(SidebarLinkGroup, {
-    activecondition: pathname.includes("utility")
-  }, (handleClick, open) => {
-    return /* @__PURE__ */ React4.createElement(React4.Fragment, null, /* @__PURE__ */ React4.createElement("a", {
-      href: "#0",
-      className: `block text-slate-200 hover:text-white truncate transition duration-150 ${pathname.includes("utility") && "hover:text-slate-200"}`,
-      onClick: (e) => {
-        e.preventDefault();
-        sidebarExpanded ? handleClick() : setSidebarExpanded(true);
-      }
-    }, /* @__PURE__ */ React4.createElement("div", {
-      className: "flex items-center justify-between"
-    }, /* @__PURE__ */ React4.createElement("div", {
-      className: "flex items-center"
-    }, /* @__PURE__ */ React4.createElement("svg", {
-      className: "shrink-0 h-6 w-6",
-      viewBox: "0 0 24 24"
-    }, /* @__PURE__ */ React4.createElement("circle", {
-      className: `fill-current text-slate-400 ${pathname.includes("utility") && "text-indigo-300"}`,
-      cx: "18.5",
-      cy: "5.5",
-      r: "4.5"
-    }), /* @__PURE__ */ React4.createElement("circle", {
-      className: `fill-current text-slate-600 ${pathname.includes("utility") && "text-indigo-500"}`,
-      cx: "5.5",
-      cy: "5.5",
-      r: "4.5"
-    }), /* @__PURE__ */ React4.createElement("circle", {
-      className: `fill-current text-slate-600 ${pathname.includes("utility") && "text-indigo-500"}`,
-      cx: "18.5",
-      cy: "18.5",
-      r: "4.5"
-    }), /* @__PURE__ */ React4.createElement("circle", {
-      className: `fill-current text-slate-400 ${pathname.includes("utility") && "text-indigo-300"}`,
-      cx: "5.5",
-      cy: "18.5",
-      r: "4.5"
-    })), /* @__PURE__ */ React4.createElement("span", {
-      className: "text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
-    }, "Utility")), /* @__PURE__ */ React4.createElement("div", {
-      className: "flex shrink-0 ml-2"
-    }, /* @__PURE__ */ React4.createElement("svg", {
-      className: `w-3 h-3 shrink-0 ml-1 fill-current text-slate-400 ${open && "transform rotate-180"}`,
-      viewBox: "0 0 12 12"
-    }, /* @__PURE__ */ React4.createElement("path", {
-      d: "M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z"
-    }))))), /* @__PURE__ */ React4.createElement("div", {
-      className: "lg:hidden lg:sidebar-expanded:block 2xl:block"
-    }, /* @__PURE__ */ React4.createElement("ul", {
-      className: `pl-9 mt-1 ${!open && "hidden"}`
-    }, /* @__PURE__ */ React4.createElement("li", {
-      className: "mb-1 last:mb-0"
-    }, /* @__PURE__ */ React4.createElement(NavLink, {
-      end: true,
-      to: "/utility/changelog",
-      className: ({ isActive }) => "block text-slate-400 hover:text-slate-200 transition duration-150 truncate " + (isActive ? "!text-indigo-500" : "")
-    }, /* @__PURE__ */ React4.createElement("span", {
-      className: "text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
-    }, "Changelog"))), /* @__PURE__ */ React4.createElement("li", {
-      className: "mb-1 last:mb-0"
-    }, /* @__PURE__ */ React4.createElement(NavLink, {
-      end: true,
-      to: "/utility/roadmap",
-      className: ({ isActive }) => "block text-slate-400 hover:text-slate-200 transition duration-150 truncate " + (isActive ? "!text-indigo-500" : "")
-    }, /* @__PURE__ */ React4.createElement("span", {
-      className: "text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
-    }, "Roadmap"))), /* @__PURE__ */ React4.createElement("li", {
-      className: "mb-1 last:mb-0"
-    }, /* @__PURE__ */ React4.createElement(NavLink, {
-      end: true,
-      to: "/utility/faqs",
-      className: ({ isActive }) => "block text-slate-400 hover:text-slate-200 transition duration-150 truncate " + (isActive ? "!text-indigo-500" : "")
-    }, /* @__PURE__ */ React4.createElement("span", {
-      className: "text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
-    }, "FAQs"))), /* @__PURE__ */ React4.createElement("li", {
-      className: "mb-1 last:mb-0"
-    }, /* @__PURE__ */ React4.createElement(NavLink, {
-      end: true,
-      to: "/utility/empty-state",
-      className: ({ isActive }) => "block text-slate-400 hover:text-slate-200 transition duration-150 truncate " + (isActive ? "!text-indigo-500" : "")
-    }, /* @__PURE__ */ React4.createElement("span", {
-      className: "text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
-    }, "Empty State"))), /* @__PURE__ */ React4.createElement("li", {
-      className: "mb-1 last:mb-0"
-    }, /* @__PURE__ */ React4.createElement(NavLink, {
-      end: true,
-      to: "/utility/404",
-      className: ({ isActive }) => "block text-slate-400 hover:text-slate-200 transition duration-150 truncate " + (isActive ? "!text-indigo-500" : "")
-    }, /* @__PURE__ */ React4.createElement("span", {
-      className: "text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
-    }, "404"))), /* @__PURE__ */ React4.createElement("li", {
-      className: "mb-1 last:mb-0"
-    }, /* @__PURE__ */ React4.createElement(NavLink, {
-      end: true,
-      to: "/utility/knowledge-base",
-      className: ({ isActive }) => "block text-slate-400 hover:text-slate-200 transition duration-150 truncate " + (isActive ? "!text-indigo-500" : "")
-    }, /* @__PURE__ */ React4.createElement("span", {
-      className: "text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
-    }, "Knowledge Base"))))));
   }))), /* @__PURE__ */ React4.createElement("div", null, /* @__PURE__ */ React4.createElement("h3", {
     className: "text-xs uppercase text-slate-500 font-semibold pl-3"
   }, /* @__PURE__ */ React4.createElement("span", {
@@ -732,7 +570,7 @@ var Sidebar = ({
     "aria-hidden": "true"
   }, "\u2022\u2022\u2022"), /* @__PURE__ */ React4.createElement("span", {
     className: "lg:hidden lg:sidebar-expanded:block 2xl:block"
-  }, "More")), /* @__PURE__ */ React4.createElement("ul", {
+  }, "Documentation")), /* @__PURE__ */ React4.createElement("ul", {
     className: "mt-3"
   }, /* @__PURE__ */ React4.createElement(SidebarLinkGroup, {
     activecondition: pathname.includes("component")
@@ -763,7 +601,7 @@ var Sidebar = ({
       r: "8"
     })), /* @__PURE__ */ React4.createElement("span", {
       className: "text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
-    }, "Components")), /* @__PURE__ */ React4.createElement("div", {
+    }, "Documentation")), /* @__PURE__ */ React4.createElement("div", {
       className: "flex shrink-0 ml-2"
     }, /* @__PURE__ */ React4.createElement("svg", {
       className: `w-3 h-3 shrink-0 ml-1 fill-current text-slate-400 ${open && "transform rotate-180"}`,
@@ -776,109 +614,29 @@ var Sidebar = ({
       className: `pl-9 mt-1 ${!open && "hidden"}`
     }, /* @__PURE__ */ React4.createElement("li", {
       className: "mb-1 last:mb-0"
-    }, /* @__PURE__ */ React4.createElement(NavLink, {
-      end: true,
-      to: "/component/button",
-      className: ({ isActive }) => "block text-slate-400 hover:text-slate-200 transition duration-150 truncate " + (isActive ? "!text-indigo-500" : "")
+    }, /* @__PURE__ */ React4.createElement("a", {
+      href: "https://www.google.com/",
+      target: "_blank",
+      className: "block text-slate-400 hover:text-slate-200 transition duration-150 truncate "
     }, /* @__PURE__ */ React4.createElement("span", {
       className: "text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
-    }, "Button"))), /* @__PURE__ */ React4.createElement("li", {
+    }, "Intro"))), /* @__PURE__ */ React4.createElement("li", {
       className: "mb-1 last:mb-0"
-    }, /* @__PURE__ */ React4.createElement(NavLink, {
-      end: true,
-      to: "/component/form",
-      className: ({ isActive }) => "block text-slate-400 hover:text-slate-200 transition duration-150 truncate " + (isActive ? "!text-indigo-500" : "")
+    }, /* @__PURE__ */ React4.createElement("a", {
+      href: "https://www.google.com/",
+      target: "_blank",
+      className: "block text-slate-400 hover:text-slate-200 transition duration-150 truncate "
     }, /* @__PURE__ */ React4.createElement("span", {
       className: "text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
-    }, "Input Form"))), /* @__PURE__ */ React4.createElement("li", {
+    }, "[3stats]"))), /* @__PURE__ */ React4.createElement("li", {
       className: "mb-1 last:mb-0"
-    }, /* @__PURE__ */ React4.createElement(NavLink, {
-      end: true,
-      to: "/component/dropdown",
-      className: ({ isActive }) => "block text-slate-400 hover:text-slate-200 transition duration-150 truncate " + (isActive ? "!text-indigo-500" : "")
+    }, /* @__PURE__ */ React4.createElement("a", {
+      href: "https://www.google.com/",
+      target: "_blank",
+      className: "block text-slate-400 hover:text-slate-200 transition duration-150 truncate "
     }, /* @__PURE__ */ React4.createElement("span", {
       className: "text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
-    }, "Dropdown"))), /* @__PURE__ */ React4.createElement("li", {
-      className: "mb-1 last:mb-0"
-    }, /* @__PURE__ */ React4.createElement(NavLink, {
-      end: true,
-      to: "/component/alert",
-      className: ({ isActive }) => "block text-slate-400 hover:text-slate-200 transition duration-150 truncate " + (isActive ? "!text-indigo-500" : "")
-    }, /* @__PURE__ */ React4.createElement("span", {
-      className: "text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
-    }, "Alert & Banner"))), /* @__PURE__ */ React4.createElement("li", {
-      className: "mb-1 last:mb-0"
-    }, /* @__PURE__ */ React4.createElement(NavLink, {
-      end: true,
-      to: "/component/modal",
-      className: ({ isActive }) => "block text-slate-400 hover:text-slate-200 transition duration-150 truncate " + (isActive ? "!text-indigo-500" : "")
-    }, /* @__PURE__ */ React4.createElement("span", {
-      className: "text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
-    }, "Modal"))), /* @__PURE__ */ React4.createElement("li", {
-      className: "mb-1 last:mb-0"
-    }, /* @__PURE__ */ React4.createElement(NavLink, {
-      end: true,
-      to: "/component/pagination",
-      className: ({ isActive }) => "block text-slate-400 hover:text-slate-200 transition duration-150 truncate " + (isActive ? "!text-indigo-500" : "")
-    }, /* @__PURE__ */ React4.createElement("span", {
-      className: "text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
-    }, "Pagination"))), /* @__PURE__ */ React4.createElement("li", {
-      className: "mb-1 last:mb-0"
-    }, /* @__PURE__ */ React4.createElement(NavLink, {
-      end: true,
-      to: "/component/tabs",
-      className: ({ isActive }) => "block text-slate-400 hover:text-slate-200 transition duration-150 truncate " + (isActive ? "!text-indigo-500" : "")
-    }, /* @__PURE__ */ React4.createElement("span", {
-      className: "text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
-    }, "Tabs"))), /* @__PURE__ */ React4.createElement("li", {
-      className: "mb-1 last:mb-0"
-    }, /* @__PURE__ */ React4.createElement(NavLink, {
-      end: true,
-      to: "/component/breadcrumb",
-      className: ({ isActive }) => "block text-slate-400 hover:text-slate-200 transition duration-150 truncate " + (isActive ? "!text-indigo-500" : "")
-    }, /* @__PURE__ */ React4.createElement("span", {
-      className: "text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
-    }, "Breadcrumb"))), /* @__PURE__ */ React4.createElement("li", {
-      className: "mb-1 last:mb-0"
-    }, /* @__PURE__ */ React4.createElement(NavLink, {
-      end: true,
-      to: "/component/badge",
-      className: ({ isActive }) => "block text-slate-400 hover:text-slate-200 transition duration-150 truncate " + (isActive ? "!text-indigo-500" : "")
-    }, /* @__PURE__ */ React4.createElement("span", {
-      className: "text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
-    }, "Badge"))), /* @__PURE__ */ React4.createElement("li", {
-      className: "mb-1 last:mb-0"
-    }, /* @__PURE__ */ React4.createElement(NavLink, {
-      end: true,
-      to: "/component/avatar",
-      className: ({ isActive }) => "block text-slate-400 hover:text-slate-200 transition duration-150 truncate " + (isActive ? "!text-indigo-500" : "")
-    }, /* @__PURE__ */ React4.createElement("span", {
-      className: "text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
-    }, "Avatar"))), /* @__PURE__ */ React4.createElement("li", {
-      className: "mb-1 last:mb-0"
-    }, /* @__PURE__ */ React4.createElement(NavLink, {
-      end: true,
-      to: "/component/tooltip",
-      className: ({ isActive }) => "block text-slate-400 hover:text-slate-200 transition duration-150 truncate " + (isActive ? "!text-indigo-500" : "")
-    }, /* @__PURE__ */ React4.createElement("span", {
-      className: "text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
-    }, "Tooltip"))), /* @__PURE__ */ React4.createElement("li", {
-      className: "mb-1 last:mb-0"
-    }, /* @__PURE__ */ React4.createElement(NavLink, {
-      end: true,
-      to: "/component/accordion",
-      className: ({ isActive }) => "block text-slate-400 hover:text-slate-200 transition duration-150 truncate " + (isActive ? "!text-indigo-500" : "")
-    }, /* @__PURE__ */ React4.createElement("span", {
-      className: "text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
-    }, "Accordion"))), /* @__PURE__ */ React4.createElement("li", {
-      className: "mb-1 last:mb-0"
-    }, /* @__PURE__ */ React4.createElement(NavLink, {
-      end: true,
-      to: "/component/icons",
-      className: ({ isActive }) => "block text-slate-400 hover:text-slate-200 transition duration-150 truncate " + (isActive ? "!text-indigo-500" : "")
-    }, /* @__PURE__ */ React4.createElement("span", {
-      className: "text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
-    }, "Icons"))))));
+    }, "[3rent]"))))));
   })))), /* @__PURE__ */ React4.createElement("div", {
     className: "pt-3 hidden lg:inline-flex 2xl:hidden justify-end mt-auto"
   }, /* @__PURE__ */ React4.createElement("div", {
@@ -900,7 +658,7 @@ var Sidebar = ({
 };
 
 // pnp:/home/mamluk/3pass/esm-pwa/libs/partials/src/Header.mjs
-import { React as React15, useState as useState9 } from "/libs/vendors-v0.0.1.mjs";
+import { React as React16, useState as useState9 } from "/libs/vendors-v0.0.1.mjs";
 
 // pnp:/home/mamluk/3pass/esm-pwa/libs/components/src/ModalSearch.mjs
 import { React as React6, useRef as useRef3, useEffect as useEffect3, Link as Link2 } from "/libs/vendors-v0.0.1.mjs";
@@ -1506,6 +1264,8 @@ var DropdownFilter = ({
     onClick: () => setDropdownOpen(!dropdownOpen),
     "aria-expanded": dropdownOpen
   }, /* @__PURE__ */ React10.createElement("span", {
+    className: "ml-2 mr-2"
+  }, "Item Filters"), /* @__PURE__ */ React10.createElement("span", {
     className: "sr-only"
   }, "Filter"), /* @__PURE__ */ React10.createElement("wbr", null), /* @__PURE__ */ React10.createElement("svg", {
     className: "w-4 h-4 fill-current",
@@ -1597,15 +1357,229 @@ var DropdownFilter = ({
 
 // pnp:/home/mamluk/3pass/esm-pwa/libs/components/src/DropdownEditMenu.mjs
 import { React as React11, useState as useState7, useRef as useRef8, useEffect as useEffect8 } from "/libs/vendors-v0.0.1.mjs";
+var DropdownEditMenu = ({
+  children,
+  align,
+  ...rest
+}) => {
+  const [dropdownOpen, setDropdownOpen] = useState7(false);
+  const trigger = useRef8(null);
+  const dropdown = useRef8(null);
+  useEffect8(() => {
+    const clickHandler = ({ target }) => {
+      if (!dropdown.current)
+        return;
+      if (!dropdownOpen || dropdown.current.contains(target) || trigger.current.contains(target))
+        return;
+      setDropdownOpen(false);
+    };
+    document.addEventListener("click", clickHandler);
+    return () => document.removeEventListener("click", clickHandler);
+  });
+  useEffect8(() => {
+    const keyHandler = ({ keyCode }) => {
+      if (!dropdownOpen || keyCode !== 27)
+        return;
+      setDropdownOpen(false);
+    };
+    document.addEventListener("keydown", keyHandler);
+    return () => document.removeEventListener("keydown", keyHandler);
+  });
+  return /* @__PURE__ */ React11.createElement("div", {
+    ...rest
+  }, /* @__PURE__ */ React11.createElement("button", {
+    ref: trigger,
+    className: `bg-white text-slate-400 hover:text-slate-500 rounded-full ${dropdownOpen && "bg-slate-100 text-slate-500"}`,
+    "aria-haspopup": "true",
+    onClick: () => setDropdownOpen(!dropdownOpen),
+    "aria-expanded": dropdownOpen
+  }, /* @__PURE__ */ React11.createElement("span", {
+    className: "sr-only"
+  }, "Menu"), /* @__PURE__ */ React11.createElement("svg", {
+    className: "w-8 h-8 fill-current",
+    viewBox: "0 0 32 32"
+  }, /* @__PURE__ */ React11.createElement("circle", {
+    cx: "16",
+    cy: "16",
+    r: "2"
+  }), /* @__PURE__ */ React11.createElement("circle", {
+    cx: "10",
+    cy: "16",
+    r: "2"
+  }), /* @__PURE__ */ React11.createElement("circle", {
+    cx: "22",
+    cy: "16",
+    r: "2"
+  }))), /* @__PURE__ */ React11.createElement(Transition, {
+    show: dropdownOpen,
+    tag: "div",
+    className: `origin-top-right z-10 absolute top-full min-w-36 bg-white border border-slate-200 py-1.5 rounded shadow-lg overflow-hidden mt-1 ${align === "right" ? "right-0" : "left-0"}`,
+    enter: "transition ease-out duration-200 transform",
+    enterStart: "opacity-0 -translate-y-2",
+    enterEnd: "opacity-100 translate-y-0",
+    leave: "transition ease-out duration-200",
+    leaveStart: "opacity-100",
+    leaveEnd: "opacity-0"
+  }, /* @__PURE__ */ React11.createElement("ul", {
+    ref: dropdown,
+    onFocus: () => setDropdownOpen(true),
+    onBlur: () => setDropdownOpen(false)
+  }, children)));
+};
 
 // pnp:/home/mamluk/3pass/esm-pwa/libs/components/src/Tooltip.mjs
 import { React as React12, useState as useState8 } from "/libs/vendors-v0.0.1.mjs";
+var Tooltip = ({
+  children,
+  className,
+  bg,
+  size,
+  position
+}) => {
+  const [tooltipOpen, setTooltipOpen] = useState8(false);
+  const positionOuterClasses = (position2) => {
+    switch (position2) {
+      case "right":
+        return "left-full top-1/2 transform -translate-y-1/2";
+      case "left":
+        return "right-full top-1/2 transform -translate-y-1/2";
+      case "bottom":
+        return "top-full left-1/2 transform -translate-x-1/2";
+      default:
+        return "bottom-full left-1/2 transform -translate-x-1/2";
+    }
+  };
+  const sizeClasses = (size2) => {
+    switch (size2) {
+      case "lg":
+        return "min-w-72  p-3";
+      case "md":
+        return "min-w-56 p-3";
+      case "sm":
+        return "min-w-44 p-2";
+      default:
+        return "p-2";
+    }
+  };
+  const positionInnerClasses = (position2) => {
+    switch (position2) {
+      case "right":
+        return "ml-2";
+      case "left":
+        return "mr-2";
+      case "bottom":
+        return "mt-2";
+      default:
+        return "mb-2";
+    }
+  };
+  return /* @__PURE__ */ React12.createElement("div", {
+    className: `relative ${className}`,
+    onMouseEnter: () => setTooltipOpen(true),
+    onMouseLeave: () => setTooltipOpen(false),
+    onFocus: () => setTooltipOpen(true),
+    onBlur: () => setTooltipOpen(false)
+  }, /* @__PURE__ */ React12.createElement("button", {
+    className: "block",
+    "aria-haspopup": "true",
+    "aria-expanded": tooltipOpen,
+    onClick: (e) => e.preventDefault()
+  }, /* @__PURE__ */ React12.createElement("svg", {
+    className: "w-4 h-4 fill-current text-slate-400",
+    viewBox: "0 0 16 16"
+  }, /* @__PURE__ */ React12.createElement("path", {
+    d: "M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm0 12c-.6 0-1-.4-1-1s.4-1 1-1 1 .4 1 1-.4 1-1 1zm1-3H7V4h2v5z"
+  }))), /* @__PURE__ */ React12.createElement("div", {
+    className: `z-10 absolute ${positionOuterClasses(position)}`
+  }, /* @__PURE__ */ React12.createElement(Transition, {
+    show: tooltipOpen,
+    tag: "div",
+    className: `rounded overflow-hidden ${bg === "dark" ? "bg-slate-800" : "bg-white border border-slate-200 shadow-lg"} ${sizeClasses(size)} ${positionInnerClasses(position)}`,
+    enter: "transition ease-out duration-200 transform",
+    enterStart: "opacity-0 -translate-y-2",
+    enterEnd: "opacity-100 translate-y-0",
+    leave: "transition ease-out duration-200",
+    leaveStart: "opacity-100",
+    leaveEnd: "opacity-0"
+  }, children)));
+};
+
+// pnp:/home/mamluk/3pass/esm-pwa/libs/components/src/ModalAction.mjs
+import { React as React13, useRef as useRef9, useEffect as useEffect9 } from "/libs/vendors-v0.0.1.mjs";
+var ModalAction = ({
+  children,
+  id,
+  modalOpen,
+  setModalOpen
+}) => {
+  const modalContent = useRef9(null);
+  useEffect9(() => {
+    const clickHandler = ({ target }) => {
+      if (!modalOpen || modalContent.current.contains(target))
+        return;
+      setModalOpen(false);
+    };
+    document.addEventListener("click", clickHandler);
+    return () => document.removeEventListener("click", clickHandler);
+  });
+  useEffect9(() => {
+    const keyHandler = ({ keyCode }) => {
+      if (!modalOpen || keyCode !== 27)
+        return;
+      setModalOpen(false);
+    };
+    document.addEventListener("keydown", keyHandler);
+    return () => document.removeEventListener("keydown", keyHandler);
+  });
+  return /* @__PURE__ */ React13.createElement(React13.Fragment, null, /* @__PURE__ */ React13.createElement(Transition, {
+    className: "fixed inset-0 bg-slate-900 bg-opacity-30 z-50 transition-opacity",
+    show: modalOpen,
+    enter: "transition ease-out duration-200",
+    enterStart: "opacity-0",
+    enterEnd: "opacity-100",
+    leave: "transition ease-out duration-100",
+    leaveStart: "opacity-100",
+    leaveEnd: "opacity-0",
+    "aria-hidden": "true"
+  }), /* @__PURE__ */ React13.createElement(Transition, {
+    id,
+    className: "fixed inset-0 z-50 overflow-hidden flex items-center my-4 justify-center transform px-4 sm:px-6",
+    role: "dialog",
+    "aria-modal": "true",
+    show: modalOpen,
+    enter: "transition ease-in-out duration-200",
+    enterStart: "opacity-0 translate-y-4",
+    enterEnd: "opacity-100 translate-y-0",
+    leave: "transition ease-in-out duration-200",
+    leaveStart: "opacity-100 translate-y-0",
+    leaveEnd: "opacity-0 translate-y-4"
+  }, /* @__PURE__ */ React13.createElement("div", {
+    ref: modalContent,
+    className: "bg-white rounded shadow-lg overflow-auto max-w-lg w-full max-h-full"
+  }, /* @__PURE__ */ React13.createElement("div", {
+    className: "p-6"
+  }, /* @__PURE__ */ React13.createElement("div", {
+    className: "relative"
+  }, /* @__PURE__ */ React13.createElement("button", {
+    className: "absolute top-0 right-0 text-slate-400 hover:text-slate-500",
+    onClick: (e) => {
+      e.stopPropagation();
+      setModalOpen(false);
+    }
+  }, /* @__PURE__ */ React13.createElement("div", {
+    className: "sr-only"
+  }, "Close"), /* @__PURE__ */ React13.createElement("svg", {
+    className: "w-4 h-4 fill-current"
+  }, /* @__PURE__ */ React13.createElement("path", {
+    d: "M7.95 6.536l4.242-4.243a1 1 0 111.415 1.414L9.364 7.95l4.243 4.242a1 1 0 11-1.415 1.415L7.95 9.364l-4.243 4.243a1 1 0 01-1.414-1.415L6.536 7.95 2.293 3.707a1 1 0 011.414-1.414L7.95 6.536z"
+  }))), children)))));
+};
 
 // pnp:/home/mamluk/3pass/esm-pwa/libs/components/src/Datepicker.mjs
-import { React as React14 } from "/libs/vendors-v0.0.1.mjs";
+import { React as React15 } from "/libs/vendors-v0.0.1.mjs";
 
 // pnp:/home/mamluk/3pass/esm-pwa/libs/components/src/Flatpickr.mjs
-import { React as React13, Component } from "/libs/vendors-v0.0.1.mjs";
+import { React as React14, Component } from "/libs/vendors-v0.0.1.mjs";
 import { PropTypes, flatpickr as flat } from "/libs/vendors-v0.0.1.mjs";
 var flatpickr = flat.default;
 var hooks = [
@@ -1700,10 +1674,10 @@ var Flatpickr = class extends Component {
     });
     if (render)
       return render({ ...props, defaultValue, value }, this.handleNodeChange);
-    return options.wrap ? /* @__PURE__ */ React13.createElement("div", {
+    return options.wrap ? /* @__PURE__ */ React14.createElement("div", {
       ...props,
       ref: this.handleNodeChange
-    }, children) : /* @__PURE__ */ React13.createElement("input", {
+    }, children) : /* @__PURE__ */ React14.createElement("input", {
       ...props,
       defaultValue,
       ref: this.handleNodeChange
@@ -1752,7 +1726,9 @@ function mergeHooks(inputOptions, props, hook) {
 
 // pnp:/home/mamluk/3pass/esm-pwa/libs/components/src/Datepicker.mjs
 var Datepicker = ({
-  align
+  align,
+  dates,
+  setDates
 }) => {
   const options = {
     mode: "range",
@@ -1769,20 +1745,21 @@ var Datepicker = ({
     },
     onChange: (selectedDates, dateStr, instance) => {
       console.log("change! ");
+      console.log({ selectedDates });
       instance.element.value = dateStr.replace("to", "-");
     }
   };
-  return /* @__PURE__ */ React14.createElement("div", {
+  return /* @__PURE__ */ React15.createElement("div", {
     className: "relative"
-  }, /* @__PURE__ */ React14.createElement(Flatpickr, {
+  }, /* @__PURE__ */ React15.createElement(Flatpickr, {
     className: "form-input pl-9 text-slate-500 hover:text-slate-600 font-medium focus:border-slate-300 w-60",
     options
-  }), /* @__PURE__ */ React14.createElement("div", {
+  }), /* @__PURE__ */ React15.createElement("div", {
     className: "absolute inset-0 right-auto flex items-center pointer-events-none"
-  }, /* @__PURE__ */ React14.createElement("svg", {
+  }, /* @__PURE__ */ React15.createElement("svg", {
     className: "w-4 h-4 fill-current text-slate-500 ml-3",
     viewBox: "0 0 16 16"
-  }, /* @__PURE__ */ React14.createElement("path", {
+  }, /* @__PURE__ */ React15.createElement("path", {
     d: "M15 2h-2V0h-2v2H9V0H7v2H5V0H3v2H1a1 1 0 00-1 1v12a1 1 0 001 1h14a1 1 0 001-1V3a1 1 0 00-1-1zm-1 12H2V6h12v8z"
   }))));
 };
@@ -1793,82 +1770,247 @@ var Header = ({
   setSidebarOpen
 }) => {
   const [searchModalOpen, setSearchModalOpen] = useState9(false);
-  return /* @__PURE__ */ React15.createElement("header", {
+  return /* @__PURE__ */ React16.createElement("header", {
     className: "sticky top-0 bg-white border-b border-slate-200 z-30"
-  }, /* @__PURE__ */ React15.createElement("div", {
+  }, /* @__PURE__ */ React16.createElement("div", {
     className: "px-4 sm:px-6 lg:px-8"
-  }, /* @__PURE__ */ React15.createElement("div", {
+  }, /* @__PURE__ */ React16.createElement("div", {
     className: "flex items-center justify-between h-16 -mb-px"
-  }, /* @__PURE__ */ React15.createElement("div", {
+  }, /* @__PURE__ */ React16.createElement("div", {
     className: "flex"
-  }, /* @__PURE__ */ React15.createElement("button", {
+  }, /* @__PURE__ */ React16.createElement("button", {
     className: "text-slate-500 hover:text-slate-600 lg:hidden",
     "aria-controls": "sidebar",
     "aria-expanded": sidebarOpen,
     onClick: () => setSidebarOpen(!sidebarOpen)
-  }, /* @__PURE__ */ React15.createElement("span", {
+  }, /* @__PURE__ */ React16.createElement("span", {
     className: "sr-only"
-  }, "Open sidebar"), /* @__PURE__ */ React15.createElement("svg", {
+  }, "Open sidebar"), /* @__PURE__ */ React16.createElement("svg", {
     className: "w-6 h-6 fill-current",
     viewBox: "0 0 24 24",
     xmlns: "http://www.w3.org/2000/svg"
-  }, /* @__PURE__ */ React15.createElement("rect", {
+  }, /* @__PURE__ */ React16.createElement("rect", {
     x: "4",
     y: "5",
     width: "16",
     height: "2"
-  }), /* @__PURE__ */ React15.createElement("rect", {
+  }), /* @__PURE__ */ React16.createElement("rect", {
     x: "4",
     y: "11",
     width: "16",
     height: "2"
-  }), /* @__PURE__ */ React15.createElement("rect", {
+  }), /* @__PURE__ */ React16.createElement("rect", {
     x: "4",
     y: "17",
     width: "16",
     height: "2"
-  })))), /* @__PURE__ */ React15.createElement("div", {
+  })))), /* @__PURE__ */ React16.createElement("div", {
     className: "flex items-center space-x-3"
-  }, /* @__PURE__ */ React15.createElement("button", {
+  }, /* @__PURE__ */ React16.createElement("button", {
     className: `w-8 h-8 flex items-center justify-center bg-slate-100 hover:bg-slate-200 transition duration-150 rounded-full ml-3 ${searchModalOpen && "bg-slate-200"}`,
     onClick: (e) => {
       e.stopPropagation();
       setSearchModalOpen(true);
     },
     "aria-controls": "search-modal"
-  }, /* @__PURE__ */ React15.createElement("span", {
+  }, /* @__PURE__ */ React16.createElement("span", {
     className: "sr-only"
-  }, "Search"), /* @__PURE__ */ React15.createElement("svg", {
+  }, "Search"), /* @__PURE__ */ React16.createElement("svg", {
     className: "w-4 h-4",
     viewBox: "0 0 16 16",
     xmlns: "http://www.w3.org/2000/svg"
-  }, /* @__PURE__ */ React15.createElement("path", {
+  }, /* @__PURE__ */ React16.createElement("path", {
     className: "fill-current text-slate-500",
     d: "M7 14c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7zM7 2C4.243 2 2 4.243 2 7s2.243 5 5 5 5-2.243 5-5-2.243-5-5-5z"
-  }), /* @__PURE__ */ React15.createElement("path", {
+  }), /* @__PURE__ */ React16.createElement("path", {
     className: "fill-current text-slate-400",
     d: "M15.707 14.293L13.314 11.9a8.019 8.019 0 01-1.414 1.414l2.393 2.393a.997.997 0 001.414 0 .999.999 0 000-1.414z"
-  }))), /* @__PURE__ */ React15.createElement(ModalSearch, {
+  }))), /* @__PURE__ */ React16.createElement(ModalSearch, {
     id: "search-modal",
     searchId: "search",
     modalOpen: searchModalOpen,
     setModalOpen: setSearchModalOpen
-  }), /* @__PURE__ */ React15.createElement(DropdownNotifications, {
+  }), /* @__PURE__ */ React16.createElement(DropdownNotifications, {
     align: "right"
-  }), /* @__PURE__ */ React15.createElement(DropdownHelp, {
+  }), /* @__PURE__ */ React16.createElement(DropdownHelp, {
     align: "right"
-  }), /* @__PURE__ */ React15.createElement("hr", {
+  }), /* @__PURE__ */ React16.createElement("hr", {
     className: "w-px h-6 bg-slate-200 mx-3"
-  }), /* @__PURE__ */ React15.createElement(DropdownProfile, {
+  }), /* @__PURE__ */ React16.createElement(DropdownProfile, {
     align: "right"
   })))));
 };
 
-// pnp:/home/mamluk/3pass/esm-pwa/pkgs/3stats/cards/AnalyticsCard01.mjs
-import { React as React22 } from "/libs/vendors-v0.0.1.mjs";
+// pnp:/home/mamluk/3pass/esm-pwa/pkgs/dash/components/WelcomeBanner.mjs
+import { React as React17 } from "/libs/vendors-v0.0.1.mjs";
+var WelcomeBanner = () => {
+  return /* @__PURE__ */ React17.createElement("div", {
+    className: "relative bg-indigo-200 p-4 sm:p-6 rounded-sm overflow-hidden mb-8"
+  }, /* @__PURE__ */ React17.createElement("div", {
+    className: "absolute right-0 top-0 -mt-4 mr-16 pointer-events-none hidden xl:block",
+    "aria-hidden": "true"
+  }, /* @__PURE__ */ React17.createElement("svg", {
+    width: "319",
+    height: "198",
+    xmlnsXlink: "http://www.w3.org/1999/xlink"
+  }, /* @__PURE__ */ React17.createElement("defs", null, /* @__PURE__ */ React17.createElement("path", {
+    id: "welcome-a",
+    d: "M64 0l64 128-64-20-64 20z"
+  }), /* @__PURE__ */ React17.createElement("path", {
+    id: "welcome-e",
+    d: "M40 0l40 80-40-12.5L0 80z"
+  }), /* @__PURE__ */ React17.createElement("path", {
+    id: "welcome-g",
+    d: "M40 0l40 80-40-12.5L0 80z"
+  }), /* @__PURE__ */ React17.createElement("linearGradient", {
+    x1: "50%",
+    y1: "0%",
+    x2: "50%",
+    y2: "100%",
+    id: "welcome-b"
+  }, /* @__PURE__ */ React17.createElement("stop", {
+    stopColor: "#A5B4FC",
+    offset: "0%"
+  }), /* @__PURE__ */ React17.createElement("stop", {
+    stopColor: "#818CF8",
+    offset: "100%"
+  })), /* @__PURE__ */ React17.createElement("linearGradient", {
+    x1: "50%",
+    y1: "24.537%",
+    x2: "50%",
+    y2: "100%",
+    id: "welcome-c"
+  }, /* @__PURE__ */ React17.createElement("stop", {
+    stopColor: "#4338CA",
+    offset: "0%"
+  }), /* @__PURE__ */ React17.createElement("stop", {
+    stopColor: "#6366F1",
+    stopOpacity: "0",
+    offset: "100%"
+  }))), /* @__PURE__ */ React17.createElement("g", {
+    fill: "none",
+    fillRule: "evenodd"
+  }, /* @__PURE__ */ React17.createElement("g", {
+    transform: "rotate(64 36.592 105.604)"
+  }, /* @__PURE__ */ React17.createElement("mask", {
+    id: "welcome-d",
+    fill: "#fff"
+  }, /* @__PURE__ */ React17.createElement("use", {
+    xlinkHref: "#welcome-a"
+  })), /* @__PURE__ */ React17.createElement("use", {
+    fill: "url(#welcome-b)",
+    xlinkHref: "#welcome-a"
+  }), /* @__PURE__ */ React17.createElement("path", {
+    fill: "url(#welcome-c)",
+    mask: "url(#welcome-d)",
+    d: "M64-24h80v152H64z"
+  })), /* @__PURE__ */ React17.createElement("g", {
+    transform: "rotate(-51 91.324 -105.372)"
+  }, /* @__PURE__ */ React17.createElement("mask", {
+    id: "welcome-f",
+    fill: "#fff"
+  }, /* @__PURE__ */ React17.createElement("use", {
+    xlinkHref: "#welcome-e"
+  })), /* @__PURE__ */ React17.createElement("use", {
+    fill: "url(#welcome-b)",
+    xlinkHref: "#welcome-e"
+  }), /* @__PURE__ */ React17.createElement("path", {
+    fill: "url(#welcome-c)",
+    mask: "url(#welcome-f)",
+    d: "M40.333-15.147h50v95h-50z"
+  })), /* @__PURE__ */ React17.createElement("g", {
+    transform: "rotate(44 61.546 392.623)"
+  }, /* @__PURE__ */ React17.createElement("mask", {
+    id: "welcome-h",
+    fill: "#fff"
+  }, /* @__PURE__ */ React17.createElement("use", {
+    xlinkHref: "#welcome-g"
+  })), /* @__PURE__ */ React17.createElement("use", {
+    fill: "url(#welcome-b)",
+    xlinkHref: "#welcome-g"
+  }), /* @__PURE__ */ React17.createElement("path", {
+    fill: "url(#welcome-c)",
+    mask: "url(#welcome-h)",
+    d: "M40.333-15.147h50v95h-50z"
+  }))))), /* @__PURE__ */ React17.createElement("div", {
+    className: "relative"
+  }, /* @__PURE__ */ React17.createElement("h1", {
+    className: "text-2xl md:text-3xl text-slate-800 font-bold mb-1"
+  }, "Good afternoon, Acme Inc. \u{1F44B}"), /* @__PURE__ */ React17.createElement("p", null, "Here is what\u2019s happening with your projects today:")));
+};
+
+// pnp:/home/mamluk/3pass/esm-pwa/pkgs/dash/components/DashboardAvatars.mjs
+import { React as React18, Link as Link6 } from "/libs/vendors-v0.0.1.mjs";
+
+// pnp:/home/mamluk/3pass/esm-pwa/libs/assets/images/user-36-01.jpg
+var user_36_01_default = "./assets/user-36-01.jpg";
+
+// pnp:/home/mamluk/3pass/esm-pwa/libs/assets/images/user-36-02.jpg
+var user_36_02_default = "./assets/user-36-02.jpg";
+
+// pnp:/home/mamluk/3pass/esm-pwa/libs/assets/images/user-36-03.jpg
+var user_36_03_default = "./assets/user-36-03.jpg";
+
+// pnp:/home/mamluk/3pass/esm-pwa/libs/assets/images/user-36-04.jpg
+var user_36_04_default = "./assets/user-36-04.jpg";
+
+// pnp:/home/mamluk/3pass/esm-pwa/pkgs/dash/components/DashboardAvatars.mjs
+var DashboardAvatars = () => {
+  return /* @__PURE__ */ React18.createElement("ul", {
+    className: "flex flex-wrap justify-center sm:justify-start mb-8 sm:mb-0 -space-x-3 -ml-px"
+  }, /* @__PURE__ */ React18.createElement("li", null, /* @__PURE__ */ React18.createElement(Link6, {
+    className: "block",
+    to: "#0"
+  }, /* @__PURE__ */ React18.createElement("img", {
+    className: "w-9 h-9 rounded-full",
+    src: user_36_01_default,
+    width: "36",
+    height: "36",
+    alt: "User 01"
+  }))), /* @__PURE__ */ React18.createElement("li", null, /* @__PURE__ */ React18.createElement(Link6, {
+    className: "block",
+    to: "#0"
+  }, /* @__PURE__ */ React18.createElement("img", {
+    className: "w-9 h-9 rounded-full",
+    src: user_36_02_default,
+    width: "36",
+    height: "36",
+    alt: "User 02"
+  }))), /* @__PURE__ */ React18.createElement("li", null, /* @__PURE__ */ React18.createElement(Link6, {
+    className: "block",
+    to: "#0"
+  }, /* @__PURE__ */ React18.createElement("img", {
+    className: "w-9 h-9 rounded-full",
+    src: user_36_03_default,
+    width: "36",
+    height: "36",
+    alt: "User 03"
+  }))), /* @__PURE__ */ React18.createElement("li", null, /* @__PURE__ */ React18.createElement(Link6, {
+    className: "block",
+    to: "#0"
+  }, /* @__PURE__ */ React18.createElement("img", {
+    className: "w-9 h-9 rounded-full",
+    src: user_36_04_default,
+    width: "36",
+    height: "36",
+    alt: "User 04"
+  }))), /* @__PURE__ */ React18.createElement("li", null, /* @__PURE__ */ React18.createElement("button", {
+    className: "flex justify-center items-center w-9 h-9 rounded-full bg-white border border-slate-200 hover:border-slate-300 text-indigo-500 shadow-sm transition duration-150 ml-2"
+  }, /* @__PURE__ */ React18.createElement("span", {
+    className: "sr-only"
+  }, "Add new user"), /* @__PURE__ */ React18.createElement("svg", {
+    className: "w-4 h-4 fill-current",
+    viewBox: "0 0 16 16"
+  }, /* @__PURE__ */ React18.createElement("path", {
+    d: "M15 7H9V1c0-.6-.4-1-1-1S7 .4 7 1v6H1c-.6 0-1 .4-1 1s.4 1 1 1h6v6c0 .6.4 1 1 1s1-.4 1-1V9h6c.6 0 1-.4 1-1s-.4-1-1-1z"
+  })))));
+};
+
+// pnp:/home/mamluk/3pass/esm-pwa/pkgs/dash/components/DashboardCard01.mjs
+import { React as React26, Link as Link7 } from "/libs/vendors-v0.0.1.mjs";
 
 // pnp:/home/mamluk/3pass/esm-pwa/libs/charts/src/LineChart01.mjs
-import { React as React16, useRef as useRef9, useEffect as useEffect9 } from "/libs/vendors-v0.0.1.mjs";
+import { React as React19, useRef as useRef10, useEffect as useEffect10 } from "/libs/vendors-v0.0.1.mjs";
 import {
   Chart,
   LineController,
@@ -8062,6 +8204,10 @@ var formatValue = (value) => Intl.NumberFormat("en-US", {
   maximumSignificantDigits: 3,
   notation: "compact"
 }).format(value);
+var formatThousands = (value) => Intl.NumberFormat("en-US", {
+  maximumSignificantDigits: 3,
+  notation: "compact"
+}).format(value);
 
 // pnp:/home/mamluk/3pass/esm-pwa/libs/charts/src/LineChart01.mjs
 Chart.register(LineController, LineElement, Filler, PointElement, LinearScale, TimeScale, Tooltip2);
@@ -8070,8 +8216,8 @@ var LineChart01 = ({
   width,
   height
 }) => {
-  const canvas = useRef9(null);
-  useEffect9(() => {
+  const canvas = useRef10(null);
+  useEffect10(() => {
     const ctx = canvas.current;
     const chart = new Chart(ctx, {
       type: "line",
@@ -8118,7 +8264,7 @@ var LineChart01 = ({
     });
     return () => chart.destroy();
   }, []);
-  return /* @__PURE__ */ React16.createElement("canvas", {
+  return /* @__PURE__ */ React19.createElement("canvas", {
     ref: canvas,
     width,
     height
@@ -8126,7 +8272,7 @@ var LineChart01 = ({
 };
 
 // pnp:/home/mamluk/3pass/esm-pwa/libs/charts/src/LineChart02.mjs
-import { React as React17, useRef as useRef10, useEffect as useEffect10 } from "/libs/vendors-v0.0.1.mjs";
+import { React as React20, useRef as useRef11, useEffect as useEffect11 } from "/libs/vendors-v0.0.1.mjs";
 import {
   Chart as Chart2,
   LineController as LineController2,
@@ -8138,60 +8284,1622 @@ import {
   Tooltip as Tooltip3
 } from "/libs/vendors-v0.0.1.mjs";
 Chart2.register(LineController2, LineElement2, Filler2, PointElement2, LinearScale2, TimeScale2, Tooltip3);
+var LineChart02 = ({
+  data,
+  width,
+  height
+}) => {
+  const canvas = useRef11(null);
+  const legend = useRef11(null);
+  useEffect11(() => {
+    const ctx = canvas.current;
+    const chart = new Chart2(ctx, {
+      type: "line",
+      data,
+      options: {
+        layout: {
+          padding: 20
+        },
+        scales: {
+          y: {
+            grid: {
+              drawBorder: false,
+              beginAtZero: true
+            },
+            ticks: {
+              maxTicksLimit: 5,
+              callback: (value) => formatValue(value)
+            }
+          },
+          x: {
+            type: "time",
+            time: {
+              parser: "MM-DD-YYYY",
+              unit: "month",
+              displayFormats: {
+                month: "MMM YY"
+              }
+            },
+            grid: {
+              display: false,
+              drawBorder: false
+            },
+            ticks: {
+              autoSkipPadding: 48,
+              maxRotation: 0
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            display: false
+          },
+          tooltip: {
+            callbacks: {
+              title: () => false,
+              label: (context) => formatValue(context.parsed.y)
+            }
+          }
+        },
+        interaction: {
+          intersect: false,
+          mode: "nearest"
+        },
+        maintainAspectRatio: false,
+        resizeDelay: 200
+      },
+      plugins: [{
+        id: "htmlLegend",
+        afterUpdate(c, args, options) {
+          const ul = legend.current;
+          if (!ul)
+            return;
+          while (ul.firstChild) {
+            ul.firstChild.remove();
+          }
+          const items = c.options.plugins.legend.labels.generateLabels(c);
+          items.slice(0, 2).forEach((item) => {
+            const li = document.createElement("li");
+            li.style.marginLeft = tailwindConfig().theme.margin[3];
+            const button = document.createElement("button");
+            button.style.display = "inline-flex";
+            button.style.alignItems = "center";
+            button.style.opacity = item.hidden ? ".3" : "";
+            button.onclick = () => {
+              c.setDatasetVisibility(item.datasetIndex, !c.isDatasetVisible(item.datasetIndex));
+              c.update();
+            };
+            const box = document.createElement("span");
+            box.style.display = "block";
+            box.style.width = tailwindConfig().theme.width[3];
+            box.style.height = tailwindConfig().theme.height[3];
+            box.style.borderRadius = tailwindConfig().theme.borderRadius.full;
+            box.style.marginRight = tailwindConfig().theme.margin[2];
+            box.style.borderWidth = "3px";
+            box.style.borderColor = c.data.datasets[item.datasetIndex].borderColor;
+            box.style.pointerEvents = "none";
+            const label = document.createElement("span");
+            label.style.color = tailwindConfig().theme.colors.slate[500];
+            label.style.fontSize = tailwindConfig().theme.fontSize.sm[0];
+            label.style.lineHeight = tailwindConfig().theme.fontSize.sm[1].lineHeight;
+            const labelText = document.createTextNode(item.text);
+            label.appendChild(labelText);
+            li.appendChild(button);
+            button.appendChild(box);
+            button.appendChild(label);
+            ul.appendChild(li);
+          });
+        }
+      }]
+    });
+    return () => chart.destroy();
+  }, []);
+  return /* @__PURE__ */ React20.createElement(React20.Fragment, null, /* @__PURE__ */ React20.createElement("div", {
+    className: "px-5 py-3"
+  }, /* @__PURE__ */ React20.createElement("div", {
+    className: "flex flex-wrap justify-between items-end"
+  }, /* @__PURE__ */ React20.createElement("div", {
+    className: "flex items-start"
+  }, /* @__PURE__ */ React20.createElement("div", {
+    className: "text-3xl font-bold text-slate-800 mr-2"
+  }, "$1,482"), /* @__PURE__ */ React20.createElement("div", {
+    className: "text-sm font-semibold text-white px-1.5 bg-amber-500 rounded-full"
+  }, "-22%")), /* @__PURE__ */ React20.createElement("div", {
+    className: "grow ml-2 mb-1"
+  }, /* @__PURE__ */ React20.createElement("ul", {
+    ref: legend,
+    className: "flex flex-wrap justify-end"
+  })))), /* @__PURE__ */ React20.createElement("div", {
+    className: "grow"
+  }, /* @__PURE__ */ React20.createElement("canvas", {
+    ref: canvas,
+    width,
+    height
+  })));
+};
 
-// pnp:/home/mamluk/3pass/esm-pwa/libs/charts/src/BarChart01.mjs
-import { React as React18, useRef as useRef11, useEffect as useEffect11 } from "/libs/vendors-v0.0.1.mjs";
+// pnp:/home/mamluk/3pass/esm-pwa/libs/charts/src/LineChart03.mjs
+import { React as React21, useRef as useRef12, useEffect as useEffect12 } from "/libs/vendors-v0.0.1.mjs";
 import {
   Chart as Chart3,
-  BarController,
-  BarElement,
-  LinearScale as LinearScale3,
-  TimeScale as TimeScale3,
-  Tooltip as Tooltip4,
-  Legend
-} from "/libs/vendors-v0.0.1.mjs";
-Chart3.register(BarController, BarElement, LinearScale3, TimeScale3, Tooltip4, Legend);
-
-// pnp:/home/mamluk/3pass/esm-pwa/libs/charts/src/BarChart02.mjs
-import { React as React19, useRef as useRef12, useEffect as useEffect12 } from "/libs/vendors-v0.0.1.mjs";
-import {
-  Chart as Chart4,
-  BarController as BarController2,
-  BarElement as BarElement2,
-  LinearScale as LinearScale4,
-  TimeScale as TimeScale4,
-  Tooltip as Tooltip5,
-  Legend as Legend2
-} from "/libs/vendors-v0.0.1.mjs";
-Chart4.register(BarController2, BarElement2, LinearScale4, TimeScale4, Tooltip5, Legend2);
-
-// pnp:/home/mamluk/3pass/esm-pwa/libs/charts/src/RealtimeChart.mjs
-import { React as React20, useRef as useRef13, useEffect as useEffect13 } from "/libs/vendors-v0.0.1.mjs";
-import {
-  Chart as Chart5,
   LineController as LineController3,
   LineElement as LineElement3,
   Filler as Filler3,
   PointElement as PointElement3,
+  LinearScale as LinearScale3,
+  TimeScale as TimeScale3,
+  Tooltip as Tooltip4
+} from "/libs/vendors-v0.0.1.mjs";
+Chart3.register(LineController3, LineElement3, Filler3, PointElement3, LinearScale3, TimeScale3, Tooltip4);
+var LineChart03 = ({
+  data,
+  width,
+  height
+}) => {
+  const canvas = useRef12(null);
+  useEffect12(() => {
+    const ctx = canvas.current;
+    const chart = new Chart3(ctx, {
+      type: "line",
+      data,
+      options: {
+        layout: {
+          padding: 20
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            grid: {
+              drawBorder: false
+            },
+            ticks: {
+              callback: (value) => formatThousands(value)
+            }
+          },
+          x: {
+            type: "time",
+            time: {
+              parser: "YYYY-MM-DD",
+              unit: "day",
+              displayFormats: {
+                day: "MMM DD"
+              }
+            },
+            grid: {
+              display: false,
+              drawBorder: false
+            },
+            ticks: {
+              autoSkipPadding: 48,
+              maxRotation: 0
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            display: false
+          },
+          tooltip: {
+            callbacks: {
+              title: () => false,
+              label: (context) => formatThousands(context.parsed.y)
+            }
+          }
+        },
+        interaction: {
+          intersect: false,
+          mode: "nearest"
+        },
+        maintainAspectRatio: false,
+        resizeDelay: 200
+      }
+    });
+    return () => chart.destroy();
+  }, [data]);
+  return /* @__PURE__ */ React21.createElement("canvas", {
+    ref: canvas,
+    width,
+    height
+  });
+};
+
+// pnp:/home/mamluk/3pass/esm-pwa/libs/charts/src/BarChart01.mjs
+import { React as React22, useRef as useRef13, useEffect as useEffect13 } from "/libs/vendors-v0.0.1.mjs";
+import {
+  Chart as Chart4,
+  BarController,
+  BarElement,
+  LinearScale as LinearScale4,
+  TimeScale as TimeScale4,
+  Tooltip as Tooltip5,
+  Legend
+} from "/libs/vendors-v0.0.1.mjs";
+Chart4.register(BarController, BarElement, LinearScale4, TimeScale4, Tooltip5, Legend);
+var BarChart01 = ({
+  data,
+  width,
+  height
+}) => {
+  const canvas = useRef13(null);
+  const legend = useRef13(null);
+  useEffect13(() => {
+    const ctx = canvas.current;
+    const chart = new Chart4(ctx, {
+      type: "bar",
+      data,
+      options: {
+        layout: {
+          padding: {
+            top: 12,
+            bottom: 16,
+            left: 20,
+            right: 20
+          }
+        },
+        scales: {
+          y: {
+            grid: {
+              drawBorder: false
+            },
+            ticks: {
+              maxTicksLimit: 5,
+              callback: (value) => formatValue(value)
+            }
+          },
+          x: {
+            type: "time",
+            time: {
+              parser: "MM-DD-YYYY",
+              unit: "month",
+              displayFormats: {
+                month: "MMM YY"
+              }
+            },
+            grid: {
+              display: false,
+              drawBorder: false
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            display: false
+          },
+          tooltip: {
+            callbacks: {
+              title: () => false,
+              label: (context) => formatValue(context.parsed.y)
+            }
+          }
+        },
+        interaction: {
+          intersect: false,
+          mode: "nearest"
+        },
+        animation: {
+          duration: 500
+        },
+        maintainAspectRatio: false,
+        resizeDelay: 200
+      },
+      plugins: [{
+        id: "htmlLegend",
+        afterUpdate(c, args, options) {
+          const ul = legend.current;
+          if (!ul)
+            return;
+          while (ul.firstChild) {
+            ul.firstChild.remove();
+          }
+          const items = c.options.plugins.legend.labels.generateLabels(c);
+          items.forEach((item) => {
+            const li = document.createElement("li");
+            li.style.marginRight = tailwindConfig().theme.margin[4];
+            const button = document.createElement("button");
+            button.style.display = "inline-flex";
+            button.style.alignItems = "center";
+            button.style.opacity = item.hidden ? ".3" : "";
+            button.onclick = () => {
+              c.setDatasetVisibility(item.datasetIndex, !c.isDatasetVisible(item.datasetIndex));
+              c.update();
+            };
+            const box = document.createElement("span");
+            box.style.display = "block";
+            box.style.width = tailwindConfig().theme.width[3];
+            box.style.height = tailwindConfig().theme.height[3];
+            box.style.borderRadius = tailwindConfig().theme.borderRadius.full;
+            box.style.marginRight = tailwindConfig().theme.margin[2];
+            box.style.borderWidth = "3px";
+            box.style.borderColor = item.fillStyle;
+            box.style.pointerEvents = "none";
+            const labelContainer = document.createElement("span");
+            labelContainer.style.display = "flex";
+            labelContainer.style.alignItems = "center";
+            const value = document.createElement("span");
+            value.style.color = tailwindConfig().theme.colors.slate[800];
+            value.style.fontSize = tailwindConfig().theme.fontSize["3xl"][0];
+            value.style.lineHeight = tailwindConfig().theme.fontSize["3xl"][1].lineHeight;
+            value.style.fontWeight = tailwindConfig().theme.fontWeight.bold;
+            value.style.marginRight = tailwindConfig().theme.margin[2];
+            value.style.pointerEvents = "none";
+            const label = document.createElement("span");
+            label.style.color = tailwindConfig().theme.colors.slate[500];
+            label.style.fontSize = tailwindConfig().theme.fontSize.sm[0];
+            label.style.lineHeight = tailwindConfig().theme.fontSize.sm[1].lineHeight;
+            const theValue = c.data.datasets[item.datasetIndex].data.reduce((a, b) => a + b, 0);
+            const valueText = document.createTextNode(formatValue(theValue));
+            const labelText = document.createTextNode(item.text);
+            value.appendChild(valueText);
+            label.appendChild(labelText);
+            li.appendChild(button);
+            button.appendChild(box);
+            button.appendChild(labelContainer);
+            labelContainer.appendChild(value);
+            labelContainer.appendChild(label);
+            ul.appendChild(li);
+          });
+        }
+      }]
+    });
+    return () => chart.destroy();
+  }, []);
+  return /* @__PURE__ */ React22.createElement(React22.Fragment, null, /* @__PURE__ */ React22.createElement("div", {
+    className: "px-5 py-3"
+  }, /* @__PURE__ */ React22.createElement("ul", {
+    ref: legend,
+    className: "flex flex-wrap"
+  })), /* @__PURE__ */ React22.createElement("div", {
+    className: "grow"
+  }, /* @__PURE__ */ React22.createElement("canvas", {
+    ref: canvas,
+    width,
+    height
+  })));
+};
+
+// pnp:/home/mamluk/3pass/esm-pwa/libs/charts/src/BarChart02.mjs
+import { React as React23, useRef as useRef14, useEffect as useEffect14 } from "/libs/vendors-v0.0.1.mjs";
+import {
+  Chart as Chart5,
+  BarController as BarController2,
+  BarElement as BarElement2,
   LinearScale as LinearScale5,
   TimeScale as TimeScale5,
-  Tooltip as Tooltip6
+  Tooltip as Tooltip6,
+  Legend as Legend2
 } from "/libs/vendors-v0.0.1.mjs";
-Chart5.register(LineController3, LineElement3, Filler3, PointElement3, LinearScale5, TimeScale5, Tooltip6);
+Chart5.register(BarController2, BarElement2, LinearScale5, TimeScale5, Tooltip6, Legend2);
+var BarChart02 = ({
+  data,
+  width,
+  height
+}) => {
+  const canvas = useRef14(null);
+  useEffect14(() => {
+    const ctx = canvas.current;
+    const chart = new Chart5(ctx, {
+      type: "bar",
+      data,
+      options: {
+        layout: {
+          padding: {
+            top: 12,
+            bottom: 16,
+            left: 20,
+            right: 20
+          }
+        },
+        scales: {
+          y: {
+            stacked: true,
+            grid: {
+              drawBorder: false
+            },
+            beginAtZero: true,
+            ticks: {
+              maxTicksLimit: 5,
+              callback: (value) => formatValue(value)
+            }
+          },
+          x: {
+            stacked: true,
+            type: "time",
+            time: {
+              parser: "MM-DD-YYYY",
+              unit: "month",
+              displayFormats: {
+                month: "MMM YY"
+              }
+            },
+            grid: {
+              display: false,
+              drawBorder: false
+            },
+            ticks: {
+              autoSkipPadding: 48,
+              maxRotation: 0
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            display: false
+          },
+          tooltip: {
+            callbacks: {
+              title: () => false,
+              label: (context) => formatValue(context.parsed.y)
+            }
+          }
+        },
+        interaction: {
+          intersect: false,
+          mode: "nearest"
+        },
+        animation: {
+          duration: 200
+        },
+        maintainAspectRatio: false,
+        resizeDelay: 200
+      }
+    });
+    return () => chart.destroy();
+  }, []);
+  return /* @__PURE__ */ React23.createElement("canvas", {
+    ref: canvas,
+    width,
+    height
+  });
+};
 
-// pnp:/home/mamluk/3pass/esm-pwa/libs/charts/src/DoughnutChart.mjs
-import { React as React21, useRef as useRef14, useEffect as useEffect14 } from "/libs/vendors-v0.0.1.mjs";
+// pnp:/home/mamluk/3pass/esm-pwa/libs/charts/src/RealtimeChart.mjs
+import { React as React24, useRef as useRef15, useEffect as useEffect15 } from "/libs/vendors-v0.0.1.mjs";
 import {
   Chart as Chart6,
-  DoughnutController,
-  ArcElement,
+  LineController as LineController4,
+  LineElement as LineElement4,
+  Filler as Filler4,
+  PointElement as PointElement4,
+  LinearScale as LinearScale6,
   TimeScale as TimeScale6,
   Tooltip as Tooltip7
 } from "/libs/vendors-v0.0.1.mjs";
-Chart6.register(DoughnutController, ArcElement, TimeScale6, Tooltip7);
+Chart6.register(LineController4, LineElement4, Filler4, PointElement4, LinearScale6, TimeScale6, Tooltip7);
+var RealtimeChart = ({
+  data,
+  width,
+  height
+}) => {
+  const canvas = useRef15(null);
+  const chartValue = useRef15(null);
+  const chartDeviation = useRef15(null);
+  useEffect15(() => {
+    const ctx = canvas.current;
+    const chart = new Chart6(ctx, {
+      type: "line",
+      data,
+      options: {
+        layout: {
+          padding: 20
+        },
+        scales: {
+          y: {
+            grid: {
+              drawBorder: false
+            },
+            suggestedMin: 30,
+            suggestedMax: 80,
+            ticks: {
+              maxTicksLimit: 5,
+              callback: (value) => formatValue(value)
+            }
+          },
+          x: {
+            type: "time",
+            time: {
+              parser: "hh:mm:ss",
+              unit: "second",
+              tooltipFormat: "MMM DD, H:mm:ss a",
+              displayFormats: {
+                second: "H:mm:ss"
+              }
+            },
+            grid: {
+              display: false,
+              drawBorder: false
+            },
+            ticks: {
+              autoSkipPadding: 48,
+              maxRotation: 0
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            display: false
+          },
+          tooltip: {
+            titleFont: {
+              weight: "600"
+            },
+            callbacks: {
+              label: (context) => formatValue(context.parsed.y)
+            }
+          }
+        },
+        interaction: {
+          intersect: false,
+          mode: "nearest"
+        },
+        animation: false,
+        maintainAspectRatio: false,
+        resizeDelay: 200
+      }
+    });
+    return () => chart.destroy();
+  }, [data]);
+  useEffect15(() => {
+    const currentValue = data.datasets[0].data[data.datasets[0].data.length - 1];
+    const previousValue = data.datasets[0].data[data.datasets[0].data.length - 2];
+    const diff = (currentValue - previousValue) / previousValue * 100;
+    chartValue.current.innerHTML = data.datasets[0].data[data.datasets[0].data.length - 1];
+    if (diff < 0) {
+      chartDeviation.current.style.backgroundColor = tailwindConfig().theme.colors.yellow[500];
+    } else {
+      chartDeviation.current.style.backgroundColor = tailwindConfig().theme.colors.emerald[500];
+    }
+    chartDeviation.current.innerHTML = `${diff > 0 ? "+" : ""}${diff.toFixed(2)}%`;
+  }, [data]);
+  return /* @__PURE__ */ React24.createElement(React24.Fragment, null, /* @__PURE__ */ React24.createElement("div", {
+    className: "px-5 py-3"
+  }, /* @__PURE__ */ React24.createElement("div", {
+    className: "flex items-start"
+  }, /* @__PURE__ */ React24.createElement("div", {
+    className: "text-3xl font-bold text-slate-800 mr-2 tabular-nums"
+  }, "$", /* @__PURE__ */ React24.createElement("span", {
+    ref: chartValue
+  }, "57.81")), /* @__PURE__ */ React24.createElement("div", {
+    ref: chartDeviation,
+    className: "text-sm font-semibold text-white px-1.5 rounded-full"
+  }))), /* @__PURE__ */ React24.createElement("div", {
+    className: "grow"
+  }, /* @__PURE__ */ React24.createElement("canvas", {
+    ref: canvas,
+    data,
+    width,
+    height
+  })));
+};
 
-// pnp:/home/mamluk/3pass/esm-pwa/pkgs/3stats/cards/AnalyticsCard01.mjs
-var AnalyticsCard01 = () => {
+// pnp:/home/mamluk/3pass/esm-pwa/libs/charts/src/DoughnutChart.mjs
+import { React as React25, useRef as useRef16, useEffect as useEffect16 } from "/libs/vendors-v0.0.1.mjs";
+import {
+  Chart as Chart7,
+  DoughnutController,
+  ArcElement,
+  TimeScale as TimeScale7,
+  Tooltip as Tooltip8
+} from "/libs/vendors-v0.0.1.mjs";
+Chart7.register(DoughnutController, ArcElement, TimeScale7, Tooltip8);
+var DoughnutChart = ({
+  data,
+  width,
+  height
+}) => {
+  const canvas = useRef16(null);
+  const legend = useRef16(null);
+  useEffect16(() => {
+    const ctx = canvas.current;
+    const chart = new Chart7(ctx, {
+      type: "doughnut",
+      data,
+      options: {
+        cutout: "80%",
+        layout: {
+          padding: 24
+        },
+        plugins: {
+          legend: {
+            display: false
+          }
+        },
+        interaction: {
+          intersect: false,
+          mode: "nearest"
+        },
+        animation: {
+          duration: 500
+        },
+        maintainAspectRatio: false,
+        resizeDelay: 200
+      },
+      plugins: [{
+        id: "htmlLegend",
+        afterUpdate(c, args, options) {
+          const ul = legend.current;
+          if (!ul)
+            return;
+          while (ul.firstChild) {
+            ul.firstChild.remove();
+          }
+          const items = c.options.plugins.legend.labels.generateLabels(c);
+          items.forEach((item) => {
+            const li = document.createElement("li");
+            li.style.margin = tailwindConfig().theme.margin[1];
+            const button = document.createElement("button");
+            button.classList.add("btn-xs");
+            button.style.backgroundColor = tailwindConfig().theme.colors.white;
+            button.style.borderWidth = tailwindConfig().theme.borderWidth[1];
+            button.style.borderColor = tailwindConfig().theme.colors.slate[200];
+            button.style.color = tailwindConfig().theme.colors.slate[500];
+            button.style.boxShadow = tailwindConfig().theme.boxShadow.md;
+            button.style.opacity = item.hidden ? ".3" : "";
+            button.onclick = () => {
+              c.toggleDataVisibility(item.index, !item.index);
+              c.update();
+            };
+            const box = document.createElement("span");
+            box.style.display = "block";
+            box.style.width = tailwindConfig().theme.width[2];
+            box.style.height = tailwindConfig().theme.height[2];
+            box.style.backgroundColor = item.fillStyle;
+            box.style.borderRadius = tailwindConfig().theme.borderRadius.sm;
+            box.style.marginRight = tailwindConfig().theme.margin[1];
+            box.style.pointerEvents = "none";
+            const label = document.createElement("span");
+            label.style.display = "flex";
+            label.style.alignItems = "center";
+            const labelText = document.createTextNode(item.text);
+            label.appendChild(labelText);
+            li.appendChild(button);
+            button.appendChild(box);
+            button.appendChild(label);
+            ul.appendChild(li);
+          });
+        }
+      }]
+    });
+    return () => chart.destroy();
+  }, []);
+  return /* @__PURE__ */ React25.createElement("div", {
+    className: "grow flex flex-col justify-center"
+  }, /* @__PURE__ */ React25.createElement("div", null, /* @__PURE__ */ React25.createElement("canvas", {
+    ref: canvas,
+    width,
+    height
+  })), /* @__PURE__ */ React25.createElement("div", {
+    className: "px-5 pt-2 pb-6"
+  }, /* @__PURE__ */ React25.createElement("ul", {
+    ref: legend,
+    className: "flex flex-wrap justify-center -m-1"
+  })));
+};
+
+// pnp:/home/mamluk/3pass/esm-pwa/libs/assets/images/icon-01.svg
+var icon_01_default = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8ZGVmcz4KICAgICAgICA8bGluZWFyR3JhZGllbnQgeDE9IjUwJSIgeTE9IjAlIiB4Mj0iNTAlIiB5Mj0iMTAwJSIgaWQ9Imljb24xLWIiPgogICAgICAgICAgICA8c3RvcCBzdG9wLWNvbG9yPSIjQTVCNEZDIiBvZmZzZXQ9IjAlIiAvPgogICAgICAgICAgICA8c3RvcCBzdG9wLWNvbG9yPSIjODE4Q0Y4IiBvZmZzZXQ9IjEwMCUiIC8+CiAgICAgICAgPC9saW5lYXJHcmFkaWVudD4KICAgICAgICA8bGluZWFyR3JhZGllbnQgeDE9IjUwJSIgeTE9IjI0LjUzNyUiIHgyPSI1MCUiIHkyPSIxMDAlIiBpZD0iaWNvbjEtYyI+CiAgICAgICAgICAgIDxzdG9wIHN0b3AtY29sb3I9IiM0MzM4Q0EiIG9mZnNldD0iMCUiIC8+CiAgICAgICAgICAgIDxzdG9wIHN0b3AtY29sb3I9IiM2MzY2RjEiIHN0b3Atb3BhY2l0eT0iMCIgb2Zmc2V0PSIxMDAlIiAvPgogICAgICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICAgICAgPHBhdGggaWQ9Imljb24xLWEiIGQ9Ik0xNiAwbDE2IDMyLTE2LTUtMTYgNXoiIC8+CiAgICA8L2RlZnM+CiAgICA8ZyB0cmFuc2Zvcm09InJvdGF0ZSg5MCAxNiAxNikiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPG1hc2sgaWQ9Imljb24xLWQiIGZpbGw9IiNmZmYiPgogICAgICAgICAgICA8dXNlIHhsaW5rOmhyZWY9IiNpY29uMS1hIiAvPgogICAgICAgIDwvbWFzaz4KICAgICAgICA8dXNlIGZpbGw9InVybCgjaWNvbjEtYikiIHhsaW5rOmhyZWY9IiNpY29uMS1hIiAvPgogICAgICAgIDxwYXRoIGZpbGw9InVybCgjaWNvbjEtYykiIG1hc2s9InVybCgjaWNvbjEtZCkiIGQ9Ik0xNi02aDIwdjM4SDE2eiIgLz4KICAgIDwvZz4KPC9zdmc+";
+
+// pnp:/home/mamluk/3pass/esm-pwa/pkgs/dash/components/DashboardCard01.mjs
+var DashboardCard01 = () => {
+  const chartData = {
+    labels: [
+      "12-01-2020",
+      "01-01-2021",
+      "02-01-2021",
+      "03-01-2021",
+      "04-01-2021",
+      "05-01-2021",
+      "06-01-2021",
+      "07-01-2021",
+      "08-01-2021",
+      "09-01-2021",
+      "10-01-2021",
+      "11-01-2021",
+      "12-01-2021",
+      "01-01-2022",
+      "02-01-2022",
+      "03-01-2022",
+      "04-01-2022",
+      "05-01-2022",
+      "06-01-2022",
+      "07-01-2022",
+      "08-01-2022",
+      "09-01-2022",
+      "10-01-2022",
+      "11-01-2022",
+      "12-01-2022",
+      "01-01-2023"
+    ],
+    datasets: [
+      {
+        data: [
+          732,
+          610,
+          610,
+          504,
+          504,
+          504,
+          349,
+          349,
+          504,
+          342,
+          504,
+          610,
+          391,
+          192,
+          154,
+          273,
+          191,
+          191,
+          126,
+          263,
+          349,
+          252,
+          423,
+          622,
+          470,
+          532
+        ],
+        fill: true,
+        backgroundColor: `rgba(${hexToRGB(tailwindConfig().theme.colors.blue[500])}, 0.08)`,
+        borderColor: tailwindConfig().theme.colors.indigo[500],
+        borderWidth: 2,
+        tension: 0,
+        pointRadius: 0,
+        pointHoverRadius: 3,
+        pointBackgroundColor: tailwindConfig().theme.colors.indigo[500],
+        clip: 20
+      },
+      {
+        data: [
+          532,
+          532,
+          532,
+          404,
+          404,
+          314,
+          314,
+          314,
+          314,
+          314,
+          234,
+          314,
+          234,
+          234,
+          314,
+          314,
+          314,
+          388,
+          314,
+          202,
+          202,
+          202,
+          202,
+          314,
+          720,
+          642
+        ],
+        borderColor: tailwindConfig().theme.colors.slate[300],
+        borderWidth: 2,
+        tension: 0,
+        pointRadius: 0,
+        pointHoverRadius: 3,
+        pointBackgroundColor: tailwindConfig().theme.colors.slate[300],
+        clip: 20
+      }
+    ]
+  };
+  return /* @__PURE__ */ React26.createElement("div", {
+    className: "flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white shadow-lg rounded-sm border border-slate-200"
+  }, /* @__PURE__ */ React26.createElement("div", {
+    className: "px-5 pt-5"
+  }, /* @__PURE__ */ React26.createElement("header", {
+    className: "flex justify-between items-start mb-2"
+  }, /* @__PURE__ */ React26.createElement("img", {
+    src: icon_01_default,
+    width: "32",
+    height: "32",
+    alt: "Icon 01"
+  }), /* @__PURE__ */ React26.createElement(DropdownEditMenu, {
+    align: "right",
+    className: "relative inline-flex"
+  }, /* @__PURE__ */ React26.createElement("li", null, /* @__PURE__ */ React26.createElement(Link7, {
+    className: "font-medium text-sm text-slate-600 hover:text-slate-800 flex py-1 px-3",
+    to: "#0"
+  }, "Option 1")), /* @__PURE__ */ React26.createElement("li", null, /* @__PURE__ */ React26.createElement(Link7, {
+    className: "font-medium text-sm text-slate-600 hover:text-slate-800 flex py-1 px-3",
+    to: "#0"
+  }, "Option 2")), /* @__PURE__ */ React26.createElement("li", null, /* @__PURE__ */ React26.createElement(Link7, {
+    className: "font-medium text-sm text-rose-500 hover:text-rose-600 flex py-1 px-3",
+    to: "#0"
+  }, "Remove")))), /* @__PURE__ */ React26.createElement("h2", {
+    className: "text-lg font-semibold text-slate-800 mb-2"
+  }, "Acme Plus"), /* @__PURE__ */ React26.createElement("div", {
+    className: "text-xs font-semibold text-slate-400 uppercase mb-1"
+  }, "Sales"), /* @__PURE__ */ React26.createElement("div", {
+    className: "flex items-start"
+  }, /* @__PURE__ */ React26.createElement("div", {
+    className: "text-3xl font-bold text-slate-800 mr-2"
+  }, "$24,780"), /* @__PURE__ */ React26.createElement("div", {
+    className: "text-sm font-semibold text-white px-1.5 bg-emerald-500 rounded-full"
+  }, "+49%"))), /* @__PURE__ */ React26.createElement("div", {
+    className: "grow"
+  }, /* @__PURE__ */ React26.createElement(LineChart01, {
+    data: chartData,
+    width: 389,
+    height: 128
+  })));
+};
+
+// pnp:/home/mamluk/3pass/esm-pwa/pkgs/dash/components/DashboardCard02.mjs
+import { React as React27, Link as Link8 } from "/libs/vendors-v0.0.1.mjs";
+
+// pnp:/home/mamluk/3pass/esm-pwa/libs/assets/images/icon-02.svg
+var icon_02_default = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8ZGVmcz4KICAgICAgICA8bGluZWFyR3JhZGllbnQgeDE9IjUwJSIgeTE9IjAlIiB4Mj0iNTAlIiB5Mj0iMTAwJSIgaWQ9Imljb24yLWIiPgogICAgICAgICAgICA8c3RvcCBzdG9wLWNvbG9yPSIjQkFFNkZEIiBvZmZzZXQ9IjAlIiAvPgogICAgICAgICAgICA8c3RvcCBzdG9wLWNvbG9yPSIjMzhCREY4IiBvZmZzZXQ9IjEwMCUiIC8+CiAgICAgICAgPC9saW5lYXJHcmFkaWVudD4KICAgICAgICA8bGluZWFyR3JhZGllbnQgeDE9IjUwJSIgeTE9IjI1LjcxOCUiIHgyPSI1MCUiIHkyPSIxMDAlIiBpZD0iaWNvbjItYyI+CiAgICAgICAgICAgIDxzdG9wIHN0b3AtY29sb3I9IiMwMjg0QzciIG9mZnNldD0iMCUiIC8+CiAgICAgICAgICAgIDxzdG9wIHN0b3AtY29sb3I9IiMwMjg0QzciIHN0b3Atb3BhY2l0eT0iMCIgb2Zmc2V0PSIxMDAlIiAvPgogICAgICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICAgICAgPHBhdGggaWQ9Imljb24yLWEiIGQ9Ik0xNiAwbDE2IDMyLTE2LTUtMTYgNXoiIC8+CiAgICA8L2RlZnM+CiAgICA8ZyB0cmFuc2Zvcm09InJvdGF0ZSg5MCAxNiAxNikiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPG1hc2sgaWQ9Imljb24yLWQiIGZpbGw9IiNmZmYiPgogICAgICAgICAgICA8dXNlIHhsaW5rOmhyZWY9IiNpY29uMi1hIiAvPgogICAgICAgIDwvbWFzaz4KICAgICAgICA8dXNlIGZpbGw9InVybCgjaWNvbjItYikiIHhsaW5rOmhyZWY9IiNpY29uMi1hIiAvPgogICAgICAgIDxwYXRoIGZpbGw9InVybCgjaWNvbjItYykiIG1hc2s9InVybCgjaWNvbjItZCkiIGQ9Ik0xNi02aDIwdjM4SDE2eiIgLz4KICAgIDwvZz4KPC9zdmc+";
+
+// pnp:/home/mamluk/3pass/esm-pwa/pkgs/dash/components/DashboardCard02.mjs
+var DashboardCard02 = () => {
+  const chartData = {
+    labels: [
+      "12-01-2020",
+      "01-01-2021",
+      "02-01-2021",
+      "03-01-2021",
+      "04-01-2021",
+      "05-01-2021",
+      "06-01-2021",
+      "07-01-2021",
+      "08-01-2021",
+      "09-01-2021",
+      "10-01-2021",
+      "11-01-2021",
+      "12-01-2021",
+      "01-01-2022",
+      "02-01-2022",
+      "03-01-2022",
+      "04-01-2022",
+      "05-01-2022",
+      "06-01-2022",
+      "07-01-2022",
+      "08-01-2022",
+      "09-01-2022",
+      "10-01-2022",
+      "11-01-2022",
+      "12-01-2022",
+      "01-01-2023"
+    ],
+    datasets: [
+      {
+        data: [
+          622,
+          622,
+          426,
+          471,
+          365,
+          365,
+          238,
+          324,
+          288,
+          206,
+          324,
+          324,
+          500,
+          409,
+          409,
+          273,
+          232,
+          273,
+          500,
+          570,
+          767,
+          808,
+          685,
+          767,
+          685,
+          685
+        ],
+        fill: true,
+        backgroundColor: `rgba(${hexToRGB(tailwindConfig().theme.colors.blue[500])}, 0.08)`,
+        borderColor: tailwindConfig().theme.colors.indigo[500],
+        borderWidth: 2,
+        tension: 0,
+        pointRadius: 0,
+        pointHoverRadius: 3,
+        pointBackgroundColor: tailwindConfig().theme.colors.indigo[500],
+        clip: 20
+      },
+      {
+        data: [
+          732,
+          610,
+          610,
+          504,
+          504,
+          504,
+          349,
+          349,
+          504,
+          342,
+          504,
+          610,
+          391,
+          192,
+          154,
+          273,
+          191,
+          191,
+          126,
+          263,
+          349,
+          252,
+          423,
+          622,
+          470,
+          532
+        ],
+        borderColor: tailwindConfig().theme.colors.slate[300],
+        borderWidth: 2,
+        tension: 0,
+        pointRadius: 0,
+        pointHoverRadius: 3,
+        pointBackgroundColor: tailwindConfig().theme.colors.slate[300],
+        clip: 20
+      }
+    ]
+  };
+  return /* @__PURE__ */ React27.createElement("div", {
+    className: "flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white shadow-lg rounded-sm border border-slate-200"
+  }, /* @__PURE__ */ React27.createElement("div", {
+    className: "px-5 pt-5"
+  }, /* @__PURE__ */ React27.createElement("header", {
+    className: "flex justify-between items-start mb-2"
+  }, /* @__PURE__ */ React27.createElement("img", {
+    src: icon_02_default,
+    width: "32",
+    height: "32",
+    alt: "Icon 02"
+  }), /* @__PURE__ */ React27.createElement(DropdownEditMenu, {
+    align: "right",
+    className: "relative inline-flex"
+  }, /* @__PURE__ */ React27.createElement("li", null, /* @__PURE__ */ React27.createElement(Link8, {
+    className: "font-medium text-sm text-slate-600 hover:text-slate-800 flex py-1 px-3",
+    to: "#0"
+  }, "Option 1")), /* @__PURE__ */ React27.createElement("li", null, /* @__PURE__ */ React27.createElement(Link8, {
+    className: "font-medium text-sm text-slate-600 hover:text-slate-800 flex py-1 px-3",
+    to: "#0"
+  }, "Option 2")), /* @__PURE__ */ React27.createElement("li", null, /* @__PURE__ */ React27.createElement(Link8, {
+    className: "font-medium text-sm text-rose-500 hover:text-rose-600 flex py-1 px-3",
+    to: "#0"
+  }, "Remove")))), /* @__PURE__ */ React27.createElement("h2", {
+    className: "text-lg font-semibold text-slate-800 mb-2"
+  }, "Acme Advanced"), /* @__PURE__ */ React27.createElement("div", {
+    className: "text-xs font-semibold text-slate-400 uppercase mb-1"
+  }, "Sales"), /* @__PURE__ */ React27.createElement("div", {
+    className: "flex items-start"
+  }, /* @__PURE__ */ React27.createElement("div", {
+    className: "text-3xl font-bold text-slate-800 mr-2"
+  }, "$17,489"), /* @__PURE__ */ React27.createElement("div", {
+    className: "text-sm font-semibold text-white px-1.5 bg-amber-500 rounded-full"
+  }, "-14%"))), /* @__PURE__ */ React27.createElement("div", {
+    className: "grow"
+  }, /* @__PURE__ */ React27.createElement(LineChart01, {
+    data: chartData,
+    width: 389,
+    height: 128
+  })));
+};
+
+// pnp:/home/mamluk/3pass/esm-pwa/pkgs/dash/components/DashboardCard03.mjs
+import { React as React28, Link as Link9 } from "/libs/vendors-v0.0.1.mjs";
+
+// pnp:/home/mamluk/3pass/esm-pwa/libs/assets/images/icon-03.svg
+var icon_03_default = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8ZGVmcz4KICAgICAgICA8bGluZWFyR3JhZGllbnQgeDE9IjUwJSIgeTE9IjAlIiB4Mj0iNTAlIiB5Mj0iMTAwJSIgaWQ9Imljb24zLWIiPgogICAgICAgICAgICA8c3RvcCBzdG9wLWNvbG9yPSIjRTJFOEYwIiBvZmZzZXQ9IjAlIiAvPgogICAgICAgICAgICA8c3RvcCBzdG9wLWNvbG9yPSIjOTRBM0I4IiBvZmZzZXQ9IjEwMCUiIC8+CiAgICAgICAgPC9saW5lYXJHcmFkaWVudD4KICAgICAgICA8bGluZWFyR3JhZGllbnQgeDE9IjUwJSIgeTE9IjI0LjUzNyUiIHgyPSI1MCUiIHkyPSI5OS4xNDIlIiBpZD0iaWNvbjMtYyI+CiAgICAgICAgICAgIDxzdG9wIHN0b3AtY29sb3I9IiMzMzQxNTUiIG9mZnNldD0iMCUiIC8+CiAgICAgICAgICAgIDxzdG9wIHN0b3AtY29sb3I9IiMzMzQxNTUiIHN0b3Atb3BhY2l0eT0iMCIgb2Zmc2V0PSIxMDAlIiAvPgogICAgICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICAgICAgPHBhdGggaWQ9Imljb24zLWEiIGQ9Ik0xNiAwbDE2IDMyLTE2LTUtMTYgNXoiIC8+CiAgICA8L2RlZnM+CiAgICA8ZyB0cmFuc2Zvcm09InJvdGF0ZSg5MCAxNiAxNikiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPG1hc2sgaWQ9Imljb24zLWQiIGZpbGw9IiNmZmYiPgogICAgICAgICAgICA8dXNlIHhsaW5rOmhyZWY9IiNpY29uMy1hIiAvPgogICAgICAgIDwvbWFzaz4KICAgICAgICA8dXNlIGZpbGw9InVybCgjaWNvbjMtYikiIHhsaW5rOmhyZWY9IiNpY29uMy1hIiAvPgogICAgICAgIDxwYXRoIGZpbGw9InVybCgjaWNvbjMtYykiIG1hc2s9InVybCgjaWNvbjMtZCkiIGQ9Ik0xNi02aDIwdjM4SDE2eiIgLz4KICAgIDwvZz4KPC9zdmc+";
+
+// pnp:/home/mamluk/3pass/esm-pwa/pkgs/dash/components/DashboardCard03.mjs
+var DashboardCard03 = () => {
+  const chartData = {
+    labels: [
+      "12-01-2020",
+      "01-01-2021",
+      "02-01-2021",
+      "03-01-2021",
+      "04-01-2021",
+      "05-01-2021",
+      "06-01-2021",
+      "07-01-2021",
+      "08-01-2021",
+      "09-01-2021",
+      "10-01-2021",
+      "11-01-2021",
+      "12-01-2021",
+      "01-01-2022",
+      "02-01-2022",
+      "03-01-2022",
+      "04-01-2022",
+      "05-01-2022",
+      "06-01-2022",
+      "07-01-2022",
+      "08-01-2022",
+      "09-01-2022",
+      "10-01-2022",
+      "11-01-2022",
+      "12-01-2022",
+      "01-01-2023"
+    ],
+    datasets: [
+      {
+        data: [
+          540,
+          466,
+          540,
+          466,
+          385,
+          432,
+          334,
+          334,
+          289,
+          289,
+          200,
+          289,
+          222,
+          289,
+          289,
+          403,
+          554,
+          304,
+          289,
+          270,
+          134,
+          270,
+          829,
+          344,
+          388,
+          364
+        ],
+        fill: true,
+        backgroundColor: `rgba(${hexToRGB(tailwindConfig().theme.colors.blue[500])}, 0.08)`,
+        borderColor: tailwindConfig().theme.colors.indigo[500],
+        borderWidth: 2,
+        tension: 0,
+        pointRadius: 0,
+        pointHoverRadius: 3,
+        pointBackgroundColor: tailwindConfig().theme.colors.indigo[500],
+        clip: 20
+      },
+      {
+        data: [
+          689,
+          562,
+          477,
+          477,
+          477,
+          477,
+          458,
+          314,
+          430,
+          378,
+          430,
+          498,
+          642,
+          350,
+          145,
+          145,
+          354,
+          260,
+          188,
+          188,
+          300,
+          300,
+          282,
+          364,
+          660,
+          554
+        ],
+        borderColor: tailwindConfig().theme.colors.slate[300],
+        borderWidth: 2,
+        tension: 0,
+        pointRadius: 0,
+        pointHoverRadius: 3,
+        pointBackgroundColor: tailwindConfig().theme.colors.slate[300],
+        clip: 20
+      }
+    ]
+  };
+  return /* @__PURE__ */ React28.createElement("div", {
+    className: "flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white shadow-lg rounded-sm border border-slate-200"
+  }, /* @__PURE__ */ React28.createElement("div", {
+    className: "px-5 pt-5"
+  }, /* @__PURE__ */ React28.createElement("header", {
+    className: "flex justify-between items-start mb-2"
+  }, /* @__PURE__ */ React28.createElement("img", {
+    src: icon_03_default,
+    width: "32",
+    height: "32",
+    alt: "Icon 03"
+  }), /* @__PURE__ */ React28.createElement(DropdownEditMenu, {
+    align: "right",
+    className: "relative inline-flex"
+  }, /* @__PURE__ */ React28.createElement("li", null, /* @__PURE__ */ React28.createElement(Link9, {
+    className: "font-medium text-sm text-slate-600 hover:text-slate-800 flex py-1 px-3",
+    to: "#0"
+  }, "Option 1")), /* @__PURE__ */ React28.createElement("li", null, /* @__PURE__ */ React28.createElement(Link9, {
+    className: "font-medium text-sm text-slate-600 hover:text-slate-800 flex py-1 px-3",
+    to: "#0"
+  }, "Option 2")), /* @__PURE__ */ React28.createElement("li", null, /* @__PURE__ */ React28.createElement(Link9, {
+    className: "font-medium text-sm text-rose-500 hover:text-rose-600 flex py-1 px-3",
+    to: "#0"
+  }, "Remove")))), /* @__PURE__ */ React28.createElement("h2", {
+    className: "text-lg font-semibold text-slate-800 mb-2"
+  }, "Acme Professional"), /* @__PURE__ */ React28.createElement("div", {
+    className: "text-xs font-semibold text-slate-400 uppercase mb-1"
+  }, "Sales"), /* @__PURE__ */ React28.createElement("div", {
+    className: "flex items-start"
+  }, /* @__PURE__ */ React28.createElement("div", {
+    className: "text-3xl font-bold text-slate-800 mr-2"
+  }, "$9,962"), /* @__PURE__ */ React28.createElement("div", {
+    className: "text-sm font-semibold text-white px-1.5 bg-emerald-500 rounded-full"
+  }, "+49%"))), /* @__PURE__ */ React28.createElement("div", {
+    className: "grow"
+  }, /* @__PURE__ */ React28.createElement(LineChart01, {
+    data: chartData,
+    width: 389,
+    height: 128
+  })));
+};
+
+// pnp:/home/mamluk/3pass/esm-pwa/pkgs/dash/components/DashboardCard04.mjs
+import { React as React29 } from "/libs/vendors-v0.0.1.mjs";
+var DashboardCard04 = () => {
+  const chartData = {
+    labels: [
+      "12-01-2020",
+      "01-01-2021",
+      "02-01-2021",
+      "03-01-2021",
+      "04-01-2021",
+      "05-01-2021"
+    ],
+    datasets: [
+      {
+        label: "Direct",
+        data: [
+          800,
+          1600,
+          900,
+          1300,
+          1950,
+          1700
+        ],
+        backgroundColor: tailwindConfig().theme.colors.blue[400],
+        hoverBackgroundColor: tailwindConfig().theme.colors.blue[500],
+        barPercentage: 0.66,
+        categoryPercentage: 0.66
+      },
+      {
+        label: "Indirect",
+        data: [
+          4900,
+          2600,
+          5350,
+          4800,
+          5200,
+          4800
+        ],
+        backgroundColor: tailwindConfig().theme.colors.indigo[500],
+        hoverBackgroundColor: tailwindConfig().theme.colors.indigo[600],
+        barPercentage: 0.66,
+        categoryPercentage: 0.66
+      }
+    ]
+  };
+  return /* @__PURE__ */ React29.createElement("div", {
+    className: "flex flex-col col-span-full sm:col-span-6 bg-white shadow-lg rounded-sm border border-slate-200"
+  }, /* @__PURE__ */ React29.createElement("header", {
+    className: "px-5 py-4 border-b border-slate-100"
+  }, /* @__PURE__ */ React29.createElement("h2", {
+    className: "font-semibold text-slate-800"
+  }, "Direct VS Indirect")), /* @__PURE__ */ React29.createElement(BarChart01, {
+    data: chartData,
+    width: 595,
+    height: 248
+  }));
+};
+
+// pnp:/home/mamluk/3pass/esm-pwa/pkgs/dash/components/DashboardCard05.mjs
+import { React as React30, useState as useState10, useEffect as useEffect17 } from "/libs/vendors-v0.0.1.mjs";
+var DashboardCard05 = () => {
+  const [counter, setCounter] = useState10(0);
+  const [increment, setIncrement] = useState10(0);
+  const [range, setRange] = useState10(35);
+  const data = [
+    57.81,
+    57.75,
+    55.48,
+    54.28,
+    53.14,
+    52.25,
+    51.04,
+    52.49,
+    55.49,
+    56.87,
+    53.73,
+    56.42,
+    58.06,
+    55.62,
+    58.16,
+    55.22,
+    58.67,
+    60.18,
+    61.31,
+    63.25,
+    65.91,
+    64.44,
+    65.97,
+    62.27,
+    60.96,
+    59.34,
+    55.07,
+    59.85,
+    53.79,
+    51.92,
+    50.95,
+    49.65,
+    48.09,
+    49.81,
+    47.85,
+    49.52,
+    50.21,
+    52.22,
+    54.42,
+    53.42,
+    50.91,
+    58.52,
+    53.37,
+    57.58,
+    59.09,
+    59.36,
+    58.71,
+    59.42,
+    55.93,
+    57.71,
+    50.62,
+    56.28,
+    57.37,
+    53.08,
+    55.94,
+    55.82,
+    53.94,
+    52.65,
+    50.25
+  ];
+  const [slicedData, setSlicedData] = useState10(data.slice(0, range));
+  const generateDates = () => {
+    const now = new Date();
+    const dates = [];
+    data.forEach((v, i) => {
+      dates.push(new Date(now - 2e3 - i * 2e3));
+    });
+    return dates;
+  };
+  const [slicedLabels, setSlicedLabels] = useState10(generateDates().slice(0, range).reverse());
+  useEffect17(() => {
+    const interval = setInterval(() => {
+      setCounter(counter + 1);
+    }, 2e3);
+    return () => clearInterval(interval);
+  }, [counter]);
+  useEffect17(() => {
+    setIncrement(increment + 1);
+    if (increment + range < data.length) {
+      setSlicedData(([x, ...slicedData2]) => [...slicedData2, data[increment + range]]);
+    } else {
+      setIncrement(0);
+      setRange(0);
+    }
+    setSlicedLabels(([x, ...slicedLabels2]) => [...slicedLabels2, new Date()]);
+    return () => setIncrement(0);
+  }, [counter]);
+  const chartData = {
+    labels: slicedLabels,
+    datasets: [
+      {
+        data: slicedData,
+        fill: true,
+        backgroundColor: `rgba(${hexToRGB(tailwindConfig().theme.colors.blue[500])}, 0.08)`,
+        borderColor: tailwindConfig().theme.colors.indigo[500],
+        borderWidth: 2,
+        tension: 0,
+        pointRadius: 0,
+        pointHoverRadius: 3,
+        pointBackgroundColor: tailwindConfig().theme.colors.indigo[500],
+        clip: 20
+      }
+    ]
+  };
+  return /* @__PURE__ */ React30.createElement("div", {
+    className: "flex flex-col col-span-full sm:col-span-6 bg-white shadow-lg rounded-sm border border-slate-200"
+  }, /* @__PURE__ */ React30.createElement("header", {
+    className: "px-5 py-4 border-b border-slate-100 flex items-center"
+  }, /* @__PURE__ */ React30.createElement("h2", {
+    className: "font-semibold text-slate-800"
+  }, "Real Time Value"), /* @__PURE__ */ React30.createElement(Tooltip, {
+    className: "ml-2"
+  }, /* @__PURE__ */ React30.createElement("div", {
+    className: "text-xs text-center whitespace-nowrap"
+  }, "Built with ", /* @__PURE__ */ React30.createElement("a", {
+    className: "underline",
+    href: "https://www.chartjs.org/",
+    target: "_blank",
+    rel: "noreferrer"
+  }, "Chart.js")))), /* @__PURE__ */ React30.createElement(RealtimeChart, {
+    data: chartData,
+    width: 595,
+    height: 248
+  }));
+};
+
+// pnp:/home/mamluk/3pass/esm-pwa/pkgs/dash/components/DashboardCard06.mjs
+import { React as React31 } from "/libs/vendors-v0.0.1.mjs";
+var DashboardCard06 = () => {
+  const chartData = {
+    labels: ["United States", "Italy", "Other"],
+    datasets: [
+      {
+        label: "Top Countries",
+        data: [
+          35,
+          30,
+          35
+        ],
+        backgroundColor: [
+          tailwindConfig().theme.colors.indigo[500],
+          tailwindConfig().theme.colors.blue[400],
+          tailwindConfig().theme.colors.indigo[800]
+        ],
+        hoverBackgroundColor: [
+          tailwindConfig().theme.colors.indigo[600],
+          tailwindConfig().theme.colors.blue[500],
+          tailwindConfig().theme.colors.indigo[900]
+        ],
+        hoverBorderColor: tailwindConfig().theme.colors.white
+      }
+    ]
+  };
+  return /* @__PURE__ */ React31.createElement("div", {
+    className: "flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white shadow-lg rounded-sm border border-slate-200"
+  }, /* @__PURE__ */ React31.createElement("header", {
+    className: "px-5 py-4 border-b border-slate-100"
+  }, /* @__PURE__ */ React31.createElement("h2", {
+    className: "font-semibold text-slate-800"
+  }, "Top Countries")), /* @__PURE__ */ React31.createElement(DoughnutChart, {
+    data: chartData,
+    width: 389,
+    height: 260
+  }));
+};
+
+// pnp:/home/mamluk/3pass/esm-pwa/pkgs/dash/components/DashboardCard07.mjs
+import { React as React32 } from "/libs/vendors-v0.0.1.mjs";
+var DashboardCard07 = () => {
+  return /* @__PURE__ */ React32.createElement("div", {
+    className: "col-span-full xl:col-span-8 bg-white shadow-lg rounded-sm border border-slate-200"
+  }, /* @__PURE__ */ React32.createElement("header", {
+    className: "px-5 py-4 border-b border-slate-100"
+  }, /* @__PURE__ */ React32.createElement("h2", {
+    className: "font-semibold text-slate-800"
+  }, "Top Channels")), /* @__PURE__ */ React32.createElement("div", {
+    className: "p-3"
+  }, /* @__PURE__ */ React32.createElement("div", {
+    className: "overflow-x-auto"
+  }, /* @__PURE__ */ React32.createElement("table", {
+    className: "table-auto w-full"
+  }, /* @__PURE__ */ React32.createElement("thead", {
+    className: "text-xs uppercase text-slate-400 bg-slate-50 rounded-sm"
+  }, /* @__PURE__ */ React32.createElement("tr", null, /* @__PURE__ */ React32.createElement("th", {
+    className: "p-2"
+  }, /* @__PURE__ */ React32.createElement("div", {
+    className: "font-semibold text-left"
+  }, "Source")), /* @__PURE__ */ React32.createElement("th", {
+    className: "p-2"
+  }, /* @__PURE__ */ React32.createElement("div", {
+    className: "font-semibold text-center"
+  }, "Visitors")), /* @__PURE__ */ React32.createElement("th", {
+    className: "p-2"
+  }, /* @__PURE__ */ React32.createElement("div", {
+    className: "font-semibold text-center"
+  }, "Revenues")), /* @__PURE__ */ React32.createElement("th", {
+    className: "p-2"
+  }, /* @__PURE__ */ React32.createElement("div", {
+    className: "font-semibold text-center"
+  }, "Sales")), /* @__PURE__ */ React32.createElement("th", {
+    className: "p-2"
+  }, /* @__PURE__ */ React32.createElement("div", {
+    className: "font-semibold text-center"
+  }, "Conversion")))), /* @__PURE__ */ React32.createElement("tbody", {
+    className: "text-sm font-medium divide-y divide-slate-100"
+  }, /* @__PURE__ */ React32.createElement("tr", null, /* @__PURE__ */ React32.createElement("td", {
+    className: "p-2"
+  }, /* @__PURE__ */ React32.createElement("div", {
+    className: "flex items-center"
+  }, /* @__PURE__ */ React32.createElement("svg", {
+    className: "shrink-0 mr-2 sm:mr-3",
+    width: "36",
+    height: "36",
+    viewBox: "0 0 36 36"
+  }, /* @__PURE__ */ React32.createElement("circle", {
+    fill: "#24292E",
+    cx: "18",
+    cy: "18",
+    r: "18"
+  }), /* @__PURE__ */ React32.createElement("path", {
+    d: "M18 10.2c-4.4 0-8 3.6-8 8 0 3.5 2.3 6.5 5.5 7.6.4.1.5-.2.5-.4V24c-2.2.5-2.7-1-2.7-1-.4-.9-.9-1.2-.9-1.2-.7-.5.1-.5.1-.5.8.1 1.2.8 1.2.8.7 1.3 1.9.9 2.3.7.1-.5.3-.9.5-1.1-1.8-.2-3.6-.9-3.6-4 0-.9.3-1.6.8-2.1-.1-.2-.4-1 .1-2.1 0 0 .7-.2 2.2.8.6-.2 1.3-.3 2-.3s1.4.1 2 .3c1.5-1 2.2-.8 2.2-.8.4 1.1.2 1.9.1 2.1.5.6.8 1.3.8 2.1 0 3.1-1.9 3.7-3.7 3.9.3.4.6.9.6 1.6v2.2c0 .2.1.5.6.4 3.2-1.1 5.5-4.1 5.5-7.6-.1-4.4-3.7-8-8.1-8z",
+    fill: "#FFF"
+  })), /* @__PURE__ */ React32.createElement("div", {
+    className: "text-slate-800"
+  }, "Github.com"))), /* @__PURE__ */ React32.createElement("td", {
+    className: "p-2"
+  }, /* @__PURE__ */ React32.createElement("div", {
+    className: "text-center"
+  }, "2.4K")), /* @__PURE__ */ React32.createElement("td", {
+    className: "p-2"
+  }, /* @__PURE__ */ React32.createElement("div", {
+    className: "text-center text-emerald-500"
+  }, "$3,877")), /* @__PURE__ */ React32.createElement("td", {
+    className: "p-2"
+  }, /* @__PURE__ */ React32.createElement("div", {
+    className: "text-center"
+  }, "267")), /* @__PURE__ */ React32.createElement("td", {
+    className: "p-2"
+  }, /* @__PURE__ */ React32.createElement("div", {
+    className: "text-center text-sky-500"
+  }, "4.7%"))), /* @__PURE__ */ React32.createElement("tr", null, /* @__PURE__ */ React32.createElement("td", {
+    className: "p-2"
+  }, /* @__PURE__ */ React32.createElement("div", {
+    className: "flex items-center"
+  }, /* @__PURE__ */ React32.createElement("svg", {
+    className: "shrink-0 mr-2 sm:mr-3",
+    width: "36",
+    height: "36",
+    viewBox: "0 0 36 36"
+  }, /* @__PURE__ */ React32.createElement("circle", {
+    fill: "#1DA1F2",
+    cx: "18",
+    cy: "18",
+    r: "18"
+  }), /* @__PURE__ */ React32.createElement("path", {
+    d: "M26 13.5c-.6.3-1.2.4-1.9.5.7-.4 1.2-1 1.4-1.8-.6.4-1.3.6-2.1.8-.6-.6-1.5-1-2.4-1-1.7 0-3.2 1.5-3.2 3.3 0 .3 0 .5.1.7-2.7-.1-5.2-1.4-6.8-3.4-.3.5-.4 1-.4 1.7 0 1.1.6 2.1 1.5 2.7-.5 0-1-.2-1.5-.4 0 1.6 1.1 2.9 2.6 3.2-.3.1-.6.1-.9.1-.2 0-.4 0-.6-.1.4 1.3 1.6 2.3 3.1 2.3-1.1.9-2.5 1.4-4.1 1.4H10c1.5.9 3.2 1.5 5 1.5 6 0 9.3-5 9.3-9.3v-.4c.7-.5 1.3-1.1 1.7-1.8z",
+    fill: "#FFF",
+    fillRule: "nonzero"
+  })), /* @__PURE__ */ React32.createElement("div", {
+    className: "text-slate-800"
+  }, "Twitter"))), /* @__PURE__ */ React32.createElement("td", {
+    className: "p-2"
+  }, /* @__PURE__ */ React32.createElement("div", {
+    className: "text-center"
+  }, "2.2K")), /* @__PURE__ */ React32.createElement("td", {
+    className: "p-2"
+  }, /* @__PURE__ */ React32.createElement("div", {
+    className: "text-center text-emerald-500"
+  }, "$3,426")), /* @__PURE__ */ React32.createElement("td", {
+    className: "p-2"
+  }, /* @__PURE__ */ React32.createElement("div", {
+    className: "text-center"
+  }, "249")), /* @__PURE__ */ React32.createElement("td", {
+    className: "p-2"
+  }, /* @__PURE__ */ React32.createElement("div", {
+    className: "text-center text-sky-500"
+  }, "4.4%"))), /* @__PURE__ */ React32.createElement("tr", null, /* @__PURE__ */ React32.createElement("td", {
+    className: "p-2"
+  }, /* @__PURE__ */ React32.createElement("div", {
+    className: "flex items-center"
+  }, /* @__PURE__ */ React32.createElement("svg", {
+    className: "shrink-0 mr-2 sm:mr-3",
+    width: "36",
+    height: "36",
+    viewBox: "0 0 36 36"
+  }, /* @__PURE__ */ React32.createElement("circle", {
+    fill: "#EA4335",
+    cx: "18",
+    cy: "18",
+    r: "18"
+  }), /* @__PURE__ */ React32.createElement("path", {
+    d: "M18 17v2.4h4.1c-.2 1-1.2 3-4 3-2.4 0-4.3-2-4.3-4.4 0-2.4 2-4.4 4.3-4.4 1.4 0 2.3.6 2.8 1.1l1.9-1.8C21.6 11.7 20 11 18.1 11c-3.9 0-7 3.1-7 7s3.1 7 7 7c4 0 6.7-2.8 6.7-6.8 0-.5 0-.8-.1-1.2H18z",
+    fill: "#FFF",
+    fillRule: "nonzero"
+  })), /* @__PURE__ */ React32.createElement("div", {
+    className: "text-slate-800"
+  }, "Google (organic)"))), /* @__PURE__ */ React32.createElement("td", {
+    className: "p-2"
+  }, /* @__PURE__ */ React32.createElement("div", {
+    className: "text-center"
+  }, "2.0K")), /* @__PURE__ */ React32.createElement("td", {
+    className: "p-2"
+  }, /* @__PURE__ */ React32.createElement("div", {
+    className: "text-center text-emerald-500"
+  }, "$2,444")), /* @__PURE__ */ React32.createElement("td", {
+    className: "p-2"
+  }, /* @__PURE__ */ React32.createElement("div", {
+    className: "text-center"
+  }, "224")), /* @__PURE__ */ React32.createElement("td", {
+    className: "p-2"
+  }, /* @__PURE__ */ React32.createElement("div", {
+    className: "text-center text-sky-500"
+  }, "4.2%"))), /* @__PURE__ */ React32.createElement("tr", null, /* @__PURE__ */ React32.createElement("td", {
+    className: "p-2"
+  }, /* @__PURE__ */ React32.createElement("div", {
+    className: "flex items-center"
+  }, /* @__PURE__ */ React32.createElement("svg", {
+    className: "shrink-0 mr-2 sm:mr-3",
+    width: "36",
+    height: "36",
+    viewBox: "0 0 36 36"
+  }, /* @__PURE__ */ React32.createElement("circle", {
+    fill: "#4BC9FF",
+    cx: "18",
+    cy: "18",
+    r: "18"
+  }), /* @__PURE__ */ React32.createElement("path", {
+    d: "M26 14.3c-.1 1.6-1.2 3.7-3.3 6.4-2.2 2.8-4 4.2-5.5 4.2-.9 0-1.7-.9-2.4-2.6C14 19.9 13.4 15 12 15c-.1 0-.5.3-1.2.8l-.8-1c.8-.7 3.5-3.4 4.7-3.5 1.2-.1 2 .7 2.3 2.5.3 2 .8 6.1 1.8 6.1.9 0 2.5-3.4 2.6-4 .1-.9-.3-1.9-2.3-1.1.8-2.6 2.3-3.8 4.5-3.8 1.7.1 2.5 1.2 2.4 3.3z",
+    fill: "#FFF",
+    fillRule: "nonzero"
+  })), /* @__PURE__ */ React32.createElement("div", {
+    className: "text-slate-800"
+  }, "Vimeo.com"))), /* @__PURE__ */ React32.createElement("td", {
+    className: "p-2"
+  }, /* @__PURE__ */ React32.createElement("div", {
+    className: "text-center"
+  }, "1.9K")), /* @__PURE__ */ React32.createElement("td", {
+    className: "p-2"
+  }, /* @__PURE__ */ React32.createElement("div", {
+    className: "text-center text-emerald-500"
+  }, "$2,236")), /* @__PURE__ */ React32.createElement("td", {
+    className: "p-2"
+  }, /* @__PURE__ */ React32.createElement("div", {
+    className: "text-center"
+  }, "220")), /* @__PURE__ */ React32.createElement("td", {
+    className: "p-2"
+  }, /* @__PURE__ */ React32.createElement("div", {
+    className: "text-center text-sky-500"
+  }, "4.2%"))), /* @__PURE__ */ React32.createElement("tr", null, /* @__PURE__ */ React32.createElement("td", {
+    className: "p-2"
+  }, /* @__PURE__ */ React32.createElement("div", {
+    className: "flex items-center"
+  }, /* @__PURE__ */ React32.createElement("svg", {
+    className: "shrink-0 mr-2 sm:mr-3",
+    width: "36",
+    height: "36",
+    viewBox: "0 0 36 36"
+  }, /* @__PURE__ */ React32.createElement("circle", {
+    fill: "#0E2439",
+    cx: "18",
+    cy: "18",
+    r: "18"
+  }), /* @__PURE__ */ React32.createElement("path", {
+    d: "M14.232 12.818V23H11.77V12.818h2.46zM15.772 23V12.818h2.462v4.087h4.012v-4.087h2.456V23h-2.456v-4.092h-4.012V23h-2.461z",
+    fill: "#E6ECF4"
+  })), /* @__PURE__ */ React32.createElement("div", {
+    className: "text-slate-800"
+  }, "Indiehackers.com"))), /* @__PURE__ */ React32.createElement("td", {
+    className: "p-2"
+  }, /* @__PURE__ */ React32.createElement("div", {
+    className: "text-center"
+  }, "1.7K")), /* @__PURE__ */ React32.createElement("td", {
+    className: "p-2"
+  }, /* @__PURE__ */ React32.createElement("div", {
+    className: "text-center text-emerald-500"
+  }, "$2,034")), /* @__PURE__ */ React32.createElement("td", {
+    className: "p-2"
+  }, /* @__PURE__ */ React32.createElement("div", {
+    className: "text-center"
+  }, "204")), /* @__PURE__ */ React32.createElement("td", {
+    className: "p-2"
+  }, /* @__PURE__ */ React32.createElement("div", {
+    className: "text-center text-sky-500"
+  }, "3.9%"))))))));
+};
+
+// pnp:/home/mamluk/3pass/esm-pwa/pkgs/dash/components/DashboardCard08.mjs
+import { React as React33 } from "/libs/vendors-v0.0.1.mjs";
+var DashboardCard08 = () => {
   const chartData = {
     labels: [
       "12-01-2020",
@@ -8225,36 +9933,35 @@ var AnalyticsCard01 = () => {
       {
         label: "Current",
         data: [
-          5e3,
-          8700,
-          7500,
-          12e3,
-          11e3,
-          9500,
-          10500,
-          1e4,
-          15e3,
-          9e3,
-          1e4,
-          7e3,
-          22e3,
-          7200,
-          9800,
-          9e3,
-          1e4,
-          8e3,
-          15e3,
-          12e3,
-          11e3,
-          13e3,
-          11e3,
-          15e3,
-          17e3,
-          18e3
+          73,
+          64,
+          73,
+          69,
+          104,
+          104,
+          164,
+          164,
+          120,
+          120,
+          120,
+          148,
+          142,
+          104,
+          122,
+          110,
+          104,
+          152,
+          166,
+          233,
+          268,
+          252,
+          284,
+          284,
+          333,
+          323
         ],
-        fill: true,
-        backgroundColor: `rgba(${hexToRGB(tailwindConfig().theme.colors.blue[500])}, 0.08)`,
         borderColor: tailwindConfig().theme.colors.indigo[500],
+        fill: false,
         borderWidth: 2,
         tension: 0,
         pointRadius: 0,
@@ -8265,121 +9972,1255 @@ var AnalyticsCard01 = () => {
       {
         label: "Previous",
         data: [
-          8e3,
-          5e3,
-          6500,
-          5e3,
-          6500,
-          12e3,
-          8e3,
-          9e3,
-          8e3,
-          8e3,
-          12500,
-          1e4,
-          1e4,
-          12e3,
-          11e3,
-          16e3,
-          12e3,
-          1e4,
-          1e4,
-          14e3,
-          9e3,
-          1e4,
-          15e3,
-          12500,
-          14e3,
-          11e3
+          184,
+          86,
+          42,
+          378,
+          42,
+          243,
+          38,
+          120,
+          0,
+          0,
+          42,
+          0,
+          84,
+          0,
+          276,
+          0,
+          124,
+          42,
+          124,
+          88,
+          88,
+          215,
+          156,
+          88,
+          124,
+          64
         ],
-        borderColor: tailwindConfig().theme.colors.slate[300],
+        borderColor: tailwindConfig().theme.colors.blue[400],
         fill: false,
         borderWidth: 2,
         tension: 0,
         pointRadius: 0,
         pointHoverRadius: 3,
-        pointBackgroundColor: tailwindConfig().theme.colors.slate[300],
+        pointBackgroundColor: tailwindConfig().theme.colors.blue[400],
+        clip: 20
+      },
+      {
+        label: "Average",
+        data: [
+          122,
+          170,
+          192,
+          86,
+          102,
+          124,
+          115,
+          115,
+          56,
+          104,
+          0,
+          72,
+          208,
+          186,
+          223,
+          188,
+          114,
+          162,
+          200,
+          150,
+          118,
+          118,
+          76,
+          122,
+          230,
+          268
+        ],
+        borderColor: tailwindConfig().theme.colors.emerald[500],
+        fill: false,
+        borderWidth: 2,
+        tension: 0,
+        pointRadius: 0,
+        pointHoverRadius: 3,
+        pointBackgroundColor: tailwindConfig().theme.colors.emerald[500],
         clip: 20
       }
     ]
   };
-  return /* @__PURE__ */ React22.createElement("div", {
-    className: "flex flex-col col-span-full xl:col-span-8 bg-white shadow-lg rounded-sm border border-slate-200"
-  }, /* @__PURE__ */ React22.createElement("header", {
+  return /* @__PURE__ */ React33.createElement("div", {
+    className: "flex flex-col col-span-full sm:col-span-6 bg-white shadow-lg rounded-sm border border-slate-200"
+  }, /* @__PURE__ */ React33.createElement("header", {
     className: "px-5 py-4 border-b border-slate-100 flex items-center"
-  }, /* @__PURE__ */ React22.createElement("h2", {
+  }, /* @__PURE__ */ React33.createElement("h2", {
     className: "font-semibold text-slate-800"
-  }, "Analytics")), /* @__PURE__ */ React22.createElement("div", {
-    className: "px-5 py-1"
-  }, /* @__PURE__ */ React22.createElement("div", {
-    className: "flex flex-wrap"
-  }, /* @__PURE__ */ React22.createElement("div", {
-    className: "flex items-center py-2"
-  }, /* @__PURE__ */ React22.createElement("div", {
-    className: "mr-5"
-  }, /* @__PURE__ */ React22.createElement("div", {
-    className: "flex items-center"
-  }, /* @__PURE__ */ React22.createElement("div", {
+  }, "Sales Over Time (all stores)")), /* @__PURE__ */ React33.createElement(LineChart02, {
+    data: chartData,
+    width: 595,
+    height: 248
+  }));
+};
+
+// pnp:/home/mamluk/3pass/esm-pwa/pkgs/dash/components/DashboardCard09.mjs
+import { React as React34 } from "/libs/vendors-v0.0.1.mjs";
+var DashboardCard09 = () => {
+  const chartData = {
+    labels: [
+      "12-01-2020",
+      "01-01-2021",
+      "02-01-2021",
+      "03-01-2021",
+      "04-01-2021",
+      "05-01-2021"
+    ],
+    datasets: [
+      {
+        label: "Stack 1",
+        data: [
+          6200,
+          9200,
+          6600,
+          8800,
+          5200,
+          9200
+        ],
+        backgroundColor: tailwindConfig().theme.colors.indigo[500],
+        hoverBackgroundColor: tailwindConfig().theme.colors.indigo[600],
+        barPercentage: 0.66,
+        categoryPercentage: 0.66
+      },
+      {
+        label: "Stack 2",
+        data: [
+          -4e3,
+          -2600,
+          -5350,
+          -4e3,
+          -7500,
+          -2e3
+        ],
+        backgroundColor: tailwindConfig().theme.colors.indigo[200],
+        hoverBackgroundColor: tailwindConfig().theme.colors.indigo[300],
+        barPercentage: 0.66,
+        categoryPercentage: 0.66
+      }
+    ]
+  };
+  return /* @__PURE__ */ React34.createElement("div", {
+    className: "flex flex-col col-span-full sm:col-span-6 bg-white shadow-lg rounded-sm border border-slate-200"
+  }, /* @__PURE__ */ React34.createElement("header", {
+    className: "px-5 py-4 border-b border-slate-100 flex items-center"
+  }, /* @__PURE__ */ React34.createElement("h2", {
+    className: "font-semibold text-slate-800"
+  }, "Sales VS Refunds"), /* @__PURE__ */ React34.createElement(Tooltip, {
+    className: "ml-2",
+    size: "lg"
+  }, /* @__PURE__ */ React34.createElement("div", {
+    className: "text-sm"
+  }, "Sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit."))), /* @__PURE__ */ React34.createElement("div", {
+    className: "px-5 py-3"
+  }, /* @__PURE__ */ React34.createElement("div", {
+    className: "flex items-start"
+  }, /* @__PURE__ */ React34.createElement("div", {
     className: "text-3xl font-bold text-slate-800 mr-2"
-  }, "24.7K"), /* @__PURE__ */ React22.createElement("div", {
-    className: "text-sm font-medium text-emerald-500"
-  }, "+49%")), /* @__PURE__ */ React22.createElement("div", {
-    className: "text-sm text-slate-500"
-  }, "Unique Visitors")), /* @__PURE__ */ React22.createElement("div", {
-    className: "hidden md:block w-px h-8 bg-slate-200 mr-5",
-    "aria-hidden": "true"
-  })), /* @__PURE__ */ React22.createElement("div", {
-    className: "flex items-center py-2"
-  }, /* @__PURE__ */ React22.createElement("div", {
-    className: "mr-5"
-  }, /* @__PURE__ */ React22.createElement("div", {
-    className: "flex items-center"
-  }, /* @__PURE__ */ React22.createElement("div", {
-    className: "text-3xl font-bold text-slate-800 mr-2"
-  }, "56.9K"), /* @__PURE__ */ React22.createElement("div", {
-    className: "text-sm font-medium text-emerald-500"
-  }, "+7%")), /* @__PURE__ */ React22.createElement("div", {
-    className: "text-sm text-slate-500"
-  }, "Total Pageviews")), /* @__PURE__ */ React22.createElement("div", {
-    className: "hidden md:block w-px h-8 bg-slate-200 mr-5",
-    "aria-hidden": "true"
-  })), /* @__PURE__ */ React22.createElement("div", {
-    className: "flex items-center py-2"
-  }, /* @__PURE__ */ React22.createElement("div", {
-    className: "mr-5"
-  }, /* @__PURE__ */ React22.createElement("div", {
-    className: "flex items-center"
-  }, /* @__PURE__ */ React22.createElement("div", {
-    className: "text-3xl font-bold text-slate-800 mr-2"
-  }, "54%"), /* @__PURE__ */ React22.createElement("div", {
-    className: "text-sm font-medium text-amber-500"
-  }, "-7%")), /* @__PURE__ */ React22.createElement("div", {
-    className: "text-sm text-slate-500"
-  }, "Bounce Rate")), /* @__PURE__ */ React22.createElement("div", {
-    className: "hidden md:block w-px h-8 bg-slate-200 mr-5",
-    "aria-hidden": "true"
-  })), /* @__PURE__ */ React22.createElement("div", {
-    className: "flex items-center"
-  }, /* @__PURE__ */ React22.createElement("div", null, /* @__PURE__ */ React22.createElement("div", {
-    className: "flex items-center"
-  }, /* @__PURE__ */ React22.createElement("div", {
-    className: "text-3xl font-bold text-slate-800 mr-2"
-  }, "2m 56s"), /* @__PURE__ */ React22.createElement("div", {
-    className: "text-sm font-medium text-amber-500"
-  }, "+7%")), /* @__PURE__ */ React22.createElement("div", {
-    className: "text-sm text-slate-500"
-  }, "Visit Duration"))))), /* @__PURE__ */ React22.createElement("div", {
+  }, "+$6,796"), /* @__PURE__ */ React34.createElement("div", {
+    className: "text-sm font-semibold text-white px-1.5 bg-amber-500 rounded-full"
+  }, "-34%"))), /* @__PURE__ */ React34.createElement("div", {
     className: "grow"
-  }, /* @__PURE__ */ React22.createElement(LineChart01, {
+  }, /* @__PURE__ */ React34.createElement(BarChart02, {
+    data: chartData,
+    width: 595,
+    height: 248
+  })));
+};
+
+// pnp:/home/mamluk/3pass/esm-pwa/pkgs/dash/components/DashboardCard10.mjs
+import { React as React35 } from "/libs/vendors-v0.0.1.mjs";
+var DashboardCard10 = () => {
+  return /* @__PURE__ */ React35.createElement("div", {
+    className: "col-span-full xl:col-span-6 bg-white shadow-lg rounded-sm border border-slate-200"
+  }, /* @__PURE__ */ React35.createElement("header", {
+    className: "px-5 py-4 border-b border-slate-100"
+  }, /* @__PURE__ */ React35.createElement("h2", {
+    className: "font-semibold text-slate-800"
+  }, "Recent Activity")), /* @__PURE__ */ React35.createElement("div", {
+    className: "p-3"
+  }, /* @__PURE__ */ React35.createElement("div", null, /* @__PURE__ */ React35.createElement("header", {
+    className: "text-xs uppercase text-slate-400 bg-slate-50 rounded-sm font-semibold p-2"
+  }, "Today"), /* @__PURE__ */ React35.createElement("ul", {
+    className: "my-1"
+  }, /* @__PURE__ */ React35.createElement("li", {
+    className: "flex px-2"
+  }, /* @__PURE__ */ React35.createElement("div", {
+    className: "w-9 h-9 rounded-full shrink-0 bg-indigo-500 my-2 mr-3"
+  }, /* @__PURE__ */ React35.createElement("svg", {
+    className: "w-9 h-9 fill-current text-indigo-50",
+    viewBox: "0 0 36 36"
+  }, /* @__PURE__ */ React35.createElement("path", {
+    d: "M18 10c-4.4 0-8 3.1-8 7s3.6 7 8 7h.6l5.4 2v-4.4c1.2-1.2 2-2.8 2-4.6 0-3.9-3.6-7-8-7zm4 10.8v2.3L18.9 22H18c-3.3 0-6-2.2-6-5s2.7-5 6-5 6 2.2 6 5c0 2.2-2 3.8-2 3.8z"
+  }))), /* @__PURE__ */ React35.createElement("div", {
+    className: "grow flex items-center border-b border-slate-100 text-sm py-2"
+  }, /* @__PURE__ */ React35.createElement("div", {
+    className: "grow flex justify-between"
+  }, /* @__PURE__ */ React35.createElement("div", {
+    className: "self-center"
+  }, /* @__PURE__ */ React35.createElement("a", {
+    className: "font-medium text-slate-800 hover:text-slate-900",
+    href: "#0"
+  }, "Nick Mark"), " mentioned ", /* @__PURE__ */ React35.createElement("a", {
+    className: "font-medium text-slate-800",
+    href: "#0"
+  }, "Sara Smith"), " in a new post"), /* @__PURE__ */ React35.createElement("div", {
+    className: "shrink-0 self-end ml-2"
+  }, /* @__PURE__ */ React35.createElement("a", {
+    className: "font-medium text-indigo-500 hover:text-indigo-600",
+    href: "#0"
+  }, "View", /* @__PURE__ */ React35.createElement("span", {
+    className: "hidden sm:inline"
+  }, " ->")))))), /* @__PURE__ */ React35.createElement("li", {
+    className: "flex px-2"
+  }, /* @__PURE__ */ React35.createElement("div", {
+    className: "w-9 h-9 rounded-full shrink-0 bg-rose-500 my-2 mr-3"
+  }, /* @__PURE__ */ React35.createElement("svg", {
+    className: "w-9 h-9 fill-current text-rose-50",
+    viewBox: "0 0 36 36"
+  }, /* @__PURE__ */ React35.createElement("path", {
+    d: "M25 24H11a1 1 0 01-1-1v-5h2v4h12v-4h2v5a1 1 0 01-1 1zM14 13h8v2h-8z"
+  }))), /* @__PURE__ */ React35.createElement("div", {
+    className: "grow flex items-center border-b border-slate-100 text-sm py-2"
+  }, /* @__PURE__ */ React35.createElement("div", {
+    className: "grow flex justify-between"
+  }, /* @__PURE__ */ React35.createElement("div", {
+    className: "self-center"
+  }, "The post ", /* @__PURE__ */ React35.createElement("a", {
+    className: "font-medium text-slate-800",
+    href: "#0"
+  }, "Post Name"), " was removed by ", /* @__PURE__ */ React35.createElement("a", {
+    className: "font-medium text-slate-800 hover:text-slate-900",
+    href: "#0"
+  }, "Nick Mark")), /* @__PURE__ */ React35.createElement("div", {
+    className: "shrink-0 self-end ml-2"
+  }, /* @__PURE__ */ React35.createElement("a", {
+    className: "font-medium text-indigo-500 hover:text-indigo-600",
+    href: "#0"
+  }, "View", /* @__PURE__ */ React35.createElement("span", {
+    className: "hidden sm:inline"
+  }, " ->")))))), /* @__PURE__ */ React35.createElement("li", {
+    className: "flex px-2"
+  }, /* @__PURE__ */ React35.createElement("div", {
+    className: "w-9 h-9 rounded-full shrink-0 bg-emerald-500 my-2 mr-3"
+  }, /* @__PURE__ */ React35.createElement("svg", {
+    className: "w-9 h-9 fill-current text-emerald-50",
+    viewBox: "0 0 36 36"
+  }, /* @__PURE__ */ React35.createElement("path", {
+    d: "M15 13v-3l-5 4 5 4v-3h8a1 1 0 000-2h-8zM21 21h-8a1 1 0 000 2h8v3l5-4-5-4v3z"
+  }))), /* @__PURE__ */ React35.createElement("div", {
+    className: "grow flex items-center text-sm py-2"
+  }, /* @__PURE__ */ React35.createElement("div", {
+    className: "grow flex justify-between"
+  }, /* @__PURE__ */ React35.createElement("div", {
+    className: "self-center"
+  }, /* @__PURE__ */ React35.createElement("a", {
+    className: "font-medium text-slate-800 hover:text-slate-900",
+    href: "#0"
+  }, "Patrick Sullivan"), " published a new ", /* @__PURE__ */ React35.createElement("a", {
+    className: "font-medium text-slate-800",
+    href: "#0"
+  }, "post")), /* @__PURE__ */ React35.createElement("div", {
+    className: "shrink-0 self-end ml-2"
+  }, /* @__PURE__ */ React35.createElement("a", {
+    className: "font-medium text-indigo-500 hover:text-indigo-600",
+    href: "#0"
+  }, "View", /* @__PURE__ */ React35.createElement("span", {
+    className: "hidden sm:inline"
+  }, " ->")))))))), /* @__PURE__ */ React35.createElement("div", null, /* @__PURE__ */ React35.createElement("header", {
+    className: "text-xs uppercase text-slate-400 bg-slate-50 rounded-sm font-semibold p-2"
+  }, "Yesterday"), /* @__PURE__ */ React35.createElement("ul", {
+    className: "my-1"
+  }, /* @__PURE__ */ React35.createElement("li", {
+    className: "flex px-2"
+  }, /* @__PURE__ */ React35.createElement("div", {
+    className: "w-9 h-9 rounded-full shrink-0 bg-sky-500 my-2 mr-3"
+  }, /* @__PURE__ */ React35.createElement("svg", {
+    className: "w-9 h-9 fill-current text-sky-50",
+    viewBox: "0 0 36 36"
+  }, /* @__PURE__ */ React35.createElement("path", {
+    d: "M23 11v2.085c-2.841.401-4.41 2.462-5.8 4.315-1.449 1.932-2.7 3.6-5.2 3.6h-1v2h1c3.5 0 5.253-2.338 6.8-4.4 1.449-1.932 2.7-3.6 5.2-3.6h3l-4-4zM15.406 16.455c.066-.087.125-.162.194-.254.314-.419.656-.872 1.033-1.33C15.475 13.802 14.038 13 12 13h-1v2h1c1.471 0 2.505.586 3.406 1.455zM24 21c-1.471 0-2.505-.586-3.406-1.455-.066.087-.125.162-.194.254-.316.422-.656.873-1.028 1.328.959.878 2.108 1.573 3.628 1.788V25l4-4h-3z"
+  }))), /* @__PURE__ */ React35.createElement("div", {
+    className: "grow flex items-center border-b border-slate-100 text-sm py-2"
+  }, /* @__PURE__ */ React35.createElement("div", {
+    className: "grow flex justify-between"
+  }, /* @__PURE__ */ React35.createElement("div", {
+    className: "self-center"
+  }, /* @__PURE__ */ React35.createElement("a", {
+    className: "font-medium text-slate-800 hover:text-slate-900",
+    href: "#0"
+  }, "240+"), " users have subscribed to ", /* @__PURE__ */ React35.createElement("a", {
+    className: "font-medium text-slate-800",
+    href: "#0"
+  }, "Newsletter #1")), /* @__PURE__ */ React35.createElement("div", {
+    className: "shrink-0 self-end ml-2"
+  }, /* @__PURE__ */ React35.createElement("a", {
+    className: "font-medium text-indigo-500 hover:text-indigo-600",
+    href: "#0"
+  }, "View", /* @__PURE__ */ React35.createElement("span", {
+    className: "hidden sm:inline"
+  }, " ->")))))), /* @__PURE__ */ React35.createElement("li", {
+    className: "flex px-2"
+  }, /* @__PURE__ */ React35.createElement("div", {
+    className: "w-9 h-9 rounded-full shrink-0 bg-indigo-500 my-2 mr-3"
+  }, /* @__PURE__ */ React35.createElement("svg", {
+    className: "w-9 h-9 fill-current text-indigo-50",
+    viewBox: "0 0 36 36"
+  }, /* @__PURE__ */ React35.createElement("path", {
+    d: "M18 10c-4.4 0-8 3.1-8 7s3.6 7 8 7h.6l5.4 2v-4.4c1.2-1.2 2-2.8 2-4.6 0-3.9-3.6-7-8-7zm4 10.8v2.3L18.9 22H18c-3.3 0-6-2.2-6-5s2.7-5 6-5 6 2.2 6 5c0 2.2-2 3.8-2 3.8z"
+  }))), /* @__PURE__ */ React35.createElement("div", {
+    className: "grow flex items-center text-sm py-2"
+  }, /* @__PURE__ */ React35.createElement("div", {
+    className: "grow flex justify-between"
+  }, /* @__PURE__ */ React35.createElement("div", {
+    className: "self-center"
+  }, "The post ", /* @__PURE__ */ React35.createElement("a", {
+    className: "font-medium text-slate-800",
+    href: "#0"
+  }, "Post Name"), " was suspended by ", /* @__PURE__ */ React35.createElement("a", {
+    className: "font-medium text-slate-800 hover:text-slate-900",
+    href: "#0"
+  }, "Nick Mark")), /* @__PURE__ */ React35.createElement("div", {
+    className: "shrink-0 self-end ml-2"
+  }, /* @__PURE__ */ React35.createElement("a", {
+    className: "font-medium text-indigo-500 hover:text-indigo-600",
+    href: "#0"
+  }, "View", /* @__PURE__ */ React35.createElement("span", {
+    className: "hidden sm:inline"
+  }, " ->"))))))))));
+};
+
+// pnp:/home/mamluk/3pass/esm-pwa/pkgs/dash/components/DashboardCard11.mjs
+import { React as React36 } from "/libs/vendors-v0.0.1.mjs";
+var DashboardCard11 = () => {
+  return /* @__PURE__ */ React36.createElement("div", {
+    className: "col-span-full xl:col-span-6 bg-white shadow-lg rounded-sm border border-slate-200"
+  }, /* @__PURE__ */ React36.createElement("header", {
+    className: "px-5 py-4 border-b border-slate-100"
+  }, /* @__PURE__ */ React36.createElement("h2", {
+    className: "font-semibold text-slate-800"
+  }, "Income/Expenses")), /* @__PURE__ */ React36.createElement("div", {
+    className: "p-3"
+  }, /* @__PURE__ */ React36.createElement("div", null, /* @__PURE__ */ React36.createElement("header", {
+    className: "text-xs uppercase text-slate-400 bg-slate-50 rounded-sm font-semibold p-2"
+  }, "Today"), /* @__PURE__ */ React36.createElement("ul", {
+    className: "my-1"
+  }, /* @__PURE__ */ React36.createElement("li", {
+    className: "flex px-2"
+  }, /* @__PURE__ */ React36.createElement("div", {
+    className: "w-9 h-9 rounded-full shrink-0 bg-rose-500 my-2 mr-3"
+  }, /* @__PURE__ */ React36.createElement("svg", {
+    className: "w-9 h-9 fill-current text-rose-50",
+    viewBox: "0 0 36 36"
+  }, /* @__PURE__ */ React36.createElement("path", {
+    d: "M17.7 24.7l1.4-1.4-4.3-4.3H25v-2H14.8l4.3-4.3-1.4-1.4L11 18z"
+  }))), /* @__PURE__ */ React36.createElement("div", {
+    className: "grow flex items-center border-b border-slate-100 text-sm py-2"
+  }, /* @__PURE__ */ React36.createElement("div", {
+    className: "grow flex justify-between"
+  }, /* @__PURE__ */ React36.createElement("div", {
+    className: "self-center"
+  }, /* @__PURE__ */ React36.createElement("a", {
+    className: "font-medium text-slate-800 hover:text-slate-900",
+    href: "#0"
+  }, "Qonto"), " billing"), /* @__PURE__ */ React36.createElement("div", {
+    className: "shrink-0 self-start ml-2"
+  }, /* @__PURE__ */ React36.createElement("span", {
+    className: "font-medium text-slate-800"
+  }, "-$49.88"))))), /* @__PURE__ */ React36.createElement("li", {
+    className: "flex px-2"
+  }, /* @__PURE__ */ React36.createElement("div", {
+    className: "w-9 h-9 rounded-full shrink-0 bg-emerald-500 my-2 mr-3"
+  }, /* @__PURE__ */ React36.createElement("svg", {
+    className: "w-9 h-9 fill-current text-emerald-50",
+    viewBox: "0 0 36 36"
+  }, /* @__PURE__ */ React36.createElement("path", {
+    d: "M18.3 11.3l-1.4 1.4 4.3 4.3H11v2h10.2l-4.3 4.3 1.4 1.4L25 18z"
+  }))), /* @__PURE__ */ React36.createElement("div", {
+    className: "grow flex items-center border-b border-slate-100 text-sm py-2"
+  }, /* @__PURE__ */ React36.createElement("div", {
+    className: "grow flex justify-between"
+  }, /* @__PURE__ */ React36.createElement("div", {
+    className: "self-center"
+  }, /* @__PURE__ */ React36.createElement("a", {
+    className: "font-medium text-slate-800 hover:text-slate-900",
+    href: "#0"
+  }, "Cruip.com"), " Market Ltd 70 Wilson St London"), /* @__PURE__ */ React36.createElement("div", {
+    className: "shrink-0 self-start ml-2"
+  }, /* @__PURE__ */ React36.createElement("span", {
+    className: "font-medium text-emerald-500"
+  }, "+249.88"))))), /* @__PURE__ */ React36.createElement("li", {
+    className: "flex px-2"
+  }, /* @__PURE__ */ React36.createElement("div", {
+    className: "w-9 h-9 rounded-full shrink-0 bg-emerald-500 my-2 mr-3"
+  }, /* @__PURE__ */ React36.createElement("svg", {
+    className: "w-9 h-9 fill-current text-emerald-50",
+    viewBox: "0 0 36 36"
+  }, /* @__PURE__ */ React36.createElement("path", {
+    d: "M18.3 11.3l-1.4 1.4 4.3 4.3H11v2h10.2l-4.3 4.3 1.4 1.4L25 18z"
+  }))), /* @__PURE__ */ React36.createElement("div", {
+    className: "grow flex items-center border-b border-slate-100 text-sm py-2"
+  }, /* @__PURE__ */ React36.createElement("div", {
+    className: "grow flex justify-between"
+  }, /* @__PURE__ */ React36.createElement("div", {
+    className: "self-center"
+  }, /* @__PURE__ */ React36.createElement("a", {
+    className: "font-medium text-slate-800 hover:text-slate-900",
+    href: "#0"
+  }, "Notion Labs Inc")), /* @__PURE__ */ React36.createElement("div", {
+    className: "shrink-0 self-start ml-2"
+  }, /* @__PURE__ */ React36.createElement("span", {
+    className: "font-medium text-emerald-500"
+  }, "+99.99"))))), /* @__PURE__ */ React36.createElement("li", {
+    className: "flex px-2"
+  }, /* @__PURE__ */ React36.createElement("div", {
+    className: "w-9 h-9 rounded-full shrink-0 bg-emerald-500 my-2 mr-3"
+  }, /* @__PURE__ */ React36.createElement("svg", {
+    className: "w-9 h-9 fill-current text-emerald-50",
+    viewBox: "0 0 36 36"
+  }, /* @__PURE__ */ React36.createElement("path", {
+    d: "M18.3 11.3l-1.4 1.4 4.3 4.3H11v2h10.2l-4.3 4.3 1.4 1.4L25 18z"
+  }))), /* @__PURE__ */ React36.createElement("div", {
+    className: "grow flex items-center border-b border-slate-100 text-sm py-2"
+  }, /* @__PURE__ */ React36.createElement("div", {
+    className: "grow flex justify-between"
+  }, /* @__PURE__ */ React36.createElement("div", {
+    className: "self-center"
+  }, /* @__PURE__ */ React36.createElement("a", {
+    className: "font-medium text-slate-800 hover:text-slate-900",
+    href: "#0"
+  }, "Market Cap Ltd")), /* @__PURE__ */ React36.createElement("div", {
+    className: "shrink-0 self-start ml-2"
+  }, /* @__PURE__ */ React36.createElement("span", {
+    className: "font-medium text-emerald-500"
+  }, "+1,200.88"))))), /* @__PURE__ */ React36.createElement("li", {
+    className: "flex px-2"
+  }, /* @__PURE__ */ React36.createElement("div", {
+    className: "w-9 h-9 rounded-full shrink-0 bg-slate-200 my-2 mr-3"
+  }, /* @__PURE__ */ React36.createElement("svg", {
+    className: "w-9 h-9 fill-current text-slate-400",
+    viewBox: "0 0 36 36"
+  }, /* @__PURE__ */ React36.createElement("path", {
+    d: "M21.477 22.89l-8.368-8.367a6 6 0 008.367 8.367zm1.414-1.413a6 6 0 00-8.367-8.367l8.367 8.367zM18 26a8 8 0 110-16 8 8 0 010 16z"
+  }))), /* @__PURE__ */ React36.createElement("div", {
+    className: "grow flex items-center border-b border-slate-100 text-sm py-2"
+  }, /* @__PURE__ */ React36.createElement("div", {
+    className: "grow flex justify-between"
+  }, /* @__PURE__ */ React36.createElement("div", {
+    className: "self-center"
+  }, /* @__PURE__ */ React36.createElement("a", {
+    className: "font-medium text-slate-800 hover:text-slate-900",
+    href: "#0"
+  }, "App.com"), " Market Ltd 70 Wilson St London"), /* @__PURE__ */ React36.createElement("div", {
+    className: "shrink-0 self-start ml-2"
+  }, /* @__PURE__ */ React36.createElement("span", {
+    className: "font-medium text-slate-800 line-through"
+  }, "+$99.99"))))), /* @__PURE__ */ React36.createElement("li", {
+    className: "flex px-2"
+  }, /* @__PURE__ */ React36.createElement("div", {
+    className: "w-9 h-9 rounded-full shrink-0 bg-rose-500 my-2 mr-3"
+  }, /* @__PURE__ */ React36.createElement("svg", {
+    className: "w-9 h-9 fill-current text-rose-50",
+    viewBox: "0 0 36 36"
+  }, /* @__PURE__ */ React36.createElement("path", {
+    d: "M17.7 24.7l1.4-1.4-4.3-4.3H25v-2H14.8l4.3-4.3-1.4-1.4L11 18z"
+  }))), /* @__PURE__ */ React36.createElement("div", {
+    className: "grow flex items-center text-sm py-2"
+  }, /* @__PURE__ */ React36.createElement("div", {
+    className: "grow flex justify-between"
+  }, /* @__PURE__ */ React36.createElement("div", {
+    className: "self-center"
+  }, /* @__PURE__ */ React36.createElement("a", {
+    className: "font-medium text-slate-800 hover:text-slate-900",
+    href: "#0"
+  }, "App.com"), " Market Ltd 70 Wilson St London"), /* @__PURE__ */ React36.createElement("div", {
+    className: "shrink-0 self-start ml-2"
+  }, /* @__PURE__ */ React36.createElement("span", {
+    className: "font-medium text-slate-800"
+  }, "-$49.88")))))))));
+};
+
+// pnp:/home/mamluk/3pass/esm-pwa/pkgs/dash/Dashboard.mjs
+var Dashboard = () => {
+  const [sidebarOpen, setSidebarOpen] = useState11(false);
+  return /* @__PURE__ */ React37.createElement("div", {
+    className: "flex h-screen overflow-hidden"
+  }, /* @__PURE__ */ React37.createElement(Sidebar, {
+    sidebarOpen,
+    setSidebarOpen
+  }), /* @__PURE__ */ React37.createElement("div", {
+    className: "relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden"
+  }, /* @__PURE__ */ React37.createElement(Header, {
+    sidebarOpen,
+    setSidebarOpen
+  }), /* @__PURE__ */ React37.createElement("main", null, /* @__PURE__ */ React37.createElement("div", {
+    className: "px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto"
+  }, /* @__PURE__ */ React37.createElement(WelcomeBanner, null), /* @__PURE__ */ React37.createElement("div", {
+    className: "sm:flex sm:justify-between sm:items-center mb-8"
+  }, /* @__PURE__ */ React37.createElement(DashboardAvatars, null), /* @__PURE__ */ React37.createElement("div", {
+    className: "grid grid-flow-col sm:auto-cols-max justify-start sm:justify-end gap-2"
+  }, /* @__PURE__ */ React37.createElement(DropdownFilter, {
+    align: "right"
+  }), /* @__PURE__ */ React37.createElement(Datepicker, {
+    align: "right"
+  }), /* @__PURE__ */ React37.createElement("button", {
+    className: "btn bg-indigo-500 hover:bg-indigo-600 text-white"
+  }, /* @__PURE__ */ React37.createElement("svg", {
+    className: "w-4 h-4 fill-current opacity-50 shrink-0",
+    viewBox: "0 0 16 16"
+  }, /* @__PURE__ */ React37.createElement("path", {
+    d: "M15 7H9V1c0-.6-.4-1-1-1S7 .4 7 1v6H1c-.6 0-1 .4-1 1s.4 1 1 1h6v6c0 .6.4 1 1 1s1-.4 1-1V9h6c.6 0 1-.4 1-1s-.4-1-1-1z"
+  })), /* @__PURE__ */ React37.createElement("span", {
+    className: "hidden xs:block ml-2"
+  }, "Add View")))), /* @__PURE__ */ React37.createElement("div", {
+    className: "grid grid-cols-12 gap-6"
+  }, /* @__PURE__ */ React37.createElement(DashboardCard01, null), /* @__PURE__ */ React37.createElement(DashboardCard02, null), /* @__PURE__ */ React37.createElement(DashboardCard03, null), /* @__PURE__ */ React37.createElement(DashboardCard04, null), /* @__PURE__ */ React37.createElement(DashboardCard05, null), /* @__PURE__ */ React37.createElement(DashboardCard06, null), /* @__PURE__ */ React37.createElement(DashboardCard07, null), /* @__PURE__ */ React37.createElement(DashboardCard08, null), /* @__PURE__ */ React37.createElement(DashboardCard09, null), /* @__PURE__ */ React37.createElement(DashboardCard10, null), /* @__PURE__ */ React37.createElement(DashboardCard11, null))))));
+};
+
+// pnp:/home/mamluk/3pass/esm-pwa/pkgs/3stats/Dashboard.mjs
+import { React as React46, useState as useState16, useEffect as useEffect20 } from "/libs/vendors-v0.0.1.mjs";
+
+// pnp:/home/mamluk/3pass/esm-pwa/libs/layouts/dashboardLayout.mjs
+import { React as React38, useState as useState12 } from "/libs/vendors-v0.0.1.mjs";
+var DashboardLayout = ({ children }) => {
+  const [sidebarOpen, setSidebarOpen] = useState12(false);
+  return /* @__PURE__ */ React38.createElement("div", {
+    className: "flex h-screen overflow-hidden"
+  }, /* @__PURE__ */ React38.createElement(Sidebar, {
+    sidebarOpen,
+    setSidebarOpen
+  }), /* @__PURE__ */ React38.createElement("div", {
+    className: "relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden"
+  }, /* @__PURE__ */ React38.createElement(Header, {
+    sidebarOpen,
+    setSidebarOpen
+  }), /* @__PURE__ */ React38.createElement("main", null, children)));
+};
+
+// pnp:/home/mamluk/3pass/esm-pwa/pkgs/3stats/dashboard/utils.mjs
+var epochSeconds = () => Math.round(Date.now() / 1e3);
+var parseResp = (resp) => {
+  const chunks = resp.split("\n");
+  const data = chunks.map((chunk) => {
+    try {
+      const { day, eventsCount } = JSON.parse(chunk);
+      const time = day;
+      const dataPoint = { time, amount: eventsCount };
+      return dataPoint;
+    } catch (parseErr) {
+      console.log({ parseErr });
+      return {};
+    }
+  });
+  return data;
+};
+var parseGeoResp = (resp) => {
+  const chunks = resp.split("\n");
+  const data = chunks.map((chunk) => {
+    try {
+      const dataPoint = JSON.parse(chunk);
+      return dataPoint;
+    } catch (parseErr) {
+      console.log({ parseErr });
+      return {};
+    }
+  });
+  return data;
+};
+
+// pnp:/home/mamluk/3pass/esm-pwa/pkgs/3stats/dashboard/Controls.mjs
+import { React as React40, useState as useState14, useEffect as useEffect19 } from "/libs/vendors-v0.0.1.mjs";
+
+// pnp:/home/mamluk/3pass/esm-pwa/pkgs/3stats/dashboard/ItemFilter.mjs
+import { React as React39, useState as useState13, useRef as useRef17, useEffect as useEffect18 } from "/libs/vendors-v0.0.1.mjs";
+var ItemFilter = ({
+  align,
+  trackedItems,
+  setTrackedItems: setTrackedItems2,
+  setAddLandModal: setAddLandModal2
+}) => {
+  const [dropdownOpen, setDropdownOpen] = useState13(false);
+  const [selectedItems, setSelected] = useState13([]);
+  const trigger = useRef17(null);
+  const dropdown = useRef17(null);
+  const deleteSelected = () => {
+    let tempArray = trackedItems;
+    console.log({ selectedItems });
+    for (const deletedItem of selectedItems) {
+      tempArray = tempArray.filter((item) => item !== deletedItem);
+    }
+    setTrackedItems2(tempArray);
+  };
+  const selectItem = (item) => {
+    setSelected([...selectedItems, item]);
+  };
+  useEffect18(() => {
+    const clickHandler = ({ target }) => {
+      if (!dropdown.current)
+        return;
+      if (!dropdownOpen || dropdown.current.contains(target) || trigger.current.contains(target))
+        return;
+      setDropdownOpen(false);
+    };
+    document.addEventListener("click", clickHandler);
+    return () => document.removeEventListener("click", clickHandler);
+  });
+  useEffect18(() => {
+    const keyHandler = ({ keyCode }) => {
+      if (!dropdownOpen || keyCode !== 27)
+        return;
+      setDropdownOpen(false);
+    };
+    document.addEventListener("keydown", keyHandler);
+    return () => document.removeEventListener("keydown", keyHandler);
+  });
+  return /* @__PURE__ */ React39.createElement(React39.Fragment, null, /* @__PURE__ */ React39.createElement("div", {
+    className: "relative inline-flex"
+  }, /* @__PURE__ */ React39.createElement("button", {
+    ref: trigger,
+    className: "btn bg-white border-slate-200 hover:border-slate-300 text-slate-500 hover:text-slate-600",
+    "aria-haspopup": "true",
+    onClick: () => setDropdownOpen(!dropdownOpen),
+    "aria-expanded": dropdownOpen
+  }, /* @__PURE__ */ React39.createElement("span", {
+    className: "ml-2 mr-2"
+  }, "Item Filters"), /* @__PURE__ */ React39.createElement("span", {
+    className: "sr-only"
+  }, "Filter"), /* @__PURE__ */ React39.createElement("wbr", null), /* @__PURE__ */ React39.createElement("svg", {
+    className: "w-4 h-4 fill-current",
+    viewBox: "0 0 16 16"
+  }, /* @__PURE__ */ React39.createElement("path", {
+    d: "M9 15H7a1 1 0 010-2h2a1 1 0 010 2zM11 11H5a1 1 0 010-2h6a1 1 0 010 2zM13 7H3a1 1 0 010-2h10a1 1 0 010 2zM15 3H1a1 1 0 010-2h14a1 1 0 010 2z"
+  }))), /* @__PURE__ */ React39.createElement(Transition, {
+    show: dropdownOpen,
+    tag: "div",
+    className: `origin-top-right z-10 absolute top-full min-w-56 bg-white border border-slate-200 pt-1.5 rounded shadow-lg overflow-hidden mt-1 ${align === "right" ? "right-0" : "left-0"}`,
+    enter: "transition ease-out duration-200 transform",
+    enterStart: "opacity-0 -translate-y-2",
+    enterEnd: "opacity-100 translate-y-0",
+    leave: "transition ease-out duration-200",
+    leaveStart: "opacity-100",
+    leaveEnd: "opacity-0"
+  }, /* @__PURE__ */ React39.createElement("div", {
+    ref: dropdown
+  }, /* @__PURE__ */ React39.createElement("div", {
+    className: "text-xs font-semibold text-slate-400 uppercase pt-1.5 pb-2 px-4"
+  }, "Filters"), /* @__PURE__ */ React39.createElement("ul", {
+    className: "mb-4"
+  }, trackedItems.map((item, index) => /* @__PURE__ */ React39.createElement("li", {
+    className: "py-1 px-3",
+    key: index
+  }, /* @__PURE__ */ React39.createElement("label", {
+    className: "flex items-center"
+  }, /* @__PURE__ */ React39.createElement("input", {
+    type: "checkbox",
+    className: "form-checkbox",
+    onClick: (se) => {
+      selectItem(item);
+    }
+  }), /* @__PURE__ */ React39.createElement("span", {
+    className: "text-sm font-medium ml-2"
+  }, item))))), /* @__PURE__ */ React39.createElement("div", {
+    className: "py-2 px-3 border-t border-slate-200 bg-slate-50"
+  }, /* @__PURE__ */ React39.createElement("ul", {
+    className: "flex items-center justify-between"
+  }, /* @__PURE__ */ React39.createElement("li", null, /* @__PURE__ */ React39.createElement("button", {
+    className: "btn-xs bg-rose-500 hover:bg-rose-600 border-slate-200 hover:border-slate-300 text-white",
+    onClick: (e) => deleteSelected()
+  }, "Delete")), /* @__PURE__ */ React39.createElement("li", null, /* @__PURE__ */ React39.createElement("button", {
+    className: "btn-xs bg-indigo-500 hover:bg-indigo-600 text-white",
+    onClick: (e) => {
+      e.stopPropagation();
+      setDropdownOpen(false);
+      setAddLandModal2(true);
+    },
+    onBlur: () => setDropdownOpen(false)
+  }, "Add Item"))))))));
+};
+
+// pnp:/home/mamluk/3pass/esm-pwa/pkgs/3stats/dashboard/Controls.mjs
+var Controls = ({ query, setQuery }) => {
+  const [trackedItems, setTrackedItems2] = useState14(["dcl:-23,30"]);
+  const [endDate, setEndDate] = useState14(epochSeconds());
+  const [startDate, setStartDate] = useState14(epochSeconds() - 14 * 60 * 60 * 24);
+  const [eventType, setEventType] = useState14("landInteraction");
+  const [addLandModal2, setAddLandModal2] = useState14(false);
+  const updateQuery = () => {
+    const itemId = "dcl:-23,30";
+    const newQuery = new URLSearchParams({ itemId, eventType, startDate, endDate });
+    setQuery(newQuery);
+  };
+  const modalHandler2 = (e) => {
+    e.preventDefault();
+    const xCoord = e.target[0].value;
+    const yCoord = e.target[1].value;
+    console.log({ xCoord });
+    setTrackedItems2([...trackedItems, `dcl:${xCoord},${yCoord}`]);
+    setAddLandModal2(false);
+  };
+  useEffect19(updateQuery, [trackedItems, startDate, endDate]);
+  return /* @__PURE__ */ React40.createElement(React40.Fragment, null, /* @__PURE__ */ React40.createElement(ModalAction, {
+    id: "newsletter-modal",
+    modalOpen: addLandModal2,
+    setModalOpen: setAddLandModal2
+  }, /* @__PURE__ */ React40.createElement("div", {
+    className: "mb-2 text-center"
+  }, /* @__PURE__ */ React40.createElement("div", {
+    className: "mb-3"
+  }, /* @__PURE__ */ React40.createElement("svg", {
+    className: "inline-flex w-12 h-12 rounded-full shrink-0 fill-current",
+    viewBox: "0 0 48 48"
+  }, /* @__PURE__ */ React40.createElement("rect", {
+    className: "text-indigo-100",
+    width: "48",
+    height: "48",
+    rx: "24"
+  }), /* @__PURE__ */ React40.createElement("path", {
+    className: "text-indigo-300",
+    d: "M19 16h7a8 8 0 110 16h-7V16z"
+  }), /* @__PURE__ */ React40.createElement("path", {
+    className: "text-indigo-500",
+    d: "M26 24l-7-6v5h-8v2h8v5z"
+  }))), /* @__PURE__ */ React40.createElement("div", {
+    className: "text-lg font-semibold text-slate-800"
+  }, "Add land to tracking!")), /* @__PURE__ */ React40.createElement("div", {
+    className: "text-center"
+  }, /* @__PURE__ */ React40.createElement("div", {
+    className: "text-sm mb-6"
+  }, "Insert the x and y coordinates of your DCL"), /* @__PURE__ */ React40.createElement("form", {
+    className: "flex max-w-sm m-auto",
+    onSubmit: modalHandler2
+  }, /* @__PURE__ */ React40.createElement("div", {
+    className: "grow mr-2"
+  }, /* @__PURE__ */ React40.createElement("label", {
+    htmlFor: "xCoord",
+    className: "sr-only"
+  }, "X coordinates"), /* @__PURE__ */ React40.createElement("input", {
+    id: "xCoord",
+    className: "form-input w-full px-2 py-1",
+    type: "number"
+  })), /* @__PURE__ */ React40.createElement("div", {
+    className: "grow mr-2"
+  }, /* @__PURE__ */ React40.createElement("label", {
+    htmlFor: "subscribe-form",
+    className: "sr-only"
+  }, "Y coordinates"), /* @__PURE__ */ React40.createElement("input", {
+    id: "yCoord",
+    className: "form-input w-full px-2 py-1",
+    type: "number"
+  })), /* @__PURE__ */ React40.createElement("button", {
+    type: "submit",
+    className: "btn-sm bg-indigo-500 hover:bg-indigo-600 text-white whitespace-nowrap"
+  }, "Add")), /* @__PURE__ */ React40.createElement("div", {
+    className: "text-xs text-slate-500 italic mt-3"
+  }, "I respect your privacy. No spam. Unsubscribe at any time!"))), /* @__PURE__ */ React40.createElement("div", {
+    className: "grid grid-flow-col sm:auto-cols-max justify-start sm:justify-end gap-2"
+  }, /* @__PURE__ */ React40.createElement("button", {
+    className: "btn bg-white border-slate-200 hover:border-slate-300",
+    onClick: (e) => {
+      e.stopPropagation();
+      setAddLandModal2(true);
+    }
+  }, /* @__PURE__ */ React40.createElement("svg", {
+    className: "w-4 h-4 fill-current text-slate-500 shrink-0",
+    viewBox: "0 0 16 16"
+  }, /* @__PURE__ */ React40.createElement("path", {
+    d: "M11.7.3c-.4-.4-1-.4-1.4 0l-10 10c-.2.2-.3.4-.3.7v4c0 .6.4 1 1 1h4c.3 0 .5-.1.7-.3l10-10c.4-.4.4-1 0-1.4l-4-4zM4.6 14H2v-2.6l6-6L10.6 8l-6 6zM12 6.6L9.4 4 11 2.4 13.6 5 12 6.6z"
+  }))), /* @__PURE__ */ React40.createElement(ItemFilter, {
+    align: "right",
+    ...{ trackedItems, setTrackedItems: setTrackedItems2, setAddLandModal: setAddLandModal2 }
+  }), /* @__PURE__ */ React40.createElement(Datepicker, {
+    align: "right"
+  })));
+};
+
+// pnp:/home/mamluk/3pass/esm-pwa/pkgs/3stats/cards/MainCard.mjs
+import { React as React41 } from "/libs/vendors-v0.0.1.mjs";
+var MainCard = ({ dataSet, children }) => {
+  const labels = [];
+  const data = [];
+  dataSet.map(({ amount, time }) => {
+    labels.push(time);
+    data.push(amount);
+  });
+  const chartData = {
+    labels,
+    datasets: [
+      {
+        label: "Current",
+        data,
+        fill: true,
+        backgroundColor: `rgba(${hexToRGB(tailwindConfig().theme.colors.blue[500])}, 0.08)`,
+        borderColor: tailwindConfig().theme.colors.indigo[500],
+        borderWidth: 2,
+        tension: 0,
+        pointRadius: 0,
+        pointHoverRadius: 3,
+        pointBackgroundColor: tailwindConfig().theme.colors.indigo[500],
+        clip: 20
+      }
+    ]
+  };
+  return /* @__PURE__ */ React41.createElement("div", {
+    className: "flex flex-col col-span-full xl:col-span-8 bg-white shadow-lg rounded-sm border border-slate-200"
+  }, /* @__PURE__ */ React41.createElement("header", {
+    className: "px-5 py-4 border-b border-slate-100 flex items-center"
+  }, /* @__PURE__ */ React41.createElement("h2", {
+    className: "font-semibold text-slate-800"
+  }, "Analytics")), children, /* @__PURE__ */ React41.createElement("div", {
+    className: "px-5 py-1"
+  }, /* @__PURE__ */ React41.createElement("div", {
+    className: "flex flex-wrap"
+  }, /* @__PURE__ */ React41.createElement("div", {
+    className: "flex items-center py-2"
+  }, /* @__PURE__ */ React41.createElement("div", {
+    className: "mr-5"
+  }, /* @__PURE__ */ React41.createElement("div", {
+    className: "flex items-center"
+  }, /* @__PURE__ */ React41.createElement("div", {
+    className: "text-3xl font-bold text-slate-800 mr-2"
+  }, "0 Eur"), /* @__PURE__ */ React41.createElement("div", {
+    className: "text-sm font-medium text-emerald-500"
+  }, "+0%"), /* @__PURE__ */ React41.createElement(Tooltip, {
+    className: "ml-2"
+  }, /* @__PURE__ */ React41.createElement("div", {
+    className: "text-xs text-center whitespace-nowrap"
+  }, "Built with ", /* @__PURE__ */ React41.createElement("a", {
+    className: "underline",
+    href: "https://www.chartjs.org/",
+    target: "_blank",
+    rel: "noreferrer"
+  }, "Chart.js")))), /* @__PURE__ */ React41.createElement("div", {
+    className: "text-sm text-slate-500"
+  }, "Total Transactions")), /* @__PURE__ */ React41.createElement("div", {
+    className: "hidden md:block w-px h-8 bg-slate-200 mr-5",
+    "aria-hidden": "true"
+  })), /* @__PURE__ */ React41.createElement("div", {
+    className: "flex items-center py-2"
+  }, /* @__PURE__ */ React41.createElement("div", {
+    className: "mr-5"
+  }, /* @__PURE__ */ React41.createElement("div", {
+    className: "flex items-center"
+  }, /* @__PURE__ */ React41.createElement("div", {
+    className: "text-3xl font-bold text-slate-800 mr-2"
+  }, "0"), /* @__PURE__ */ React41.createElement("div", {
+    className: "text-sm font-medium text-emerald-500"
+  }, "+0%"), /* @__PURE__ */ React41.createElement(Tooltip, {
+    className: "ml-2"
+  }, /* @__PURE__ */ React41.createElement("div", {
+    className: "text-xs text-center whitespace-nowrap"
+  }, "Built with ", /* @__PURE__ */ React41.createElement("a", {
+    className: "underline",
+    href: "https://www.chartjs.org/",
+    target: "_blank",
+    rel: "noreferrer"
+  }, "Chart.js")))), /* @__PURE__ */ React41.createElement("div", {
+    className: "text-sm text-slate-500"
+  }, "Total Interactions")), /* @__PURE__ */ React41.createElement("div", {
+    className: "hidden md:block w-px h-8 bg-slate-200 mr-5",
+    "aria-hidden": "true"
+  })), /* @__PURE__ */ React41.createElement("div", {
+    className: "flex items-center py-2"
+  }, /* @__PURE__ */ React41.createElement("div", {
+    className: "mr-5"
+  }, /* @__PURE__ */ React41.createElement("div", {
+    className: "flex items-center"
+  }, /* @__PURE__ */ React41.createElement("div", {
+    className: "text-3xl font-bold text-slate-800 mr-2"
+  }, "0"), /* @__PURE__ */ React41.createElement("div", {
+    className: "text-sm font-medium text-emerald-500"
+  }, "+0%"), /* @__PURE__ */ React41.createElement(Tooltip, {
+    className: "ml-2"
+  }, /* @__PURE__ */ React41.createElement("div", {
+    className: "text-xs text-center whitespace-nowrap"
+  }, "Built with ", /* @__PURE__ */ React41.createElement("a", {
+    className: "underline",
+    href: "https://www.chartjs.org/",
+    target: "_blank",
+    rel: "noreferrer"
+  }, "Chart.js")))), /* @__PURE__ */ React41.createElement("div", {
+    className: "text-sm text-slate-500"
+  }, "Total Visits")), /* @__PURE__ */ React41.createElement("div", {
+    className: "hidden md:block w-px h-8 bg-slate-200 mr-5",
+    "aria-hidden": "true"
+  })), /* @__PURE__ */ React41.createElement("div", {
+    className: "flex items-center"
+  }, /* @__PURE__ */ React41.createElement("div", null, /* @__PURE__ */ React41.createElement("div", {
+    className: "flex items-center"
+  }, /* @__PURE__ */ React41.createElement("div", {
+    className: "text-3xl font-bold text-slate-800 mr-2"
+  }, "2m 56s"), /* @__PURE__ */ React41.createElement("div", {
+    className: "text-sm font-medium text-amber-500"
+  }, "+0%"), /* @__PURE__ */ React41.createElement(Tooltip, {
+    className: "ml-2"
+  }, /* @__PURE__ */ React41.createElement("div", {
+    className: "text-xs text-center whitespace-nowrap"
+  }, "Built with ", /* @__PURE__ */ React41.createElement("a", {
+    className: "underline",
+    href: "https://www.chartjs.org/",
+    target: "_blank",
+    rel: "noreferrer"
+  }, "Chart.js")))), /* @__PURE__ */ React41.createElement("div", {
+    className: "text-sm text-slate-500"
+  }, "Visit Duration"))))), /* @__PURE__ */ React41.createElement("div", {
+    className: "grow"
+  }, /* @__PURE__ */ React41.createElement(LineChart03, {
     data: chartData,
     width: 800,
     height: 300
   })));
 };
 
-// pnp:/home/mamluk/3pass/esm-pwa/pkgs/3stats/cards/AnalyticsCard02.mjs
-import { React as React23, Link as Link6 } from "/libs/vendors-v0.0.1.mjs";
-var AnalyticsCard02 = () => {
+// pnp:/home/mamluk/3pass/esm-pwa/pkgs/3stats/cards/LandPicker.mjs
+import { React as React42, Link as Link10, useState as useState15 } from "/libs/vendors-v0.0.1.mjs";
+var LandPicker = ({ trackedItems, setTrackedItemsm, setAddLandModal: setAddLandModal2 }) => {
+  const deleteItem = (deletedItem) => {
+    const newArray = trackedItems.filter((item) => item !== deletedItem);
+    setTrackedItems(newArray);
+  };
+  return /* @__PURE__ */ React42.createElement("div", {
+    className: "flex flex-col col-span-full xl:col-span-4 bg-white shadow-lg rounded-sm border border-slate-200"
+  }, /* @__PURE__ */ React42.createElement("header", {
+    className: "px-5 py-4 border-b border-slate-100 flex items-center"
+  }, /* @__PURE__ */ React42.createElement("h2", {
+    className: "font-semibold text-slate-800"
+  }, "Land Selector"), /* @__PURE__ */ React42.createElement(Tooltip, {
+    className: "ml-2"
+  }, /* @__PURE__ */ React42.createElement("div", {
+    className: "text-xs text-center whitespace-nowrap"
+  }, "Built with ", /* @__PURE__ */ React42.createElement("a", {
+    className: "underline",
+    href: "https://www.chartjs.org/",
+    target: "_blank",
+    rel: "noreferrer"
+  }, "Chart.js")))), /* @__PURE__ */ React42.createElement("div", {
+    className: "flex flex-col h-full"
+  }, /* @__PURE__ */ React42.createElement("div", {
+    className: "grow px-5 pt-3 pb-1"
+  }, /* @__PURE__ */ React42.createElement("div", {
+    className: "overflow-x-auto"
+  }, /* @__PURE__ */ React42.createElement("table", {
+    className: "table-auto w-full"
+  }, /* @__PURE__ */ React42.createElement("thead", {
+    className: "text-xs uppercase text-slate-400"
+  }, /* @__PURE__ */ React42.createElement("tr", null, /* @__PURE__ */ React42.createElement("th", {
+    className: "py-2"
+  }, /* @__PURE__ */ React42.createElement("div", {
+    className: "font-semibold text-left"
+  }, "Active land")), /* @__PURE__ */ React42.createElement("th", {
+    className: "py-2"
+  }, /* @__PURE__ */ React42.createElement("div", {
+    className: "font-semibold text-right"
+  }, "Delete")))), /* @__PURE__ */ React42.createElement("tbody", {
+    className: "text-sm divide-y divide-slate-100"
+  }, trackedItems.map((item) => /* @__PURE__ */ React42.createElement("tr", {
+    key: item
+  }, /* @__PURE__ */ React42.createElement("td", {
+    className: "py-2"
+  }, /* @__PURE__ */ React42.createElement("div", {
+    className: "text-left"
+  }, item)), /* @__PURE__ */ React42.createElement("td", {
+    className: "py-2 text-right"
+  }, /* @__PURE__ */ React42.createElement("button", {
+    className: "btn border-slate-200 hover:border-slate-300 text-rose-500",
+    onClick: (e) => deleteItem(item)
+  }, /* @__PURE__ */ React42.createElement("svg", {
+    className: "w-4 h-4 fill-current shrink-0",
+    viewBox: "0 0 16 16"
+  }, /* @__PURE__ */ React42.createElement("path", {
+    d: "M5 7h2v6H5V7zm4 0h2v6H9V7zm3-6v2h4v2h-1v10c0 .6-.4 1-1 1H2c-.6 0-1-.4-1-1V5H0V3h4V1c0-.6.4-1 1-1h6c.6 0 1 .4 1 1zM6 2v1h4V2H6zm7 3H3v9h10V5z"
+  })))))))))), /* @__PURE__ */ React42.createElement("div", {
+    className: "text-right px-5 pb-4"
+  }, /* @__PURE__ */ React42.createElement(Link10, {
+    className: "text-sm font-medium text-indigo-500 hover:text-indigo-600",
+    to: "",
+    onClick: (e) => {
+      e.stopPropagation();
+      setAddLandModal2(true);
+    }
+  }, "Add Land"))));
+};
+
+// pnp:/home/mamluk/3pass/esm-pwa/pkgs/3stats/cards/GeoCard.mjs
+import { React as React43, Link as Link11 } from "/libs/vendors-v0.0.1.mjs";
+var GeoCard = ({ geoDataSet }) => {
+  const otherCount = geoDataSet.splice(9).reduce((sum, { count = 0 }) => sum + count, 0);
+  return /* @__PURE__ */ React43.createElement("div", {
+    className: "flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white shadow-lg rounded-sm border border-slate-200"
+  }, /* @__PURE__ */ React43.createElement("header", {
+    className: "px-5 py-4 border-b border-slate-100"
+  }, /* @__PURE__ */ React43.createElement("h2", {
+    className: "font-semibold text-slate-800"
+  }, "Top Countries")), /* @__PURE__ */ React43.createElement("div", {
+    className: "grow p-3"
+  }, /* @__PURE__ */ React43.createElement("div", {
+    className: "flex flex-col h-full"
+  }, /* @__PURE__ */ React43.createElement("div", {
+    className: "grow"
+  }, /* @__PURE__ */ React43.createElement("ul", {
+    className: "flex justify-between text-xs uppercase text-slate-400 font-semibold px-2 space-x-2"
+  }, /* @__PURE__ */ React43.createElement("li", null, "Source"), /* @__PURE__ */ React43.createElement("li", null, "Sessions")), /* @__PURE__ */ React43.createElement("ul", {
+    className: "space-y-1 text-sm text-slate-800 mt-3 mb-4"
+  }, geoDataSet.map(({ count, countryCode, countryShare }, index) => /* @__PURE__ */ React43.createElement("li", {
+    className: "relative px-2 py-1",
+    key: index
+  }, /* @__PURE__ */ React43.createElement("div", {
+    className: "absolute inset-0 bg-sky-100",
+    "aria-hidden": "true",
+    style: { width: `${count}%` }
+  }), /* @__PURE__ */ React43.createElement("div", {
+    className: "relative flex justify-between space-x-2"
+  }, /* @__PURE__ */ React43.createElement("div", null, countryCode), /* @__PURE__ */ React43.createElement("div", {
+    className: "font-medium"
+  }, count)))), /* @__PURE__ */ React43.createElement("li", {
+    className: "relative px-2 py-1",
+    key: "other"
+  }, /* @__PURE__ */ React43.createElement("div", {
+    className: "absolute inset-0 bg-sky-100",
+    "aria-hidden": "true",
+    style: { width: `${otherCount}%` }
+  }), /* @__PURE__ */ React43.createElement("div", {
+    className: "relative flex justify-between space-x-2"
+  }, /* @__PURE__ */ React43.createElement("div", null, "Other"), /* @__PURE__ */ React43.createElement("div", {
+    className: "font-medium"
+  }, otherCount))))), /* @__PURE__ */ React43.createElement("div", {
+    className: "text-center pt-4 pb-1 border-t border-slate-100"
+  }, /* @__PURE__ */ React43.createElement(Link11, {
+    className: "text-sm font-medium text-indigo-500 hover:text-indigo-600",
+    to: "#0"
+  }, "Countries Report ->")))));
+};
+
+// pnp:/home/mamluk/3pass/esm-pwa/pkgs/3stats/cards/Transactions.mjs
+import { React as React44 } from "/libs/vendors-v0.0.1.mjs";
+var TransactionsCard = () => {
+  return /* @__PURE__ */ React44.createElement("div", {
+    className: "col-span-full xl:col-span-8 bg-white shadow-lg rounded-sm border border-slate-200"
+  }, /* @__PURE__ */ React44.createElement("header", {
+    className: "px-5 py-4 border-b border-slate-100"
+  }, /* @__PURE__ */ React44.createElement("h2", {
+    className: "font-semibold text-slate-800"
+  }, "Top Channels")), /* @__PURE__ */ React44.createElement("div", {
+    className: "p-3"
+  }, /* @__PURE__ */ React44.createElement("div", {
+    className: "overflow-x-auto"
+  }, /* @__PURE__ */ React44.createElement("table", {
+    className: "table-auto w-full"
+  }, /* @__PURE__ */ React44.createElement("thead", {
+    className: "text-xs uppercase text-slate-400 bg-slate-50 rounded-sm"
+  }, /* @__PURE__ */ React44.createElement("tr", null, /* @__PURE__ */ React44.createElement("th", {
+    className: "p-2"
+  }, /* @__PURE__ */ React44.createElement("div", {
+    className: "font-semibold text-left"
+  }, "Source")), /* @__PURE__ */ React44.createElement("th", {
+    className: "p-2"
+  }, /* @__PURE__ */ React44.createElement("div", {
+    className: "font-semibold text-center"
+  }, "Visitors")), /* @__PURE__ */ React44.createElement("th", {
+    className: "p-2"
+  }, /* @__PURE__ */ React44.createElement("div", {
+    className: "font-semibold text-center"
+  }, "Revenues")), /* @__PURE__ */ React44.createElement("th", {
+    className: "p-2"
+  }, /* @__PURE__ */ React44.createElement("div", {
+    className: "font-semibold text-center"
+  }, "Sales")), /* @__PURE__ */ React44.createElement("th", {
+    className: "p-2"
+  }, /* @__PURE__ */ React44.createElement("div", {
+    className: "font-semibold text-center"
+  }, "Conversion")))), /* @__PURE__ */ React44.createElement("tbody", {
+    className: "text-sm font-medium divide-y divide-slate-100"
+  }, /* @__PURE__ */ React44.createElement("tr", null, /* @__PURE__ */ React44.createElement("td", {
+    className: "p-2"
+  }, /* @__PURE__ */ React44.createElement("div", {
+    className: "flex items-center"
+  }, /* @__PURE__ */ React44.createElement("svg", {
+    className: "shrink-0 mr-2 sm:mr-3",
+    width: "36",
+    height: "36",
+    viewBox: "0 0 36 36"
+  }, /* @__PURE__ */ React44.createElement("circle", {
+    fill: "#24292E",
+    cx: "18",
+    cy: "18",
+    r: "18"
+  }), /* @__PURE__ */ React44.createElement("path", {
+    d: "M18 10.2c-4.4 0-8 3.6-8 8 0 3.5 2.3 6.5 5.5 7.6.4.1.5-.2.5-.4V24c-2.2.5-2.7-1-2.7-1-.4-.9-.9-1.2-.9-1.2-.7-.5.1-.5.1-.5.8.1 1.2.8 1.2.8.7 1.3 1.9.9 2.3.7.1-.5.3-.9.5-1.1-1.8-.2-3.6-.9-3.6-4 0-.9.3-1.6.8-2.1-.1-.2-.4-1 .1-2.1 0 0 .7-.2 2.2.8.6-.2 1.3-.3 2-.3s1.4.1 2 .3c1.5-1 2.2-.8 2.2-.8.4 1.1.2 1.9.1 2.1.5.6.8 1.3.8 2.1 0 3.1-1.9 3.7-3.7 3.9.3.4.6.9.6 1.6v2.2c0 .2.1.5.6.4 3.2-1.1 5.5-4.1 5.5-7.6-.1-4.4-3.7-8-8.1-8z",
+    fill: "#FFF"
+  })), /* @__PURE__ */ React44.createElement("div", {
+    className: "text-slate-800"
+  }, "Github.com"))), /* @__PURE__ */ React44.createElement("td", {
+    className: "p-2"
+  }, /* @__PURE__ */ React44.createElement("div", {
+    className: "text-center"
+  }, "2.4K")), /* @__PURE__ */ React44.createElement("td", {
+    className: "p-2"
+  }, /* @__PURE__ */ React44.createElement("div", {
+    className: "text-center text-emerald-500"
+  }, "$3,877")), /* @__PURE__ */ React44.createElement("td", {
+    className: "p-2"
+  }, /* @__PURE__ */ React44.createElement("div", {
+    className: "text-center"
+  }, "267")), /* @__PURE__ */ React44.createElement("td", {
+    className: "p-2"
+  }, /* @__PURE__ */ React44.createElement("div", {
+    className: "text-center text-sky-500"
+  }, "4.7%"))), /* @__PURE__ */ React44.createElement("tr", null, /* @__PURE__ */ React44.createElement("td", {
+    className: "p-2"
+  }, /* @__PURE__ */ React44.createElement("div", {
+    className: "flex items-center"
+  }, /* @__PURE__ */ React44.createElement("svg", {
+    className: "shrink-0 mr-2 sm:mr-3",
+    width: "36",
+    height: "36",
+    viewBox: "0 0 36 36"
+  }, /* @__PURE__ */ React44.createElement("circle", {
+    fill: "#1DA1F2",
+    cx: "18",
+    cy: "18",
+    r: "18"
+  }), /* @__PURE__ */ React44.createElement("path", {
+    d: "M26 13.5c-.6.3-1.2.4-1.9.5.7-.4 1.2-1 1.4-1.8-.6.4-1.3.6-2.1.8-.6-.6-1.5-1-2.4-1-1.7 0-3.2 1.5-3.2 3.3 0 .3 0 .5.1.7-2.7-.1-5.2-1.4-6.8-3.4-.3.5-.4 1-.4 1.7 0 1.1.6 2.1 1.5 2.7-.5 0-1-.2-1.5-.4 0 1.6 1.1 2.9 2.6 3.2-.3.1-.6.1-.9.1-.2 0-.4 0-.6-.1.4 1.3 1.6 2.3 3.1 2.3-1.1.9-2.5 1.4-4.1 1.4H10c1.5.9 3.2 1.5 5 1.5 6 0 9.3-5 9.3-9.3v-.4c.7-.5 1.3-1.1 1.7-1.8z",
+    fill: "#FFF",
+    fillRule: "nonzero"
+  })), /* @__PURE__ */ React44.createElement("div", {
+    className: "text-slate-800"
+  }, "Twitter"))), /* @__PURE__ */ React44.createElement("td", {
+    className: "p-2"
+  }, /* @__PURE__ */ React44.createElement("div", {
+    className: "text-center"
+  }, "2.2K")), /* @__PURE__ */ React44.createElement("td", {
+    className: "p-2"
+  }, /* @__PURE__ */ React44.createElement("div", {
+    className: "text-center text-emerald-500"
+  }, "$3,426")), /* @__PURE__ */ React44.createElement("td", {
+    className: "p-2"
+  }, /* @__PURE__ */ React44.createElement("div", {
+    className: "text-center"
+  }, "249")), /* @__PURE__ */ React44.createElement("td", {
+    className: "p-2"
+  }, /* @__PURE__ */ React44.createElement("div", {
+    className: "text-center text-sky-500"
+  }, "4.4%"))), /* @__PURE__ */ React44.createElement("tr", null, /* @__PURE__ */ React44.createElement("td", {
+    className: "p-2"
+  }, /* @__PURE__ */ React44.createElement("div", {
+    className: "flex items-center"
+  }, /* @__PURE__ */ React44.createElement("svg", {
+    className: "shrink-0 mr-2 sm:mr-3",
+    width: "36",
+    height: "36",
+    viewBox: "0 0 36 36"
+  }, /* @__PURE__ */ React44.createElement("circle", {
+    fill: "#EA4335",
+    cx: "18",
+    cy: "18",
+    r: "18"
+  }), /* @__PURE__ */ React44.createElement("path", {
+    d: "M18 17v2.4h4.1c-.2 1-1.2 3-4 3-2.4 0-4.3-2-4.3-4.4 0-2.4 2-4.4 4.3-4.4 1.4 0 2.3.6 2.8 1.1l1.9-1.8C21.6 11.7 20 11 18.1 11c-3.9 0-7 3.1-7 7s3.1 7 7 7c4 0 6.7-2.8 6.7-6.8 0-.5 0-.8-.1-1.2H18z",
+    fill: "#FFF",
+    fillRule: "nonzero"
+  })), /* @__PURE__ */ React44.createElement("div", {
+    className: "text-slate-800"
+  }, "Google (organic)"))), /* @__PURE__ */ React44.createElement("td", {
+    className: "p-2"
+  }, /* @__PURE__ */ React44.createElement("div", {
+    className: "text-center"
+  }, "2.0K")), /* @__PURE__ */ React44.createElement("td", {
+    className: "p-2"
+  }, /* @__PURE__ */ React44.createElement("div", {
+    className: "text-center text-emerald-500"
+  }, "$2,444")), /* @__PURE__ */ React44.createElement("td", {
+    className: "p-2"
+  }, /* @__PURE__ */ React44.createElement("div", {
+    className: "text-center"
+  }, "224")), /* @__PURE__ */ React44.createElement("td", {
+    className: "p-2"
+  }, /* @__PURE__ */ React44.createElement("div", {
+    className: "text-center text-sky-500"
+  }, "4.2%"))), /* @__PURE__ */ React44.createElement("tr", null, /* @__PURE__ */ React44.createElement("td", {
+    className: "p-2"
+  }, /* @__PURE__ */ React44.createElement("div", {
+    className: "flex items-center"
+  }, /* @__PURE__ */ React44.createElement("svg", {
+    className: "shrink-0 mr-2 sm:mr-3",
+    width: "36",
+    height: "36",
+    viewBox: "0 0 36 36"
+  }, /* @__PURE__ */ React44.createElement("circle", {
+    fill: "#4BC9FF",
+    cx: "18",
+    cy: "18",
+    r: "18"
+  }), /* @__PURE__ */ React44.createElement("path", {
+    d: "M26 14.3c-.1 1.6-1.2 3.7-3.3 6.4-2.2 2.8-4 4.2-5.5 4.2-.9 0-1.7-.9-2.4-2.6C14 19.9 13.4 15 12 15c-.1 0-.5.3-1.2.8l-.8-1c.8-.7 3.5-3.4 4.7-3.5 1.2-.1 2 .7 2.3 2.5.3 2 .8 6.1 1.8 6.1.9 0 2.5-3.4 2.6-4 .1-.9-.3-1.9-2.3-1.1.8-2.6 2.3-3.8 4.5-3.8 1.7.1 2.5 1.2 2.4 3.3z",
+    fill: "#FFF",
+    fillRule: "nonzero"
+  })), /* @__PURE__ */ React44.createElement("div", {
+    className: "text-slate-800"
+  }, "Vimeo.com"))), /* @__PURE__ */ React44.createElement("td", {
+    className: "p-2"
+  }, /* @__PURE__ */ React44.createElement("div", {
+    className: "text-center"
+  }, "1.9K")), /* @__PURE__ */ React44.createElement("td", {
+    className: "p-2"
+  }, /* @__PURE__ */ React44.createElement("div", {
+    className: "text-center text-emerald-500"
+  }, "$2,236")), /* @__PURE__ */ React44.createElement("td", {
+    className: "p-2"
+  }, /* @__PURE__ */ React44.createElement("div", {
+    className: "text-center"
+  }, "220")), /* @__PURE__ */ React44.createElement("td", {
+    className: "p-2"
+  }, /* @__PURE__ */ React44.createElement("div", {
+    className: "text-center text-sky-500"
+  }, "4.2%"))), /* @__PURE__ */ React44.createElement("tr", null, /* @__PURE__ */ React44.createElement("td", {
+    className: "p-2"
+  }, /* @__PURE__ */ React44.createElement("div", {
+    className: "flex items-center"
+  }, /* @__PURE__ */ React44.createElement("svg", {
+    className: "shrink-0 mr-2 sm:mr-3",
+    width: "36",
+    height: "36",
+    viewBox: "0 0 36 36"
+  }, /* @__PURE__ */ React44.createElement("circle", {
+    fill: "#0E2439",
+    cx: "18",
+    cy: "18",
+    r: "18"
+  }), /* @__PURE__ */ React44.createElement("path", {
+    d: "M14.232 12.818V23H11.77V12.818h2.46zM15.772 23V12.818h2.462v4.087h4.012v-4.087h2.456V23h-2.456v-4.092h-4.012V23h-2.461z",
+    fill: "#E6ECF4"
+  })), /* @__PURE__ */ React44.createElement("div", {
+    className: "text-slate-800"
+  }, "Indiehackers.com"))), /* @__PURE__ */ React44.createElement("td", {
+    className: "p-2"
+  }, /* @__PURE__ */ React44.createElement("div", {
+    className: "text-center"
+  }, "1.7K")), /* @__PURE__ */ React44.createElement("td", {
+    className: "p-2"
+  }, /* @__PURE__ */ React44.createElement("div", {
+    className: "text-center text-emerald-500"
+  }, "$2,034")), /* @__PURE__ */ React44.createElement("td", {
+    className: "p-2"
+  }, /* @__PURE__ */ React44.createElement("div", {
+    className: "text-center"
+  }, "204")), /* @__PURE__ */ React44.createElement("td", {
+    className: "p-2"
+  }, /* @__PURE__ */ React44.createElement("div", {
+    className: "text-center text-sky-500"
+  }, "3.9%"))))))));
+};
+
+// pnp:/home/mamluk/3pass/esm-pwa/pkgs/3stats/cards/RealTimeCard.mjs
+import { React as React45, Link as Link12 } from "/libs/vendors-v0.0.1.mjs";
+var RealTimeCard = () => {
   const chartData = {
     labels: [
       "12-01-2020",
@@ -8451,140 +11292,152 @@ var AnalyticsCard02 = () => {
       }
     ]
   };
-  return /* @__PURE__ */ React23.createElement("div", {
+  return /* @__PURE__ */ React45.createElement("div", {
     className: "flex flex-col col-span-full xl:col-span-4 bg-white shadow-lg rounded-sm border border-slate-200"
-  }, /* @__PURE__ */ React23.createElement("header", {
+  }, /* @__PURE__ */ React45.createElement("header", {
     className: "px-5 py-4 border-b border-slate-100"
-  }, /* @__PURE__ */ React23.createElement("h2", {
+  }, /* @__PURE__ */ React45.createElement("h2", {
     className: "font-semibold text-slate-800"
-  }, "Active Users Right Now")), /* @__PURE__ */ React23.createElement("div", {
+  }, "Active Users Right Now")), /* @__PURE__ */ React45.createElement("div", {
     className: "flex flex-col h-full"
-  }, /* @__PURE__ */ React23.createElement("div", {
+  }, /* @__PURE__ */ React45.createElement("div", {
     className: "px-5 py-3"
-  }, /* @__PURE__ */ React23.createElement("div", {
+  }, /* @__PURE__ */ React45.createElement("div", {
     className: "flex items-center"
-  }, /* @__PURE__ */ React23.createElement("div", {
+  }, /* @__PURE__ */ React45.createElement("div", {
     className: "relative flex items-center justify-center w-4 h-4 rounded-full bg-rose-100 mr-3",
     "aria-hidden": "true"
-  }, /* @__PURE__ */ React23.createElement("div", {
+  }, /* @__PURE__ */ React45.createElement("div", {
     className: "absolute w-1.5 h-1.5 rounded-full bg-rose-500"
-  })), /* @__PURE__ */ React23.createElement("div", null, /* @__PURE__ */ React23.createElement("div", {
+  })), /* @__PURE__ */ React45.createElement("div", null, /* @__PURE__ */ React45.createElement("div", {
     className: "text-3xl font-bold text-slate-800 mr-2"
-  }, "347"), /* @__PURE__ */ React23.createElement("div", {
+  }, "347"), /* @__PURE__ */ React45.createElement("div", {
     className: "text-sm text-slate-500"
-  }, "Live visitors")))), /* @__PURE__ */ React23.createElement("div", null, /* @__PURE__ */ React23.createElement(LineChart01, {
+  }, "Live visitors")))), /* @__PURE__ */ React45.createElement("div", null, /* @__PURE__ */ React45.createElement(LineChart01, {
     data: chartData,
     width: 389,
     height: 70
-  })), /* @__PURE__ */ React23.createElement("div", {
+  })), /* @__PURE__ */ React45.createElement("div", {
     className: "grow px-5 pt-3 pb-1"
-  }, /* @__PURE__ */ React23.createElement("div", {
+  }, /* @__PURE__ */ React45.createElement("div", {
     className: "overflow-x-auto"
-  }, /* @__PURE__ */ React23.createElement("table", {
+  }, /* @__PURE__ */ React45.createElement("table", {
     className: "table-auto w-full"
-  }, /* @__PURE__ */ React23.createElement("thead", {
+  }, /* @__PURE__ */ React45.createElement("thead", {
     className: "text-xs uppercase text-slate-400"
-  }, /* @__PURE__ */ React23.createElement("tr", null, /* @__PURE__ */ React23.createElement("th", {
+  }, /* @__PURE__ */ React45.createElement("tr", null, /* @__PURE__ */ React45.createElement("th", {
     className: "py-2"
-  }, /* @__PURE__ */ React23.createElement("div", {
+  }, /* @__PURE__ */ React45.createElement("div", {
     className: "font-semibold text-left"
-  }, "Top pages")), /* @__PURE__ */ React23.createElement("th", {
+  }, "Top pages")), /* @__PURE__ */ React45.createElement("th", {
     className: "py-2"
-  }, /* @__PURE__ */ React23.createElement("div", {
+  }, /* @__PURE__ */ React45.createElement("div", {
     className: "font-semibold text-right"
-  }, "Active users")))), /* @__PURE__ */ React23.createElement("tbody", {
+  }, "Active users")))), /* @__PURE__ */ React45.createElement("tbody", {
     className: "text-sm divide-y divide-slate-100"
-  }, /* @__PURE__ */ React23.createElement("tr", null, /* @__PURE__ */ React23.createElement("td", {
+  }, /* @__PURE__ */ React45.createElement("tr", null, /* @__PURE__ */ React45.createElement("td", {
     className: "py-2"
-  }, /* @__PURE__ */ React23.createElement("div", {
+  }, /* @__PURE__ */ React45.createElement("div", {
     className: "text-left"
-  }, "preview.cruip.com/open-pro/")), /* @__PURE__ */ React23.createElement("td", {
+  }, "preview.cruip.com/open-pro/")), /* @__PURE__ */ React45.createElement("td", {
     className: "py-2"
-  }, /* @__PURE__ */ React23.createElement("div", {
+  }, /* @__PURE__ */ React45.createElement("div", {
     className: "font-medium text-right text-slate-800"
-  }, "94"))), /* @__PURE__ */ React23.createElement("tr", null, /* @__PURE__ */ React23.createElement("td", {
+  }, "94"))), /* @__PURE__ */ React45.createElement("tr", null, /* @__PURE__ */ React45.createElement("td", {
     className: "py-2"
-  }, /* @__PURE__ */ React23.createElement("div", {
+  }, /* @__PURE__ */ React45.createElement("div", {
     className: "text-left"
-  }, "preview.cruip.com/simple/")), /* @__PURE__ */ React23.createElement("td", {
+  }, "preview.cruip.com/simple/")), /* @__PURE__ */ React45.createElement("td", {
     className: "py-2"
-  }, /* @__PURE__ */ React23.createElement("div", {
+  }, /* @__PURE__ */ React45.createElement("div", {
     className: "font-medium text-right text-slate-800"
-  }, "42"))), /* @__PURE__ */ React23.createElement("tr", null, /* @__PURE__ */ React23.createElement("td", {
+  }, "42"))), /* @__PURE__ */ React45.createElement("tr", null, /* @__PURE__ */ React45.createElement("td", {
     className: "py-2"
-  }, /* @__PURE__ */ React23.createElement("div", {
+  }, /* @__PURE__ */ React45.createElement("div", {
     className: "text-left"
-  }, "cruip.com/unlimited/")), /* @__PURE__ */ React23.createElement("td", {
+  }, "cruip.com/unlimited/")), /* @__PURE__ */ React45.createElement("td", {
     className: "py-2"
-  }, /* @__PURE__ */ React23.createElement("div", {
+  }, /* @__PURE__ */ React45.createElement("div", {
     className: "font-medium text-right text-slate-800"
-  }, "12"))), /* @__PURE__ */ React23.createElement("tr", null, /* @__PURE__ */ React23.createElement("td", {
+  }, "12"))), /* @__PURE__ */ React45.createElement("tr", null, /* @__PURE__ */ React45.createElement("td", {
     className: "py-2"
-  }, /* @__PURE__ */ React23.createElement("div", {
+  }, /* @__PURE__ */ React45.createElement("div", {
     className: "text-left"
-  }, "preview.cruip.com/twist/")), /* @__PURE__ */ React23.createElement("td", {
+  }, "preview.cruip.com/twist/")), /* @__PURE__ */ React45.createElement("td", {
     className: "py-2"
-  }, /* @__PURE__ */ React23.createElement("div", {
+  }, /* @__PURE__ */ React45.createElement("div", {
     className: "font-medium text-right text-slate-800"
-  }, "4"))))))), /* @__PURE__ */ React23.createElement("div", {
+  }, "4"))))))), /* @__PURE__ */ React45.createElement("div", {
     className: "text-right px-5 pb-4"
-  }, /* @__PURE__ */ React23.createElement(Link6, {
+  }, /* @__PURE__ */ React45.createElement(Link12, {
     className: "text-sm font-medium text-indigo-500 hover:text-indigo-600",
     to: "#0"
   }, "Real-Time Report ->"))));
 };
 
 // pnp:/home/mamluk/3pass/esm-pwa/pkgs/3stats/Dashboard.mjs
+var initialData = [
+  { time: "01/03", amount: 0 }
+];
+var initialGeoData = [
+  { countryCode: "DE", amount: 0 }
+];
 var DashboardPage = () => {
-  const [sidebarOpen, setSidebarOpen] = useState10(false);
-  return /* @__PURE__ */ React24.createElement("div", {
-    className: "flex h-screen overflow-hidden"
-  }, /* @__PURE__ */ React24.createElement(Sidebar, {
-    sidebarOpen,
-    setSidebarOpen
-  }), /* @__PURE__ */ React24.createElement("div", {
-    className: "relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden"
-  }, /* @__PURE__ */ React24.createElement(Header, {
-    sidebarOpen,
-    setSidebarOpen
-  }), /* @__PURE__ */ React24.createElement("main", null, /* @__PURE__ */ React24.createElement("div", {
+  const [query, setQuery] = useState16("");
+  const [dataSet, setDataSet] = useState16(initialData);
+  const [geoDataSet, setGeoDataSet] = useState16(initialGeoData);
+  const [trackedItems, setTrackedItems2] = useState16(["dcl:-23,30"]);
+  const fetchData = async () => {
+    const result = await fetch(`https://europe-west3-backend-339310.cloudfunctions.net/query?${query}`);
+    const resp = await result.text();
+    const data = parseResp(resp);
+    setDataSet(data);
+    const geoResult = await fetch(`https://europe-west3-backend-339310.cloudfunctions.net/query?${query}&geo=true`);
+    const geoResp = await geoResult.text();
+    const geoData = parseGeoResp(geoResp);
+    setGeoDataSet(geoData);
+  };
+  useEffect20(() => {
+    fetchData();
+  }, [query]);
+  return /* @__PURE__ */ React46.createElement(DashboardLayout, null, /* @__PURE__ */ React46.createElement("div", {
     className: "px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto"
-  }, /* @__PURE__ */ React24.createElement("div", {
+  }, /* @__PURE__ */ React46.createElement("div", {
     className: "sm:flex sm:justify-between sm:items-center mb-8"
-  }, /* @__PURE__ */ React24.createElement("div", {
+  }, /* @__PURE__ */ React46.createElement("div", {
     className: "mb-4 sm:mb-0"
-  }, /* @__PURE__ */ React24.createElement("h1", {
+  }, /* @__PURE__ */ React46.createElement("h1", {
     className: "text-2xl md:text-3xl text-slate-800 font-bold"
-  }, "Analytics \u2728")), /* @__PURE__ */ React24.createElement("div", {
-    className: "grid grid-flow-col sm:auto-cols-max justify-start sm:justify-end gap-2"
-  }, /* @__PURE__ */ React24.createElement(DropdownFilter, {
-    align: "right"
-  }), /* @__PURE__ */ React24.createElement(Datepicker, {
-    align: "right"
-  }))), /* @__PURE__ */ React24.createElement("div", {
+  }, "[3stats] Dashboard")), /* @__PURE__ */ React46.createElement(Controls, {
+    ...{ query, setQuery }
+  })), /* @__PURE__ */ React46.createElement("div", {
     className: "grid grid-cols-12 gap-6"
-  }, /* @__PURE__ */ React24.createElement(AnalyticsCard01, null), /* @__PURE__ */ React24.createElement(AnalyticsCard02, null))))));
+  }, /* @__PURE__ */ React46.createElement(MainCard, {
+    ...{ dataSet }
+  }), /* @__PURE__ */ React46.createElement(RealTimeCard, null), /* @__PURE__ */ React46.createElement(GeoCard, {
+    ...{ geoDataSet }
+  }), /* @__PURE__ */ React46.createElement(TransactionsCard, null), /* @__PURE__ */ React46.createElement(LandPicker, {
+    ...{ trackedItems, setTrackedItems: setTrackedItems2 }
+  }))));
 };
 
 // pnp:/home/mamluk/3pass/esm-pwa/pkgs/app/index.mjs
 var App = () => {
-  const location = useLocation3();
-  useEffect15(() => {
-    document.querySelector("html").style.scrollBehavior = "auto";
-    window.scroll({ top: 0 });
-    document.querySelector("html").style.scrollBehavior = "";
-  }, [location.pathname]);
-  return /* @__PURE__ */ React25.createElement(React25.Fragment, null, /* @__PURE__ */ React25.createElement(AuthProvider, null, /* @__PURE__ */ React25.createElement(Routes, null, /* @__PURE__ */ React25.createElement(Route, {
+  return /* @__PURE__ */ React47.createElement(React47.StrictMode, null, /* @__PURE__ */ React47.createElement(Router, null, /* @__PURE__ */ React47.createElement(AuthProvider, null, /* @__PURE__ */ React47.createElement(Routes, null, /* @__PURE__ */ React47.createElement(Route, {
     exact: true,
     path: "/",
-    element: /* @__PURE__ */ React25.createElement(SignIn, null)
-  }), /* @__PURE__ */ React25.createElement(Route, {
-    path: "/protected",
-    element: /* @__PURE__ */ React25.createElement(RequireAuth, null, /* @__PURE__ */ React25.createElement(DashboardPage, null))
-  }), /* @__PURE__ */ React25.createElement(Route, {
+    element: /* @__PURE__ */ React47.createElement(SignIn, null)
+  }), /* @__PURE__ */ React47.createElement(Route, {
+    path: "/3stats",
+    element: /* @__PURE__ */ React47.createElement(RequireAuth, null, /* @__PURE__ */ React47.createElement(DashboardPage, null))
+  }), /* @__PURE__ */ React47.createElement(Route, {
+    path: "/dash",
+    element: /* @__PURE__ */ React47.createElement(RequireAuth, null, /* @__PURE__ */ React47.createElement(Dashboard, null))
+  }), /* @__PURE__ */ React47.createElement(Route, {
     path: "*",
-    element: /* @__PURE__ */ React25.createElement("h1", null, "Not Found")
-  }))));
+    element: /* @__PURE__ */ React47.createElement("h1", null, "Not Found")
+  })))));
 };
 var rootElement = document.getElementById("root");
-createRoot(rootElement).render(/* @__PURE__ */ React25.createElement(React25.StrictMode, null, /* @__PURE__ */ React25.createElement(Router, null, /* @__PURE__ */ React25.createElement(App, null))));
+createRoot(rootElement).render(/* @__PURE__ */ React47.createElement(App, null));
+//# sourceMappingURL=index.mjs.map

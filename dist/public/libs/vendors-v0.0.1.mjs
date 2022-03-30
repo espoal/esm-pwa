@@ -28,9 +28,9 @@ var __copyProps = (to, from, except, desc) => {
 };
 var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target, mod));
 
-// pnp:/home/mamluk/3pass/esm-pwa/.yarn/cache/react-npm-0.0.0-experimental-033fe52b4-20220325-66184913da-2dcc39e981.zip/node_modules/react/cjs/react.development.js
+// pnp:/home/mamluk/3pass/esm-pwa/.yarn/cache/react-npm-18.0.0-fdbcb4c477-293020b965.zip/node_modules/react/cjs/react.development.js
 var require_react_development = __commonJS({
-  "pnp:/home/mamluk/3pass/esm-pwa/.yarn/cache/react-npm-0.0.0-experimental-033fe52b4-20220325-66184913da-2dcc39e981.zip/node_modules/react/cjs/react.development.js"(exports, module) {
+  "pnp:/home/mamluk/3pass/esm-pwa/.yarn/cache/react-npm-18.0.0-fdbcb4c477-293020b965.zip/node_modules/react/cjs/react.development.js"(exports, module) {
     "use strict";
     if (true) {
       (function() {
@@ -38,7 +38,7 @@ var require_react_development = __commonJS({
         if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
           __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
         }
-        var ReactVersion = "18.0.0-rc.3-experimental-033fe52b4-20220325";
+        var ReactVersion = "18.0.0-fc46dba67-20220329";
         var REACT_ELEMENT_TYPE = Symbol.for("react.element");
         var REACT_PORTAL_TYPE = Symbol.for("react.portal");
         var REACT_FRAGMENT_TYPE = Symbol.for("react.fragment");
@@ -46,16 +46,12 @@ var require_react_development = __commonJS({
         var REACT_PROFILER_TYPE = Symbol.for("react.profiler");
         var REACT_PROVIDER_TYPE = Symbol.for("react.provider");
         var REACT_CONTEXT_TYPE = Symbol.for("react.context");
-        var REACT_SERVER_CONTEXT_TYPE = Symbol.for("react.server_context");
         var REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref");
         var REACT_SUSPENSE_TYPE = Symbol.for("react.suspense");
         var REACT_SUSPENSE_LIST_TYPE = Symbol.for("react.suspense_list");
         var REACT_MEMO_TYPE = Symbol.for("react.memo");
         var REACT_LAZY_TYPE = Symbol.for("react.lazy");
-        var REACT_DEBUG_TRACING_MODE_TYPE = Symbol.for("react.debug_trace_mode");
         var REACT_OFFSCREEN_TYPE = Symbol.for("react.offscreen");
-        var REACT_CACHE_TYPE = Symbol.for("react.cache");
-        var REACT_SERVER_CONTEXT_DEFAULT_VALUE_NOT_LOADED = Symbol.for("react.default_value");
         var MAYBE_ITERATOR_SYMBOL = Symbol.iterator;
         var FAUX_ITERATOR_SYMBOL = "@@iterator";
         function getIteratorFn(maybeIterable) {
@@ -109,10 +105,10 @@ var require_react_development = __commonJS({
           };
         }
         var enableScopeAPI = false;
+        var enableCacheElement = false;
         var enableTransitionTracing = false;
         var enableLegacyHidden = false;
         var enableDebugTracing = false;
-        var ContextRegistry = {};
         var ReactSharedInternals = {
           ReactCurrentDispatcher,
           ReactCurrentBatchConfig,
@@ -121,9 +117,6 @@ var require_react_development = __commonJS({
         {
           ReactSharedInternals.ReactDebugCurrentFrame = ReactDebugCurrentFrame;
           ReactSharedInternals.ReactCurrentActQueue = ReactCurrentActQueue;
-        }
-        {
-          ReactSharedInternals.ContextRegistry = ContextRegistry;
         }
         function warn(format) {
           {
@@ -320,9 +313,6 @@ var require_react_development = __commonJS({
               return "Suspense";
             case REACT_SUSPENSE_LIST_TYPE:
               return "SuspenseList";
-            case REACT_CACHE_TYPE: {
-              return "Cache";
-            }
           }
           if (typeof type === "object") {
             switch (type.$$typeof) {
@@ -349,10 +339,6 @@ var require_react_development = __commonJS({
                 } catch (x) {
                   return null;
                 }
-              }
-              case REACT_SERVER_CONTEXT_TYPE: {
-                var context2 = type;
-                return (context2.displayName || context2._globalName) + ".Provider";
               }
             }
           }
@@ -953,7 +939,7 @@ var require_react_development = __commonJS({
           if (typeof type === "string" || typeof type === "function") {
             return true;
           }
-          if (type === REACT_FRAGMENT_TYPE || type === REACT_PROFILER_TYPE || enableDebugTracing || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || enableLegacyHidden || type === REACT_OFFSCREEN_TYPE || enableScopeAPI || type === REACT_CACHE_TYPE || enableTransitionTracing) {
+          if (type === REACT_FRAGMENT_TYPE || type === REACT_PROFILER_TYPE || enableDebugTracing || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || enableLegacyHidden || type === REACT_OFFSCREEN_TYPE || enableScopeAPI || enableCacheElement || enableTransitionTracing) {
             return true;
           }
           if (typeof type === "object" && type !== null) {
@@ -1000,14 +986,6 @@ var require_react_development = __commonJS({
             }
           }
           return dispatcher;
-        }
-        function getCacheSignal() {
-          var dispatcher = resolveDispatcher();
-          return dispatcher.getCacheSignal();
-        }
-        function getCacheForType(resourceType) {
-          var dispatcher = resolveDispatcher();
-          return dispatcher.getCacheForType(resourceType);
         }
         function useContext2(Context) {
           var dispatcher = resolveDispatcher();
@@ -1080,10 +1058,6 @@ var require_react_development = __commonJS({
         function useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot) {
           var dispatcher = resolveDispatcher();
           return dispatcher.useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
-        }
-        function useCacheRefresh() {
-          var dispatcher = resolveDispatcher();
-          return dispatcher.useCacheRefresh();
         }
         var disabledDepth = 0;
         var prevLog;
@@ -1596,72 +1570,6 @@ var require_react_development = __commonJS({
           validatePropTypes(newElement);
           return newElement;
         }
-        var ContextRegistry$1 = ReactSharedInternals.ContextRegistry;
-        function createServerContext(globalName, defaultValue) {
-          var wasDefined = true;
-          if (!ContextRegistry$1[globalName]) {
-            wasDefined = false;
-            var _context = {
-              $$typeof: REACT_SERVER_CONTEXT_TYPE,
-              _currentValue: defaultValue,
-              _currentValue2: defaultValue,
-              _defaultValue: defaultValue,
-              _threadCount: 0,
-              Provider: null,
-              Consumer: null,
-              _globalName: globalName
-            };
-            _context.Provider = {
-              $$typeof: REACT_PROVIDER_TYPE,
-              _context
-            };
-            {
-              var hasWarnedAboutUsingConsumer;
-              _context._currentRenderer = null;
-              _context._currentRenderer2 = null;
-              Object.defineProperties(_context, {
-                Consumer: {
-                  get: function() {
-                    if (!hasWarnedAboutUsingConsumer) {
-                      error("Consumer pattern is not supported by ReactServerContext");
-                      hasWarnedAboutUsingConsumer = true;
-                    }
-                    return null;
-                  }
-                }
-              });
-            }
-            ContextRegistry$1[globalName] = _context;
-          }
-          var context = ContextRegistry$1[globalName];
-          if (context._defaultValue === REACT_SERVER_CONTEXT_DEFAULT_VALUE_NOT_LOADED) {
-            context._defaultValue = defaultValue;
-            if (context._currentValue === REACT_SERVER_CONTEXT_DEFAULT_VALUE_NOT_LOADED) {
-              context._currentValue = defaultValue;
-            }
-            if (context._currentValue2 === REACT_SERVER_CONTEXT_DEFAULT_VALUE_NOT_LOADED) {
-              context._currentValue2 = defaultValue;
-            }
-          } else if (wasDefined) {
-            throw new Error("ServerContext: " + globalName + " already defined");
-          }
-          return context;
-        }
-        function createMutableSource(source, getVersion) {
-          var mutableSource = {
-            _getVersion: getVersion,
-            _source: source,
-            _workInProgressVersionPrimary: null,
-            _workInProgressVersionSecondary: null
-          };
-          {
-            mutableSource._currentPrimaryRenderer = null;
-            mutableSource._currentSecondaryRenderer = null;
-            mutableSource._currentlyRenderingFiber = null;
-            mutableSource._initialVersionAsOfFirstRender = null;
-          }
-          return mutableSource;
-        }
         function startTransition(scope, options) {
           var prevTransition = ReactCurrentBatchConfig.transition;
           ReactCurrentBatchConfig.transition = {};
@@ -1869,27 +1777,18 @@ var require_react_development = __commonJS({
         exports.PureComponent = PureComponent;
         exports.StrictMode = REACT_STRICT_MODE_TYPE;
         exports.Suspense = REACT_SUSPENSE_TYPE;
-        exports.SuspenseList = REACT_SUSPENSE_LIST_TYPE;
         exports.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED = ReactSharedInternals;
         exports.cloneElement = cloneElement$1;
         exports.createContext = createContext;
         exports.createElement = createElement$1;
         exports.createFactory = createFactory;
         exports.createRef = createRef;
-        exports.createServerContext = createServerContext;
         exports.forwardRef = forwardRef;
         exports.isValidElement = isValidElement;
         exports.lazy = lazy;
         exports.memo = memo;
         exports.startTransition = startTransition;
-        exports.unstable_Cache = REACT_CACHE_TYPE;
-        exports.unstable_DebugTracingMode = REACT_DEBUG_TRACING_MODE_TYPE;
-        exports.unstable_Offscreen = REACT_OFFSCREEN_TYPE;
         exports.unstable_act = act;
-        exports.unstable_createMutableSource = createMutableSource;
-        exports.unstable_getCacheForType = getCacheForType;
-        exports.unstable_getCacheSignal = getCacheSignal;
-        exports.unstable_useCacheRefresh = useCacheRefresh;
         exports.useCallback = useCallback;
         exports.useContext = useContext2;
         exports.useDebugValue = useDebugValue;
@@ -1914,9 +1813,9 @@ var require_react_development = __commonJS({
   }
 });
 
-// pnp:/home/mamluk/3pass/esm-pwa/.yarn/cache/react-npm-0.0.0-experimental-033fe52b4-20220325-66184913da-2dcc39e981.zip/node_modules/react/index.js
+// pnp:/home/mamluk/3pass/esm-pwa/.yarn/cache/react-npm-18.0.0-fdbcb4c477-293020b965.zip/node_modules/react/index.js
 var require_react = __commonJS({
-  "pnp:/home/mamluk/3pass/esm-pwa/.yarn/cache/react-npm-0.0.0-experimental-033fe52b4-20220325-66184913da-2dcc39e981.zip/node_modules/react/index.js"(exports, module) {
+  "pnp:/home/mamluk/3pass/esm-pwa/.yarn/cache/react-npm-18.0.0-fdbcb4c477-293020b965.zip/node_modules/react/index.js"(exports, module) {
     "use strict";
     if (false) {
       module.exports = null;
@@ -1926,9 +1825,9 @@ var require_react = __commonJS({
   }
 });
 
-// pnp:/home/mamluk/3pass/esm-pwa/.yarn/cache/scheduler-npm-0.0.0-experimental-033fe52b4-20220325-52cbc55f59-12786fdd8c.zip/node_modules/scheduler/cjs/scheduler.development.js
+// pnp:/home/mamluk/3pass/esm-pwa/.yarn/cache/scheduler-npm-0.21.0-9a906f4833-4f82850760.zip/node_modules/scheduler/cjs/scheduler.development.js
 var require_scheduler_development = __commonJS({
-  "pnp:/home/mamluk/3pass/esm-pwa/.yarn/cache/scheduler-npm-0.0.0-experimental-033fe52b4-20220325-52cbc55f59-12786fdd8c.zip/node_modules/scheduler/cjs/scheduler.development.js"(exports) {
+  "pnp:/home/mamluk/3pass/esm-pwa/.yarn/cache/scheduler-npm-0.21.0-9a906f4833-4f82850760.zip/node_modules/scheduler/cjs/scheduler.development.js"(exports) {
     "use strict";
     if (true) {
       (function() {
@@ -2376,9 +2275,9 @@ var require_scheduler_development = __commonJS({
   }
 });
 
-// pnp:/home/mamluk/3pass/esm-pwa/.yarn/cache/scheduler-npm-0.0.0-experimental-033fe52b4-20220325-52cbc55f59-12786fdd8c.zip/node_modules/scheduler/index.js
+// pnp:/home/mamluk/3pass/esm-pwa/.yarn/cache/scheduler-npm-0.21.0-9a906f4833-4f82850760.zip/node_modules/scheduler/index.js
 var require_scheduler = __commonJS({
-  "pnp:/home/mamluk/3pass/esm-pwa/.yarn/cache/scheduler-npm-0.0.0-experimental-033fe52b4-20220325-52cbc55f59-12786fdd8c.zip/node_modules/scheduler/index.js"(exports, module) {
+  "pnp:/home/mamluk/3pass/esm-pwa/.yarn/cache/scheduler-npm-0.21.0-9a906f4833-4f82850760.zip/node_modules/scheduler/index.js"(exports, module) {
     "use strict";
     if (false) {
       module.exports = null;
@@ -2388,9 +2287,9 @@ var require_scheduler = __commonJS({
   }
 });
 
-// pnp:/home/mamluk/3pass/esm-pwa/.yarn/__virtual__/react-dom-virtual-003d23fd91/0/cache/react-dom-npm-0.0.0-experimental-033fe52b4-20220325-ea377eee09-5ac6c929f1.zip/node_modules/react-dom/cjs/react-dom.development.js
+// pnp:/home/mamluk/3pass/esm-pwa/.yarn/__virtual__/react-dom-virtual-f1ddd1568a/0/cache/react-dom-npm-18.0.0-d6a12fba32-dd0ba9f2f3.zip/node_modules/react-dom/cjs/react-dom.development.js
 var require_react_dom_development = __commonJS({
-  "pnp:/home/mamluk/3pass/esm-pwa/.yarn/__virtual__/react-dom-virtual-003d23fd91/0/cache/react-dom-npm-0.0.0-experimental-033fe52b4-20220325-ea377eee09-5ac6c929f1.zip/node_modules/react-dom/cjs/react-dom.development.js"(exports) {
+  "pnp:/home/mamluk/3pass/esm-pwa/.yarn/__virtual__/react-dom-virtual-f1ddd1568a/0/cache/react-dom-npm-18.0.0-d6a12fba32-dd0ba9f2f3.zip/node_modules/react-dom/cjs/react-dom.development.js"(exports) {
     "use strict";
     if (true) {
       (function() {
@@ -2473,7 +2372,7 @@ var require_react_dom_development = __commonJS({
         var enableLegacyHidden = false;
         var enableSuspenseAvoidThisFallback = false;
         var disableCommentsAsDOMContainers = true;
-        var enableCustomElementPropertySupport = true;
+        var enableCustomElementPropertySupport = false;
         var warnAboutStringRefs = false;
         var enableSchedulingProfiler = true;
         var enableProfilerTimer = true;
@@ -2685,9 +2584,6 @@ var require_react_dom_development = __commonJS({
           "suppressHydrationWarning",
           "style"
         ];
-        {
-          reservedProps.push("innerText", "textContent");
-        }
         reservedProps.forEach(function(name) {
           properties[name] = new PropertyInfoRecord(name, RESERVED, false, name, null, false, false);
         });
@@ -2942,31 +2838,6 @@ var require_react_dom_development = __commonJS({
           if (shouldIgnoreAttribute(name, propertyInfo, isCustomComponentTag)) {
             return;
           }
-          if (isCustomComponentTag && name[0] === "o" && name[1] === "n") {
-            var eventName = name.replace(/Capture$/, "");
-            var useCapture = name !== eventName;
-            eventName = eventName.slice(2);
-            var prevProps = getFiberCurrentPropsFromNode(node);
-            var prevValue = prevProps != null ? prevProps[name] : null;
-            if (typeof prevValue === "function") {
-              node.removeEventListener(eventName, prevValue, useCapture);
-            }
-            if (typeof value === "function") {
-              if (typeof prevValue !== "function" && prevValue !== null) {
-                if (name in node) {
-                  node[name] = null;
-                } else if (node.hasAttribute(name)) {
-                  node.removeAttribute(name);
-                }
-              }
-              node.addEventListener(eventName, value, useCapture);
-              return;
-            }
-          }
-          if (isCustomComponentTag && name in node) {
-            node[name] = value;
-            return;
-          }
           if (shouldRemoveAttribute(name, value, propertyInfo, isCustomComponentTag)) {
             value = null;
           }
@@ -3028,7 +2899,6 @@ var require_react_dom_development = __commonJS({
         var REACT_PROFILER_TYPE = Symbol.for("react.profiler");
         var REACT_PROVIDER_TYPE = Symbol.for("react.provider");
         var REACT_CONTEXT_TYPE = Symbol.for("react.context");
-        var REACT_SERVER_CONTEXT_TYPE = Symbol.for("react.server_context");
         var REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref");
         var REACT_SUSPENSE_TYPE = Symbol.for("react.suspense");
         var REACT_SUSPENSE_LIST_TYPE = Symbol.for("react.suspense_list");
@@ -3040,7 +2910,6 @@ var require_react_dom_development = __commonJS({
         var REACT_LEGACY_HIDDEN_TYPE = Symbol.for("react.legacy_hidden");
         var REACT_CACHE_TYPE = Symbol.for("react.cache");
         var REACT_TRACING_MARKER_TYPE = Symbol.for("react.tracing_marker");
-        var REACT_SERVER_CONTEXT_DEFAULT_VALUE_NOT_LOADED = Symbol.for("react.default_value");
         var MAYBE_ITERATOR_SYMBOL = Symbol.iterator;
         var FAUX_ITERATOR_SYMBOL = "@@iterator";
         function getIteratorFn(maybeIterable) {
@@ -3383,9 +3252,6 @@ var require_react_dom_development = __commonJS({
               return "Suspense";
             case REACT_SUSPENSE_LIST_TYPE:
               return "SuspenseList";
-            case REACT_CACHE_TYPE: {
-              return "Cache";
-            }
           }
           if (typeof type === "object") {
             switch (type.$$typeof) {
@@ -3412,10 +3278,6 @@ var require_react_dom_development = __commonJS({
                 } catch (x) {
                   return null;
                 }
-              }
-              case REACT_SERVER_CONTEXT_TYPE: {
-                var context2 = type;
-                return (context2.displayName || context2._globalName) + ".Provider";
               }
             }
           }
@@ -7851,8 +7713,6 @@ var require_react_dom_development = __commonJS({
             }
           } else if (shouldUseClickEvent(targetNode)) {
             getTargetInstFunc = getTargetInstForClickEvent;
-          } else if (targetInst && isCustomComponent(targetInst.elementType, targetInst.memoizedProps)) {
-            getTargetInstFunc = getTargetInstForChangeEvent;
           }
           if (getTargetInstFunc) {
             var inst = getTargetInstFunc(domEventName, targetInst);
@@ -9373,11 +9233,6 @@ var require_react_dom_development = __commonJS({
                     warnForPropDifference(propKey, serverValue, expectedStyle);
                   }
                 }
-              } else if (isCustomComponentTag && (propKey === "offsetParent" || propKey === "offsetTop" || propKey === "offsetLeft" || propKey === "offsetWidth" || propKey === "offsetHeight" || propKey === "isContentEditable" || propKey === "outerText" || propKey === "outerHTML")) {
-                extraAttributeNames.delete(propKey.toLowerCase());
-                {
-                  error("Assignment to read-only property will result in a no-op: `%s`", propKey);
-                }
               } else if (isCustomComponentTag && !enableCustomElementPropertySupport) {
                 extraAttributeNames.delete(propKey.toLowerCase());
                 serverValue = getValueForAttribute(domElement, propKey, nextProp);
@@ -9406,7 +9261,7 @@ var require_react_dom_development = __commonJS({
                   }
                   serverValue = getValueForAttribute(domElement, propKey, nextProp);
                 }
-                var dontWarnCustomElement = isCustomComponentTag && (typeof nextProp === "function" || typeof nextProp === "object");
+                var dontWarnCustomElement = enableCustomElementPropertySupport;
                 if (!dontWarnCustomElement && nextProp !== serverValue && !isMismatchDueToBadCasing) {
                   warnForPropDifference(propKey, serverValue, nextProp);
                 }
@@ -10834,9 +10689,7 @@ var require_react_dom_development = __commonJS({
           var currentValue = valueCursor.current;
           pop(valueCursor, providerFiber);
           {
-            if (currentValue === REACT_SERVER_CONTEXT_DEFAULT_VALUE_NOT_LOADED) {
-              context._currentValue = context._defaultValue;
-            } else {
+            {
               context._currentValue = currentValue;
             }
           }
@@ -13341,56 +13194,6 @@ var require_react_dom_development = __commonJS({
             root2.mutableSourceEagerHydrationData.push(mutableSource, version);
           }
         }
-        var scheduleCallback$1 = Scheduler.unstable_scheduleCallback, NormalPriority$1 = Scheduler.unstable_NormalPriority;
-        var CacheContext = {
-          $$typeof: REACT_CONTEXT_TYPE,
-          Consumer: null,
-          Provider: null,
-          _currentValue: null,
-          _currentValue2: null,
-          _threadCount: 0,
-          _defaultValue: null,
-          _globalName: null
-        };
-        {
-          CacheContext._currentRenderer = null;
-          CacheContext._currentRenderer2 = null;
-        }
-        function createCache() {
-          var cache = {
-            controller: new AbortController(),
-            data: /* @__PURE__ */ new Map(),
-            refCount: 0
-          };
-          return cache;
-        }
-        function retainCache(cache) {
-          {
-            if (cache.controller.signal.aborted) {
-              warn("A cache instance was retained after it was already freed. This likely indicates a bug in React.");
-            }
-          }
-          cache.refCount++;
-        }
-        function releaseCache(cache) {
-          cache.refCount--;
-          {
-            if (cache.refCount < 0) {
-              warn("A cache instance was released after it was already freed. This likely indicates a bug in React.");
-            }
-          }
-          if (cache.refCount === 0) {
-            scheduleCallback$1(NormalPriority$1, function() {
-              cache.controller.abort();
-            });
-          }
-        }
-        function pushCacheProvider(workInProgress2, cache) {
-          pushProvider(workInProgress2, CacheContext, cache);
-        }
-        function popCacheProvider(workInProgress2, cache) {
-          popProvider(CacheContext, workInProgress2);
-        }
         var ReactCurrentDispatcher$1 = ReactSharedInternals.ReactCurrentDispatcher, ReactCurrentBatchConfig$2 = ReactSharedInternals.ReactCurrentBatchConfig;
         var didWarnAboutMismatchedHooksForComponent;
         var didWarnUncachedGetSnapshot;
@@ -14277,43 +14080,6 @@ var require_react_dom_development = __commonJS({
           var id = hook.memoizedState;
           return id;
         }
-        function mountRefresh() {
-          var hook = mountWorkInProgressHook();
-          var refresh = hook.memoizedState = refreshCache.bind(null, currentlyRenderingFiber$1);
-          return refresh;
-        }
-        function updateRefresh() {
-          var hook = updateWorkInProgressHook();
-          return hook.memoizedState;
-        }
-        function refreshCache(fiber, seedKey, seedValue) {
-          var provider = fiber.return;
-          while (provider !== null) {
-            switch (provider.tag) {
-              case CacheComponent:
-              case HostRoot: {
-                var lane = requestUpdateLane(provider);
-                var eventTime = requestEventTime();
-                var root2 = scheduleUpdateOnFiber(provider, lane, eventTime);
-                if (root2 !== null) {
-                  entangleTransitions(root2, provider, lane);
-                }
-                var seededCache = createCache();
-                if (seedKey !== null && seedKey !== void 0 && root2 !== null) {
-                  seededCache.data.set(seedKey, seedValue);
-                }
-                var refreshUpdate = createUpdate(eventTime, lane);
-                var payload = {
-                  cache: seededCache
-                };
-                refreshUpdate.payload = payload;
-                enqueueUpdate(provider, refreshUpdate);
-                return;
-              }
-            }
-            provider = provider.return;
-          }
-        }
         function dispatchReducerAction(fiber, queue, action) {
           {
             if (typeof arguments[3] === "function") {
@@ -14442,19 +14208,6 @@ var require_react_dom_development = __commonJS({
             markStateUpdateScheduled(fiber, lane);
           }
         }
-        function getCacheSignal() {
-          var cache = readContext(CacheContext);
-          return cache.controller.signal;
-        }
-        function getCacheForType(resourceType) {
-          var cache = readContext(CacheContext);
-          var cacheForType = cache.data.get(resourceType);
-          if (cacheForType === void 0) {
-            cacheForType = resourceType();
-            cache.data.set(resourceType, cacheForType);
-          }
-          return cacheForType;
-        }
         var ContextOnlyDispatcher = {
           readContext,
           useCallback: throwInvalidHookError,
@@ -14475,11 +14228,6 @@ var require_react_dom_development = __commonJS({
           useId: throwInvalidHookError,
           unstable_isNewReconciler: enableNewReconciler
         };
-        {
-          ContextOnlyDispatcher.getCacheSignal = getCacheSignal;
-          ContextOnlyDispatcher.getCacheForType = getCacheForType;
-          ContextOnlyDispatcher.useCacheRefresh = throwInvalidHookError;
-        }
         var HooksDispatcherOnMountInDEV = null;
         var HooksDispatcherOnMountWithHookTypesInDEV = null;
         var HooksDispatcherOnUpdateInDEV = null;
@@ -14604,15 +14352,6 @@ var require_react_dom_development = __commonJS({
             },
             unstable_isNewReconciler: enableNewReconciler
           };
-          {
-            HooksDispatcherOnMountInDEV.getCacheSignal = getCacheSignal;
-            HooksDispatcherOnMountInDEV.getCacheForType = getCacheForType;
-            HooksDispatcherOnMountInDEV.useCacheRefresh = function useCacheRefresh() {
-              currentHookNameInDev = "useCacheRefresh";
-              mountHookTypesDev();
-              return mountRefresh();
-            };
-          }
           HooksDispatcherOnMountWithHookTypesInDEV = {
             readContext: function(context) {
               return readContext(context);
@@ -14717,15 +14456,6 @@ var require_react_dom_development = __commonJS({
             },
             unstable_isNewReconciler: enableNewReconciler
           };
-          {
-            HooksDispatcherOnMountWithHookTypesInDEV.getCacheSignal = getCacheSignal;
-            HooksDispatcherOnMountWithHookTypesInDEV.getCacheForType = getCacheForType;
-            HooksDispatcherOnMountWithHookTypesInDEV.useCacheRefresh = function useCacheRefresh() {
-              currentHookNameInDev = "useCacheRefresh";
-              updateHookTypesDev();
-              return mountRefresh();
-            };
-          }
           HooksDispatcherOnUpdateInDEV = {
             readContext: function(context) {
               return readContext(context);
@@ -14830,15 +14560,6 @@ var require_react_dom_development = __commonJS({
             },
             unstable_isNewReconciler: enableNewReconciler
           };
-          {
-            HooksDispatcherOnUpdateInDEV.getCacheSignal = getCacheSignal;
-            HooksDispatcherOnUpdateInDEV.getCacheForType = getCacheForType;
-            HooksDispatcherOnUpdateInDEV.useCacheRefresh = function useCacheRefresh() {
-              currentHookNameInDev = "useCacheRefresh";
-              updateHookTypesDev();
-              return updateRefresh();
-            };
-          }
           HooksDispatcherOnRerenderInDEV = {
             readContext: function(context) {
               return readContext(context);
@@ -14943,15 +14664,6 @@ var require_react_dom_development = __commonJS({
             },
             unstable_isNewReconciler: enableNewReconciler
           };
-          {
-            HooksDispatcherOnRerenderInDEV.getCacheSignal = getCacheSignal;
-            HooksDispatcherOnRerenderInDEV.getCacheForType = getCacheForType;
-            HooksDispatcherOnRerenderInDEV.useCacheRefresh = function useCacheRefresh() {
-              currentHookNameInDev = "useCacheRefresh";
-              updateHookTypesDev();
-              return updateRefresh();
-            };
-          }
           InvalidNestedHooksDispatcherOnMountInDEV = {
             readContext: function(context) {
               warnInvalidContextAccess();
@@ -15073,15 +14785,6 @@ var require_react_dom_development = __commonJS({
             },
             unstable_isNewReconciler: enableNewReconciler
           };
-          {
-            InvalidNestedHooksDispatcherOnMountInDEV.getCacheSignal = getCacheSignal;
-            InvalidNestedHooksDispatcherOnMountInDEV.getCacheForType = getCacheForType;
-            InvalidNestedHooksDispatcherOnMountInDEV.useCacheRefresh = function useCacheRefresh() {
-              currentHookNameInDev = "useCacheRefresh";
-              mountHookTypesDev();
-              return mountRefresh();
-            };
-          }
           InvalidNestedHooksDispatcherOnUpdateInDEV = {
             readContext: function(context) {
               warnInvalidContextAccess();
@@ -15203,15 +14906,6 @@ var require_react_dom_development = __commonJS({
             },
             unstable_isNewReconciler: enableNewReconciler
           };
-          {
-            InvalidNestedHooksDispatcherOnUpdateInDEV.getCacheSignal = getCacheSignal;
-            InvalidNestedHooksDispatcherOnUpdateInDEV.getCacheForType = getCacheForType;
-            InvalidNestedHooksDispatcherOnUpdateInDEV.useCacheRefresh = function useCacheRefresh() {
-              currentHookNameInDev = "useCacheRefresh";
-              updateHookTypesDev();
-              return updateRefresh();
-            };
-          }
           InvalidNestedHooksDispatcherOnRerenderInDEV = {
             readContext: function(context) {
               warnInvalidContextAccess();
@@ -15333,15 +15027,6 @@ var require_react_dom_development = __commonJS({
             },
             unstable_isNewReconciler: enableNewReconciler
           };
-          {
-            InvalidNestedHooksDispatcherOnRerenderInDEV.getCacheSignal = getCacheSignal;
-            InvalidNestedHooksDispatcherOnRerenderInDEV.getCacheForType = getCacheForType;
-            InvalidNestedHooksDispatcherOnRerenderInDEV.useCacheRefresh = function useCacheRefresh() {
-              currentHookNameInDev = "useCacheRefresh";
-              updateHookTypesDev();
-              return updateRefresh();
-            };
-          }
         }
         var now$1 = Scheduler.unstable_now;
         var commitTime = 0;
@@ -15713,63 +15398,10 @@ var require_react_dom_development = __commonJS({
             workInProgress2 = workInProgress2.return;
           } while (workInProgress2 !== null);
         }
-        var resumedCache = createCursor(null);
-        function peekCacheFromPool() {
-          var cacheResumedFromPreviousRender = resumedCache.current;
-          if (cacheResumedFromPreviousRender !== null) {
-            return cacheResumedFromPreviousRender;
-          }
-          var root2 = getWorkInProgressRoot();
-          var cacheFromRootCachePool = root2.pooledCache;
-          return cacheFromRootCachePool;
-        }
-        function requestCacheFromPool(renderLanes2) {
-          var cacheFromPool = peekCacheFromPool();
-          if (cacheFromPool !== null) {
-            return cacheFromPool;
-          }
-          var root2 = getWorkInProgressRoot();
-          var freshCache = createCache();
-          root2.pooledCache = freshCache;
-          retainCache(freshCache);
-          if (freshCache !== null) {
-            root2.pooledCacheLanes |= renderLanes2;
-          }
-          return freshCache;
-        }
-        function pushTransition(offscreenWorkInProgress, prevCachePool) {
-          {
-            if (prevCachePool === null) {
-              push(resumedCache, resumedCache.current, offscreenWorkInProgress);
-            } else {
-              push(resumedCache, prevCachePool.pool, offscreenWorkInProgress);
-            }
-          }
-        }
-        function popTransition(workInProgress2) {
-          {
-            pop(resumedCache, workInProgress2);
-          }
-        }
         function getSuspendedCache() {
-          var cacheFromPool = peekCacheFromPool();
-          if (cacheFromPool === null) {
+          {
             return null;
           }
-          return {
-            parent: CacheContext._currentValue,
-            pool: cacheFromPool
-          };
-        }
-        function getOffscreenDeferredCache() {
-          var cacheFromPool = peekCacheFromPool();
-          if (cacheFromPool === null) {
-            return null;
-          }
-          return {
-            parent: CacheContext._currentValue,
-            pool: cacheFromPool
-          };
         }
         function markUpdate(workInProgress2) {
           workInProgress2.flags |= Update;
@@ -15957,17 +15589,6 @@ var require_react_dom_development = __commonJS({
             }
             case HostRoot: {
               var fiberRoot = workInProgress2.stateNode;
-              {
-                var previousCache = null;
-                if (current2 !== null) {
-                  previousCache = current2.memoizedState.cache;
-                }
-                var cache = workInProgress2.memoizedState.cache;
-                if (cache !== previousCache) {
-                  workInProgress2.flags |= Passive;
-                }
-                popCacheProvider(workInProgress2);
-              }
               popHostContainer(workInProgress2);
               popTopLevelContextObject(workInProgress2);
               resetWorkInProgressVersions();
@@ -16123,20 +15744,6 @@ var require_react_dom_development = __commonJS({
               } else {
                 var _prevState = current2.memoizedState;
                 prevDidTimeout = _prevState !== null;
-              }
-              if (nextDidTimeout) {
-                var offscreenFiber = workInProgress2.child;
-                var _previousCache = null;
-                if (offscreenFiber.alternate !== null && offscreenFiber.alternate.memoizedState !== null && offscreenFiber.alternate.memoizedState.cachePool !== null) {
-                  _previousCache = offscreenFiber.alternate.memoizedState.cachePool.pool;
-                }
-                var _cache = null;
-                if (offscreenFiber.memoizedState !== null && offscreenFiber.memoizedState.cachePool !== null) {
-                  _cache = offscreenFiber.memoizedState.cachePool.pool;
-                }
-                if (_cache !== _previousCache) {
-                  offscreenFiber.flags |= Passive;
-                }
               }
               if (nextDidTimeout && !prevDidTimeout) {
                 var _offscreenFiber = workInProgress2.child;
@@ -16311,37 +15918,9 @@ var require_react_dom_development = __commonJS({
                   }
                 }
               }
-              {
-                var _previousCache2 = null;
-                if (current2 !== null && current2.memoizedState !== null && current2.memoizedState.cachePool !== null) {
-                  _previousCache2 = current2.memoizedState.cachePool.pool;
-                }
-                var _cache2 = null;
-                if (workInProgress2.memoizedState !== null && workInProgress2.memoizedState.cachePool !== null) {
-                  _cache2 = workInProgress2.memoizedState.cachePool.pool;
-                }
-                if (_cache2 !== _previousCache2) {
-                  workInProgress2.flags |= Passive;
-                }
-                if (current2 !== null) {
-                  popTransition(workInProgress2);
-                }
-              }
               return null;
             }
             case CacheComponent: {
-              {
-                var _previousCache3 = null;
-                if (current2 !== null) {
-                  _previousCache3 = current2.memoizedState.cache;
-                }
-                var _cache3 = workInProgress2.memoizedState.cache;
-                if (_cache3 !== _previousCache3) {
-                  workInProgress2.flags |= Passive;
-                }
-                popCacheProvider(workInProgress2);
-                bubbleProperties(workInProgress2);
-              }
               return null;
             }
             case TracingMarkerComponent: {
@@ -16524,11 +16103,6 @@ var require_react_dom_development = __commonJS({
                 cachePool: null
               };
               workInProgress2.memoizedState = nextState;
-              {
-                if (current2 !== null) {
-                  pushTransition(workInProgress2, null);
-                }
-              }
               pushRenderLanes(workInProgress2, renderLanes2);
             } else if (!includesSomeLane(renderLanes2, OffscreenLane)) {
               var spawnedCachePool = null;
@@ -16536,9 +16110,6 @@ var require_react_dom_development = __commonJS({
               if (prevState !== null) {
                 var prevBaseLanes = prevState.baseLanes;
                 nextBaseLanes = mergeLanes(prevBaseLanes, renderLanes2);
-                {
-                  spawnedCachePool = getOffscreenDeferredCache();
-                }
               } else {
                 nextBaseLanes = renderLanes2;
               }
@@ -16549,11 +16120,6 @@ var require_react_dom_development = __commonJS({
               };
               workInProgress2.memoizedState = _nextState;
               workInProgress2.updateQueue = null;
-              {
-                if (current2 !== null) {
-                  pushTransition(workInProgress2, null);
-                }
-              }
               pushRenderLanes(workInProgress2, nextBaseLanes);
               return null;
             } else {
@@ -16563,28 +16129,15 @@ var require_react_dom_development = __commonJS({
               };
               workInProgress2.memoizedState = _nextState2;
               var subtreeRenderLanes2 = prevState !== null ? prevState.baseLanes : renderLanes2;
-              if (current2 !== null) {
-                var prevCachePool = prevState !== null ? prevState.cachePool : null;
-                pushTransition(workInProgress2, prevCachePool);
-              }
               pushRenderLanes(workInProgress2, subtreeRenderLanes2);
             }
           } else {
             var _subtreeRenderLanes;
             if (prevState !== null) {
               _subtreeRenderLanes = mergeLanes(prevState.baseLanes, renderLanes2);
-              {
-                var _prevCachePool = prevState.cachePool;
-                pushTransition(workInProgress2, _prevCachePool);
-              }
               workInProgress2.memoizedState = null;
             } else {
               _subtreeRenderLanes = renderLanes2;
-              {
-                if (current2 !== null) {
-                  pushTransition(workInProgress2, null);
-                }
-              }
             }
             pushRenderLanes(workInProgress2, _subtreeRenderLanes);
           }
@@ -16592,48 +16145,6 @@ var require_react_dom_development = __commonJS({
             reconcileChildren(current2, workInProgress2, nextChildren, renderLanes2);
             return workInProgress2.child;
           }
-        }
-        function updateCacheComponent(current2, workInProgress2, renderLanes2) {
-          prepareToReadContext(workInProgress2, renderLanes2);
-          var parentCache = readContext(CacheContext);
-          if (current2 === null) {
-            var freshCache = requestCacheFromPool(renderLanes2);
-            var initialState = {
-              parent: parentCache,
-              cache: freshCache
-            };
-            workInProgress2.memoizedState = initialState;
-            initializeUpdateQueue(workInProgress2);
-            pushCacheProvider(workInProgress2, freshCache);
-          } else {
-            if (includesSomeLane(current2.lanes, renderLanes2)) {
-              cloneUpdateQueue(current2, workInProgress2);
-              processUpdateQueue(workInProgress2, null, null, renderLanes2);
-            }
-            var prevState = current2.memoizedState;
-            var nextState = workInProgress2.memoizedState;
-            if (prevState.parent !== parentCache) {
-              var derivedState = {
-                parent: parentCache,
-                cache: parentCache
-              };
-              workInProgress2.memoizedState = derivedState;
-              if (workInProgress2.lanes === NoLanes) {
-                var updateQueue = workInProgress2.updateQueue;
-                workInProgress2.memoizedState = updateQueue.baseState = derivedState;
-              }
-              pushCacheProvider(workInProgress2, parentCache);
-            } else {
-              var nextCache = nextState.cache;
-              pushCacheProvider(workInProgress2, nextCache);
-              if (nextCache !== prevState.cache) {
-                propagateContextChange(workInProgress2, CacheContext, renderLanes2);
-              }
-            }
-          }
-          var nextChildren = workInProgress2.pendingProps.children;
-          reconcileChildren(current2, workInProgress2, nextChildren, renderLanes2);
-          return workInProgress2.child;
         }
         function updateFragment(current2, workInProgress2, renderLanes2) {
           var nextChildren = workInProgress2.pendingProps;
@@ -16854,13 +16365,6 @@ var require_react_dom_development = __commonJS({
           processUpdateQueue(workInProgress2, nextProps, null, renderLanes2);
           var nextState = workInProgress2.memoizedState;
           var root2 = workInProgress2.stateNode;
-          {
-            var nextCache = nextState.cache;
-            pushCacheProvider(workInProgress2, nextCache);
-            if (nextCache !== prevState.cache) {
-              propagateContextChange(workInProgress2, CacheContext, renderLanes2);
-            }
-          }
           var nextChildren = nextState.element;
           if (prevState.isDehydrated) {
             var overrideState = {
@@ -17153,22 +16657,6 @@ var require_react_dom_development = __commonJS({
         }
         function updateSuspenseOffscreenState(prevOffscreenState, renderLanes2) {
           var cachePool = null;
-          {
-            var prevCachePool = prevOffscreenState.cachePool;
-            if (prevCachePool !== null) {
-              var parentCache = CacheContext._currentValue;
-              if (prevCachePool.parent !== parentCache) {
-                cachePool = {
-                  parent: parentCache,
-                  pool: parentCache
-                };
-              } else {
-                cachePool = prevCachePool;
-              }
-            } else {
-              cachePool = getSuspendedCache();
-            }
-          }
           return {
             baseLanes: mergeLanes(prevOffscreenState.baseLanes, renderLanes2),
             cachePool
@@ -17227,13 +16715,6 @@ var require_react_dom_development = __commonJS({
               primaryChildFragment.memoizedState = mountSuspenseOffscreenState(renderLanes2);
               workInProgress2.memoizedState = SUSPENDED_MARKER;
               return fallbackFragment;
-            } else if (typeof nextProps.unstable_expectedLoadTime === "number") {
-              var _fallbackFragment = mountSuspenseFallbackChildren(workInProgress2, nextPrimaryChildren, nextFallbackChildren, renderLanes2);
-              var _primaryChildFragment = workInProgress2.child;
-              _primaryChildFragment.memoizedState = mountSuspenseOffscreenState(renderLanes2);
-              workInProgress2.memoizedState = SUSPENDED_MARKER;
-              workInProgress2.lanes = SomeRetryLane;
-              return _fallbackFragment;
             } else {
               return mountSuspensePrimaryChildren(workInProgress2, nextPrimaryChildren);
             }
@@ -17861,10 +17342,6 @@ var require_react_dom_development = __commonJS({
             case HostRoot:
               pushHostRootContext(workInProgress2);
               var root2 = workInProgress2.stateNode;
-              {
-                var cache = current2.memoizedState.cache;
-                pushCacheProvider(workInProgress2, cache);
-              }
               resetHydrationState();
               break;
             case HostComponent:
@@ -17953,13 +17430,6 @@ var require_react_dom_development = __commonJS({
             case LegacyHiddenComponent: {
               workInProgress2.lanes = NoLanes;
               return updateOffscreenComponent(current2, workInProgress2, renderLanes2);
-            }
-            case CacheComponent: {
-              {
-                var _cache = current2.memoizedState.cache;
-                pushCacheProvider(workInProgress2, _cache);
-              }
-              break;
             }
           }
           return bailoutOnAlreadyFinishedWork(current2, workInProgress2, renderLanes2);
@@ -18075,14 +17545,6 @@ var require_react_dom_development = __commonJS({
             case OffscreenComponent: {
               return updateOffscreenComponent(current2, workInProgress2, renderLanes2);
             }
-            case LegacyHiddenComponent: {
-              break;
-            }
-            case CacheComponent: {
-              {
-                return updateCacheComponent(current2, workInProgress2, renderLanes2);
-              }
-            }
           }
           throw new Error("Unknown unit of work tag (" + workInProgress2.tag + "). This error is likely caused by a bug in React. Please file an issue.");
         }
@@ -18105,11 +17567,6 @@ var require_react_dom_development = __commonJS({
               return null;
             }
             case HostRoot: {
-              {
-                var root2 = workInProgress2.stateNode;
-                var cache = workInProgress2.memoizedState.cache;
-                popCacheProvider(workInProgress2);
-              }
               popHostContainer(workInProgress2);
               popTopLevelContextObject(workInProgress2);
               resetWorkInProgressVersions();
@@ -18159,17 +17616,8 @@ var require_react_dom_development = __commonJS({
             case OffscreenComponent:
             case LegacyHiddenComponent:
               popRenderLanes(workInProgress2);
-              {
-                if (current2 !== null) {
-                  popTransition(workInProgress2);
-                }
-              }
               return null;
             case CacheComponent:
-              {
-                var _cache = workInProgress2.memoizedState.cache;
-                popCacheProvider(workInProgress2);
-              }
               return null;
             default:
               return null;
@@ -18186,11 +17634,6 @@ var require_react_dom_development = __commonJS({
               break;
             }
             case HostRoot: {
-              {
-                var root2 = interruptedWork.stateNode;
-                var cache = interruptedWork.memoizedState.cache;
-                popCacheProvider(interruptedWork);
-              }
               popHostContainer(interruptedWork);
               popTopLevelContextObject(interruptedWork);
               resetWorkInProgressVersions();
@@ -18216,17 +17659,6 @@ var require_react_dom_development = __commonJS({
             case OffscreenComponent:
             case LegacyHiddenComponent:
               popRenderLanes(interruptedWork);
-              {
-                if (current2 !== null) {
-                  popTransition(interruptedWork);
-                }
-              }
-              break;
-            case CacheComponent:
-              {
-                var _cache2 = interruptedWork.memoizedState.cache;
-                popCacheProvider(interruptedWork);
-              }
               break;
           }
         }
@@ -19703,60 +19135,6 @@ var require_react_dom_development = __commonJS({
               }
               break;
             }
-            case HostRoot: {
-              {
-                var previousCache = null;
-                if (finishedWork.alternate !== null) {
-                  previousCache = finishedWork.alternate.memoizedState.cache;
-                }
-                var nextCache = finishedWork.memoizedState.cache;
-                if (nextCache !== previousCache) {
-                  retainCache(nextCache);
-                  if (previousCache != null) {
-                    releaseCache(previousCache);
-                  }
-                }
-              }
-              break;
-            }
-            case LegacyHiddenComponent:
-            case OffscreenComponent: {
-              {
-                var _previousCache = null;
-                if (finishedWork.alternate !== null && finishedWork.alternate.memoizedState !== null && finishedWork.alternate.memoizedState.cachePool !== null) {
-                  _previousCache = finishedWork.alternate.memoizedState.cachePool.pool;
-                }
-                var _nextCache = null;
-                if (finishedWork.memoizedState !== null && finishedWork.memoizedState.cachePool !== null) {
-                  _nextCache = finishedWork.memoizedState.cachePool.pool;
-                }
-                if (_nextCache !== _previousCache) {
-                  if (_nextCache != null) {
-                    retainCache(_nextCache);
-                  }
-                  if (_previousCache != null) {
-                    releaseCache(_previousCache);
-                  }
-                }
-              }
-              break;
-            }
-            case CacheComponent: {
-              {
-                var _previousCache2 = null;
-                if (finishedWork.alternate !== null) {
-                  _previousCache2 = finishedWork.alternate.memoizedState.cache;
-                }
-                var _nextCache2 = finishedWork.memoizedState.cache;
-                if (_nextCache2 !== _previousCache2) {
-                  retainCache(_nextCache2);
-                  if (_previousCache2 != null) {
-                    releaseCache(_previousCache2);
-                  }
-                }
-              }
-              break;
-            }
           }
         }
         function commitPassiveUnmountEffects(firstChild) {
@@ -19879,25 +19257,6 @@ var require_react_dom_development = __commonJS({
                 recordPassiveEffectDuration(current2);
               } else {
                 commitHookEffectListUnmount(Passive$1, current2, nearestMountedAncestor);
-              }
-              break;
-            }
-            case LegacyHiddenComponent:
-            case OffscreenComponent: {
-              {
-                if (current2.memoizedState !== null && current2.memoizedState.cachePool !== null) {
-                  var cache = current2.memoizedState.cachePool.pool;
-                  if (cache != null) {
-                    retainCache(cache);
-                  }
-                }
-              }
-              break;
-            }
-            case CacheComponent: {
-              {
-                var _cache = current2.memoizedState.cache;
-                releaseCache(_cache);
               }
               break;
             }
@@ -20079,7 +19438,6 @@ var require_react_dom_development = __commonJS({
         var rootWithPendingPassiveEffects = null;
         var pendingPassiveEffectsLanes = NoLanes;
         var pendingPassiveProfilerEffects = [];
-        var pendingPassiveEffectsRemainingLanes = NoLanes;
         var NESTED_UPDATE_LIMIT = 50;
         var nestedUpdateCount = 0;
         var rootWithNestedUpdates = null;
@@ -20277,7 +19635,7 @@ var require_react_dom_development = __commonJS({
                 schedulerPriorityLevel = NormalPriority;
                 break;
             }
-            newCallbackNode = scheduleCallback$2(schedulerPriorityLevel, performConcurrentWorkOnRoot.bind(null, root2));
+            newCallbackNode = scheduleCallback$1(schedulerPriorityLevel, performConcurrentWorkOnRoot.bind(null, root2));
           }
           root2.callbackPriority = newCallbackPriority;
           root2.callbackNode = newCallbackNode;
@@ -20947,8 +20305,7 @@ var require_react_dom_development = __commonJS({
           if ((finishedWork.subtreeFlags & PassiveMask) !== NoFlags || (finishedWork.flags & PassiveMask) !== NoFlags) {
             if (!rootDoesHavePassiveEffects) {
               rootDoesHavePassiveEffects = true;
-              pendingPassiveEffectsRemainingLanes = remainingLanes;
-              scheduleCallback$2(NormalPriority, function() {
+              scheduleCallback$1(NormalPriority, function() {
                 flushPassiveEffects();
                 return null;
               });
@@ -20993,8 +20350,6 @@ var require_react_dom_development = __commonJS({
             rootDoesHavePassiveEffects = false;
             rootWithPendingPassiveEffects = root2;
             pendingPassiveEffectsLanes = lanes;
-          } else {
-            releaseRootPooledCache(root2, remainingLanes);
           }
           remainingLanes = root2.pendingLanes;
           if (remainingLanes === NoLanes) {
@@ -21051,23 +20406,8 @@ var require_react_dom_development = __commonJS({
           }
           return null;
         }
-        function releaseRootPooledCache(root2, remainingLanes) {
-          {
-            var pooledCacheLanes = root2.pooledCacheLanes &= remainingLanes;
-            if (pooledCacheLanes === NoLanes) {
-              var pooledCache = root2.pooledCache;
-              if (pooledCache != null) {
-                root2.pooledCache = null;
-                releaseCache(pooledCache);
-              }
-            }
-          }
-        }
         function flushPassiveEffects() {
           if (rootWithPendingPassiveEffects !== null) {
-            var root2 = rootWithPendingPassiveEffects;
-            var remainingLanes = pendingPassiveEffectsRemainingLanes;
-            pendingPassiveEffectsRemainingLanes = NoLanes;
             var renderPriority = lanesToEventPriority(pendingPassiveEffectsLanes);
             var priority = lowerEventPriority(DefaultEventPriority, renderPriority);
             var prevTransition = ReactCurrentBatchConfig$3.transition;
@@ -21079,7 +20419,6 @@ var require_react_dom_development = __commonJS({
             } finally {
               setCurrentUpdatePriority(previousPriority);
               ReactCurrentBatchConfig$3.transition = prevTransition;
-              releaseRootPooledCache(root2, remainingLanes);
             }
           }
           return false;
@@ -21089,7 +20428,7 @@ var require_react_dom_development = __commonJS({
             pendingPassiveProfilerEffects.push(fiber);
             if (!rootDoesHavePassiveEffects) {
               rootDoesHavePassiveEffects = true;
-              scheduleCallback$2(NormalPriority, function() {
+              scheduleCallback$1(NormalPriority, function() {
                 flushPassiveEffects();
                 return null;
               });
@@ -21428,7 +20767,7 @@ var require_react_dom_development = __commonJS({
           }
         }
         var fakeActCallbackNode = {};
-        function scheduleCallback$2(priorityLevel, callback) {
+        function scheduleCallback$1(priorityLevel, callback) {
           {
             var actQueue = ReactCurrentActQueue$1.current;
             if (actQueue !== null) {
@@ -22007,9 +21346,7 @@ var require_react_dom_development = __commonJS({
                   return createFiberFromOffscreen(pendingProps, mode, lanes, key);
                 case REACT_LEGACY_HIDDEN_TYPE:
                 case REACT_SCOPE_TYPE:
-                case REACT_CACHE_TYPE: {
-                  return createFiberFromCache(pendingProps, mode, lanes, key);
-                }
+                case REACT_CACHE_TYPE:
                 case REACT_TRACING_MARKER_TYPE:
                 case REACT_DEBUG_TRACING_MODE_TYPE:
                 default: {
@@ -22116,12 +21453,6 @@ var require_react_dom_development = __commonJS({
           fiber.stateNode = primaryChildInstance;
           return fiber;
         }
-        function createFiberFromCache(pendingProps, mode, lanes, key) {
-          var fiber = createFiber(CacheComponent, pendingProps, key, mode);
-          fiber.elementType = REACT_CACHE_TYPE;
-          fiber.lanes = lanes;
-          return fiber;
-        }
         function createFiberFromText(content, mode, lanes) {
           var fiber = createFiber(HostText, content, null, mode);
           fiber.lanes = lanes;
@@ -22211,10 +21542,6 @@ var require_react_dom_development = __commonJS({
           this.identifierPrefix = identifierPrefix;
           this.onRecoverableError = onRecoverableError;
           {
-            this.pooledCache = null;
-            this.pooledCacheLanes = NoLanes;
-          }
-          {
             this.mutableSourceEagerHydrationData = null;
           }
           {
@@ -22245,22 +21572,18 @@ var require_react_dom_development = __commonJS({
           root2.current = uninitializedFiber;
           uninitializedFiber.stateNode = root2;
           {
-            var initialCache = createCache();
-            retainCache(initialCache);
-            root2.pooledCache = initialCache;
-            retainCache(initialCache);
-            var initialState = {
+            var _initialState = {
               element: initialChildren,
               isDehydrated: hydrate2,
-              cache: initialCache,
+              cache: null,
               transitions: null
             };
-            uninitializedFiber.memoizedState = initialState;
+            uninitializedFiber.memoizedState = _initialState;
           }
           initializeUpdateQueue(uninitializedFiber);
           return root2;
         }
-        var ReactVersion = "18.0.0-rc.3-experimental-033fe52b4-20220325";
+        var ReactVersion = "18.0.0-fc46dba67-20220329";
         function createPortal(children, containerInfo, implementation) {
           var key = arguments.length > 3 && arguments[3] !== void 0 ? arguments[3] : null;
           {
@@ -22653,8 +21976,8 @@ var require_react_dom_development = __commonJS({
             reconcilerVersion: ReactVersion
           });
         }
-        var defaultOnRecoverableError = typeof reportError === "function" ? reportError : function(error$1) {
-          error(error$1);
+        var defaultOnRecoverableError = typeof reportError === "function" ? reportError : function(error2) {
+          console["error"](error2);
         };
         function ReactDOMRoot(internalRoot) {
           this._internalRoot = internalRoot;
@@ -23091,7 +22414,6 @@ var require_react_dom_development = __commonJS({
         exports.unmountComponentAtNode = unmountComponentAtNode;
         exports.unstable_batchedUpdates = batchedUpdates$1;
         exports.unstable_renderSubtreeIntoContainer = renderSubtreeIntoContainer;
-        exports.unstable_runWithPriority = runWithPriority;
         exports.version = ReactVersion;
         if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop === "function") {
           __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(new Error());
@@ -23101,9 +22423,9 @@ var require_react_dom_development = __commonJS({
   }
 });
 
-// pnp:/home/mamluk/3pass/esm-pwa/.yarn/__virtual__/react-dom-virtual-003d23fd91/0/cache/react-dom-npm-0.0.0-experimental-033fe52b4-20220325-ea377eee09-5ac6c929f1.zip/node_modules/react-dom/index.js
+// pnp:/home/mamluk/3pass/esm-pwa/.yarn/__virtual__/react-dom-virtual-f1ddd1568a/0/cache/react-dom-npm-18.0.0-d6a12fba32-dd0ba9f2f3.zip/node_modules/react-dom/index.js
 var require_react_dom = __commonJS({
-  "pnp:/home/mamluk/3pass/esm-pwa/.yarn/__virtual__/react-dom-virtual-003d23fd91/0/cache/react-dom-npm-0.0.0-experimental-033fe52b4-20220325-ea377eee09-5ac6c929f1.zip/node_modules/react-dom/index.js"(exports, module) {
+  "pnp:/home/mamluk/3pass/esm-pwa/.yarn/__virtual__/react-dom-virtual-f1ddd1568a/0/cache/react-dom-npm-18.0.0-d6a12fba32-dd0ba9f2f3.zip/node_modules/react-dom/index.js"(exports, module) {
     "use strict";
     if (false) {
       checkDCE();
@@ -23114,9 +22436,9 @@ var require_react_dom = __commonJS({
   }
 });
 
-// pnp:/home/mamluk/3pass/esm-pwa/.yarn/__virtual__/react-dom-virtual-003d23fd91/0/cache/react-dom-npm-0.0.0-experimental-033fe52b4-20220325-ea377eee09-5ac6c929f1.zip/node_modules/react-dom/client.js
+// pnp:/home/mamluk/3pass/esm-pwa/.yarn/__virtual__/react-dom-virtual-f1ddd1568a/0/cache/react-dom-npm-18.0.0-d6a12fba32-dd0ba9f2f3.zip/node_modules/react-dom/client.js
 var require_client = __commonJS({
-  "pnp:/home/mamluk/3pass/esm-pwa/.yarn/__virtual__/react-dom-virtual-003d23fd91/0/cache/react-dom-npm-0.0.0-experimental-033fe52b4-20220325-ea377eee09-5ac6c929f1.zip/node_modules/react-dom/client.js"(exports) {
+  "pnp:/home/mamluk/3pass/esm-pwa/.yarn/__virtual__/react-dom-virtual-f1ddd1568a/0/cache/react-dom-npm-18.0.0-d6a12fba32-dd0ba9f2f3.zip/node_modules/react-dom/client.js"(exports) {
     "use strict";
     var m = require_react_dom();
     if (false) {
@@ -48789,3 +48111,4 @@ object-assign
 //! moment.js
 //! momentjs.com
 //! version : 2.29.1
+//# sourceMappingURL=vendors-v0.0.1.mjs.map

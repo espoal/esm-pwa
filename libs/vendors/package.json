@@ -11,8 +11,8 @@
     "flatpickr": "^4.6.11",
     "moment": "^2.29.1",
     "prop-types": "^15.8.1",
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "18",
+    "react-dom": "18",
     "react-flatpickr": "^3.10.9",
     "react-router-dom": "^6.2.2",
     "react-transition-group": "^4.4.2"

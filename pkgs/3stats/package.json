@@ -4,6 +4,7 @@
     "@libs/assets": "workspace:^",
     "@libs/charts": "workspace:^",
     "@libs/components": "workspace:^",
+    "@libs/layouts": "workspace:^",
     "@libs/partials": "workspace:^",
     "@libs/tailwind": "workspace:libs/tailwind",
     "@libs/utils": "workspace:^",

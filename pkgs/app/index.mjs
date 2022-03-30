@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Routes, useLocation } from '@libs/vendo
 import { SignIn } from '@pkgs/auth/SignIn'
 import { RequireAuth, AuthProvider } from '@pkgs/auth/AuthProvider'
 
-// import { Dashboard } from '@pkgs/dash/Dashboard'
+import { Dashboard } from '@pkgs/dash/Dashboard'
 import { DashboardPage } from '@pkgs/3stats/Dashboard'
 
 import './index.scss'
@@ -13,13 +13,13 @@ import './index.scss'
 
 const App = () => {
 
-  const location = useLocation();
+  /* const location = useLocation();
 
   useEffect(() => {
     document.querySelector('html').style.scrollBehavior = 'auto'
     window.scroll({ top: 0 })
     document.querySelector('html').style.scrollBehavior = ''
-  }, [location.pathname]); // triggered on route change
+  }, [location.pathname]); // triggered on route change */
 
   return (
     <React.StrictMode>
@@ -31,7 +31,7 @@ const App = () => {
               element={<SignIn />}
             />
             <Route
-              path="/protected"
+              path="/3stats"
               element={
                 <RequireAuth>
                   <DashboardPage />
@@ -39,7 +39,15 @@ const App = () => {
               }
             />
             <Route
-              path="*" 
+              path="/dash"
+              element={
+                <RequireAuth>
+                  <Dashboard />
+                </RequireAuth>
+              }
+            />
+            <Route
+              path="*"
               element={<h1>Not Found</h1>}
             />
           </Routes>

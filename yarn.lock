@@ -103,6 +103,16 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@libs/layouts@workspace:^, @libs/layouts@workspace:libs/layouts":
+  version: 0.0.0-use.local
+  resolution: "@libs/layouts@workspace:libs/layouts"
+  dependencies:
+    "@libs/components": "workspace:^"
+    "@libs/partials": "workspace:^"
+    "@libs/vendors": "workspace:^"
+  languageName: unknown
+  linkType: soft
+
 "@libs/partials@workspace:^, @libs/partials@workspace:libs/partials":
   version: 0.0.0-use.local
   resolution: "@libs/partials@workspace:libs/partials"
@@ -144,8 +154,8 @@ __metadata:
     flatpickr: ^4.6.11
     moment: ^2.29.1
     prop-types: ^15.8.1
-    react: experimental
-    react-dom: experimental
+    react: 18
+    react-dom: 18
     react-flatpickr: ^3.10.9
     react-router-dom: ^6.2.2
     react-transition-group: ^4.4.2
@@ -206,6 +216,7 @@ __metadata:
     "@libs/assets": "workspace:^"
     "@libs/charts": "workspace:^"
     "@libs/components": "workspace:^"
+    "@libs/layouts": "workspace:^"
     "@libs/partials": "workspace:^"
     "@libs/tailwind": "workspace:libs/tailwind"
     "@libs/utils": "workspace:^"
@@ -1883,15 +1894,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:experimental":
-  version: 0.0.0-experimental-033fe52b4-20220325
-  resolution: "react-dom@npm:0.0.0-experimental-033fe52b4-20220325"
+"react-dom@npm:18":
+  version: 18.0.0
+  resolution: "react-dom@npm:18.0.0"
   dependencies:
     loose-envify: ^1.1.0
-    scheduler: 0.0.0-experimental-033fe52b4-20220325
+    scheduler: ^0.21.0
   peerDependencies:
-    react: 0.0.0-experimental-033fe52b4-20220325
-  checksum: 5ac6c929f1d09b399b8b46ea1d6a0e556aeab6122849e60a1f3872814315ca71a6320698b19987a0f7fa4c8562d8b6c1ecad2c0f8421f6016a42b1ef021d713b
+    react: ^18.0.0
+  checksum: dd0ba9f2f31dd728076c892a95b2f5a8dfe79136431b0289afb46eec39d0ca6b6f0f40a60fd8aa6ef702c98ce7c26100d3d4dbc35c7c9e87429cd04f84cb58bd
   languageName: node
   linkType: hard
 
@@ -1953,12 +1964,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:experimental":
-  version: 0.0.0-experimental-033fe52b4-20220325
-  resolution: "react@npm:0.0.0-experimental-033fe52b4-20220325"
+"react@npm:18":
+  version: 18.0.0
+  resolution: "react@npm:18.0.0"
   dependencies:
     loose-envify: ^1.1.0
-  checksum: 2dcc39e9810e37cc79d92c8cdfbd1285f277c9ef50cb93aefee9690e549d3eb0ca81f92554b35833cc147a9b0f83bbc5f486a49b38c85c9e3bb8c35404ab3531
+  checksum: 293020b96536b3c7113ee57ca5c990a3f25649d1751b1c7a3aabd16dff0691fe9f1eed1206616d0906d05933536052037340a0c8d0941ff870b0eb469a2f975b
   languageName: node
   linkType: hard
 
@@ -2083,12 +2094,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"scheduler@npm:0.0.0-experimental-033fe52b4-20220325":
-  version: 0.0.0-experimental-033fe52b4-20220325
-  resolution: "scheduler@npm:0.0.0-experimental-033fe52b4-20220325"
+"scheduler@npm:^0.21.0":
+  version: 0.21.0
+  resolution: "scheduler@npm:0.21.0"
   dependencies:
     loose-envify: ^1.1.0
-  checksum: 12786fdd8c1aa3b6f26cc7a20b9a1d626e136ba51025a3c8250352e48b41ef191c7abb143c8480cf0d17e4b139195e60aebdf6a5fc93d4d1a67af1cd02e0189a
+  checksum: 4f8285076041ed2c81acdd1faa987f1655fdbd30554bc667c1ea64743fc74fb3a04ca7d27454b3d678735df5a230137a3b84756061b43dc5796e80701b66d124
   languageName: node
   linkType: hard
 

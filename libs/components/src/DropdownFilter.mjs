@@ -40,6 +40,7 @@ export const DropdownFilter = ({
         onClick={() => setDropdownOpen(!dropdownOpen)}
         aria-expanded={dropdownOpen}
       >
+        <span className="ml-2 mr-2">Item Filters</span>
         <span className="sr-only">Filter</span><wbr />
         <svg className="w-4 h-4 fill-current" viewBox="0 0 16 16">
           <path d="M9 15H7a1 1 0 010-2h2a1 1 0 010 2zM11 11H5a1 1 0 010-2h6a1 1 0 010 2zM13 7H3a1 1 0 010-2h10a1 1 0 010 2zM15 3H1a1 1 0 010-2h14a1 1 0 010 2z" />
