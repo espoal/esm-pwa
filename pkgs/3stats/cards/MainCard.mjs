@@ -6,7 +6,7 @@ import { LineChart03 as LineChart } from '@libs/charts'
 import { tailwindConfig, hexToRGB } from '@libs/utils/Utils'
 import { Tooltip } from '@libs/components/src/Tooltip.mjs'
 
-export const MainCard = ({ dataSet }) => {
+export const MainCard = ({ dataSet, isLoading }) => {
 
   // console.log({ dataSet })
 
@@ -111,7 +111,9 @@ export const MainCard = ({ dataSet }) => {
       {/* Chart built with Chart.js 3 */}
       <div className="grow">
         {/* Change the height attribute to adjust the chart height */}
-        <LineChart data={chartData} width={800} height={300} />
+        {isLoading ? (
+          <div>Loading ...</div>
+        ) : ( <LineChart data={chartData} width={800} height={300} /> )}
       </div>
     </div>
   );

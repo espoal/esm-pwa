@@ -10808,7 +10808,7 @@ var Controls = ({ query, setQuery, trackedItems, setTrackedItems: setTrackedItem
 
 // pnp:/home/mamluk/3pass/esm-pwa/pkgs/3stats/cards/MainCard.mjs
 import { React as React41 } from "/libs/vendors-v0.0.1.mjs";
-var MainCard = ({ dataSet }) => {
+var MainCard = ({ dataSet, isLoading }) => {
   const labels = [];
   const data = [];
   dataSet.map(({ amount, time }) => {
@@ -10936,7 +10936,7 @@ var MainCard = ({ dataSet }) => {
     className: "text-sm text-slate-500"
   }, "Visit Duration"))))), /* @__PURE__ */ React41.createElement("div", {
     className: "grow"
-  }, /* @__PURE__ */ React41.createElement(LineChart03, {
+  }, isLoading ? /* @__PURE__ */ React41.createElement("div", null, "Loading ...") : /* @__PURE__ */ React41.createElement(LineChart03, {
     data: chartData,
     width: 800,
     height: 300
@@ -11170,7 +11170,9 @@ var DashboardPage = () => {
   const [dataSet, setDataSet] = useState17(initialData);
   const [geoDataSet, setGeoDataSet] = useState17(initialGeoData);
   const [trackedItems, setTrackedItems2] = useState17(["dcl:-23,30"]);
+  const [isLoading, setIsLoading] = useState17(true);
   const fetchData = async () => {
+    setIsLoading(true);
     const result = await fetch(`https://europe-west3-backend-339310.cloudfunctions.net/query?${query}`);
     const resp = await result.text();
     const data = parseResp(resp);
@@ -11179,6 +11181,7 @@ var DashboardPage = () => {
     const geoResp = await geoResult.text();
     const geoData = parseGeoResp(geoResp);
     setGeoDataSet(geoData);
+    setIsLoading(false);
   };
   useEffect20(() => {
     fetchData();
@@ -11196,11 +11199,11 @@ var DashboardPage = () => {
   })), /* @__PURE__ */ React46.createElement("div", {
     className: "grid grid-cols-12 gap-6"
   }, /* @__PURE__ */ React46.createElement(MainCard, {
-    ...{ dataSet }
+    ...{ dataSet, isLoading }
   }), /* @__PURE__ */ React46.createElement(RealTimeCard, {
     ...{ trackedItems }
   }), /* @__PURE__ */ React46.createElement(GeoCard, {
-    ...{ geoDataSet }
+    ...{ geoDataSet, isLoading }
   }), /* @__PURE__ */ React46.createElement(TransactionsCard, null))));
 };
 

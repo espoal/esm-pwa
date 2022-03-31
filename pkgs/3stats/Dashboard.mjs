@@ -26,12 +26,10 @@ export const DashboardPage = () => {
   const [dataSet, setDataSet] = useState(initialData)
   const [geoDataSet, setGeoDataSet] = useState(initialGeoData)
   const [trackedItems, setTrackedItems] = useState(['dcl:-23,30'])
-
-
-
+  const [isLoading, setIsLoading] = useState(true)
 
   const fetchData = async () => {
-
+    setIsLoading(true)
     const result = await fetch(
       `https://europe-west3-backend-339310.cloudfunctions.net/query?${query}`,
     )
@@ -45,6 +43,7 @@ export const DashboardPage = () => {
     const geoResp = await geoResult.text()
     const geoData = parseGeoResp(geoResp)
     setGeoDataSet(geoData)
+    setIsLoading(false)
   }
 
 
@@ -70,11 +69,11 @@ export const DashboardPage = () => {
         {/* Cards */}
         <div className="grid grid-cols-12 gap-6">
 
-          <MainCard {...{ dataSet }} />
+          <MainCard {...{ dataSet, isLoading }} />
 
           <RealTimeCard {...{ trackedItems }}/>
 
-          <GeoCard {...{ geoDataSet }}/>
+          <GeoCard {...{ geoDataSet, isLoading }}/>
 
           <TransactionsCard />
 
