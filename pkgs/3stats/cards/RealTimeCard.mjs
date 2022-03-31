@@ -6,28 +6,17 @@ import { LineChart01 as LineChart } from '@libs/charts'
 import { tailwindConfig, hexToRGB } from '@libs/utils/Utils'
 
 
-export const RealTimeCard = () => {
+export const RealTimeCard = ({trackedItems}) => {
 
   const chartData = {
     labels: [
-      '12-01-2020', '01-01-2021', '02-01-2021',
-      '03-01-2021', '04-01-2021', '05-01-2021',
-      '06-01-2021', '07-01-2021', '08-01-2021',
-      '09-01-2021', '10-01-2021', '11-01-2021',
-      '12-01-2021', '01-01-2022', '02-01-2022',
-      '03-01-2022', '04-01-2022', '05-01-2022',
-      '06-01-2022', '07-01-2022', '08-01-2022',
-      '09-01-2022', '10-01-2022', '11-01-2022',
-      '12-01-2022', '01-01-2023',
+      '03-01-2023',
     ],
     datasets: [
       // Indigo line
       {
         data: [
-          732, 610, 610, 504, 504, 504, 349,
-          349, 504, 342, 504, 610, 391, 192,
-          154, 273, 191, 191, 126, 263, 349,
-          252, 423, 622, 470, 532,
+          0
         ],
         fill: true,
         backgroundColor: `rgba(${hexToRGB(tailwindConfig().theme.colors.blue[500])}, 0.08)`,
@@ -45,7 +34,7 @@ export const RealTimeCard = () => {
   return (
     <div className="flex flex-col col-span-full xl:col-span-4 bg-white shadow-lg rounded-sm border border-slate-200">
       <header className="px-5 py-4 border-b border-slate-100">
-        <h2 className="font-semibold text-slate-800">Active Users Right Now</h2>
+        <h2 className="font-semibold text-slate-800">Real Time Data</h2>
       </header>
       {/* Card content */}
       <div className="flex flex-col h-full">
@@ -58,7 +47,7 @@ export const RealTimeCard = () => {
             </div>
             {/* Vistors number */}
             <div>
-              <div className="text-3xl font-bold text-slate-800 mr-2">347</div>
+              <div className="text-3xl font-bold text-slate-800 mr-2">Upgrade to pro</div>
               <div className="text-sm text-slate-500">Live visitors</div>
             </div>
           </div>
@@ -78,7 +67,7 @@ export const RealTimeCard = () => {
               <thead className="text-xs uppercase text-slate-400">
                 <tr>
                   <th className="py-2">
-                    <div className="font-semibold text-left">Top pages</div>
+                    <div className="font-semibold text-left">Tracked Items</div>
                   </th>
                   <th className="py-2">
                     <div className="font-semibold text-right">Active users</div>
@@ -88,41 +77,19 @@ export const RealTimeCard = () => {
               {/* Table body */}
               <tbody className="text-sm divide-y divide-slate-100">
                 {/* Row */}
-                <tr>
-                  <td className="py-2">
-                    <div className="text-left">preview.cruip.com/open-pro/</div>
-                  </td>
-                  <td className="py-2">
-                    <div className="font-medium text-right text-slate-800">94</div>
-                  </td>
-                </tr>
-                {/* Row */}
-                <tr>
-                  <td className="py-2">
-                    <div className="text-left">preview.cruip.com/simple/</div>
-                  </td>
-                  <td className="py-2">
-                    <div className="font-medium text-right text-slate-800">42</div>
-                  </td>
-                </tr>
-                {/* Row */}
-                <tr>
-                  <td className="py-2">
-                    <div className="text-left">cruip.com/unlimited/</div>
-                  </td>
-                  <td className="py-2">
-                    <div className="font-medium text-right text-slate-800">12</div>
-                  </td>
-                </tr>
-                {/* Row */}
-                <tr>
-                  <td className="py-2">
-                    <div className="text-left">preview.cruip.com/twist/</div>
-                  </td>
-                  <td className="py-2">
-                    <div className="font-medium text-right text-slate-800">4</div>
-                  </td>
-                </tr>
+                {trackedItems.map(item => (
+                  <tr key={item}>
+                    <td className="py-2">
+                      <div className="text-left">{item}</div>
+                    </td>
+                    <td className="py-2">
+                      <div className="font-medium text-right text-slate-800">0</div>
+                    </td>
+                  </tr>
+                  ))}
+
+
+
               </tbody>
             </table>
           </div>

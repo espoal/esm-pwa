@@ -3,8 +3,8 @@ import { Flatpickr } from './Flatpickr.mjs'
 
 export const Datepicker = ({
   align,
-  dates,
-  setDates
+  dateRange,
+  setDateRange
 }) => {
 
   const options = {
@@ -12,7 +12,7 @@ export const Datepicker = ({
     static: true,
     monthSelectorType: 'static',
     dateFormat: 'M j, Y',
-    defaultDate: [new Date().setDate(new Date().getDate() - 6), new Date()],
+    defaultDate: [dateRange[0]*1000, dateRange[1]*1000],
     prevArrow: '<svg class="fill-current" width="7" height="11" viewBox="0 0 7 11"><path d="M5.4 10.8l1.4-1.4-4-4 4-4L5.4 0 0 5.4z" /></svg>',
     nextArrow: '<svg class="fill-current" width="7" height="11" viewBox="0 0 7 11"><path d="M1.4 10.8L0 9.4l4-4-4-4L1.4 0l5.4 5.4z" /></svg>',
     onReady: (selectedDates, dateStr, instance) => {
@@ -21,8 +21,12 @@ export const Datepicker = ({
       instance.calendarContainer.classList.add(`flatpickr-${customClass}`);
     },
     onChange: (selectedDates, dateStr, instance) => {
-      console.log('change! ')
-      console.log({selectedDates})
+      if (selectedDates.length === 2) {
+        const startDate = Math.round((new Date(selectedDates[0])).getTime()/1000)
+        const endDate = Math.round((new Date(selectedDates[1])).getTime()/1000)
+        console.log({selectedDates, startDate, endDate})
+        setDateRange([startDate, endDate])
+      }
       instance.element.value = dateStr.replace('to', '-');
     },
   }

@@ -1,35 +1,35 @@
-import { React, Navigate, useLocation } from '@libs/vendors'
+import { React, useState, Navigate, useLocation, createContext, useContext } from '@libs/vendors'
 
-export const AuthContext = React.createContext(null)
+export const AuthContext = createContext(null)
 
 export const AuthProvider = ({ children }) => {
-  let [user, setUser] = React.useState(null);
 
-  let signin = (newUser, callback) => {
-    return fakeAuthProvider.signin(() => {
-      setUser(newUser);
-      callback();
-    });
-  };
+  const storeCred = true
+  const defaultState = storeCred ? {
+    authId: localStorage.getItem('authId'),
+    authToken: localStorage.getItem('authToken')
+  } : {}
 
-  let signout = (callback) => {
-    return fakeAuthProvider.signout(() => {
-      setUser(null);
-      callback();
-    });
-  };
+  const [authState, setAuthState] = useState(defaultState)
 
-  let value = { user, signin, signout };
+  const signIn = (authToken) => {
+    setAuthState(authToken)
+  }
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  const signOut = () => {
+    setAuthState(null)
+  }
+
+  return <AuthContext.Provider value={{ authState, signIn, signOut }}>{children}</AuthContext.Provider>
 }
 
 export const RequireAuth = ({ children }) => {
-  const auth = React.useContext(AuthContext)
+  const { authState } = useContext(AuthContext)
   const location = useLocation()
+  console.log({authState})
 
   // if (!auth.user) {
-  if (auth.user) {
+  if (!authState?.authToken) {
     // Redirect them to the /login page, but save the current location they were
     // trying to go to when they were redirected. This allows us to send them
     // along to that page after they login, which is a nicer user experience

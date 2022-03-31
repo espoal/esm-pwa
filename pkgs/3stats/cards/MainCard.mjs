@@ -6,7 +6,7 @@ import { LineChart03 as LineChart } from '@libs/charts'
 import { tailwindConfig, hexToRGB } from '@libs/utils/Utils'
 import { Tooltip } from '@libs/components/src/Tooltip.mjs'
 
-export const MainCard = ({ dataSet, children }) => {
+export const MainCard = ({ dataSet }) => {
 
   // console.log({ dataSet })
 
@@ -47,7 +47,6 @@ export const MainCard = ({ dataSet, children }) => {
       <header className="px-5 py-4 border-b border-slate-100 flex items-center">
         <h2 className="font-semibold text-slate-800">Analytics</h2>
       </header>
-      {children}
       <div className="px-5 py-1">
         <div className="flex flex-wrap">
           {/* Total Transactions */}

@@ -8,6 +8,7 @@
     "@libs/build": "workspace:^",
     "chart.js": "^3.7.1",
     "chartjs-adapter-moment": "^1.0.0",
+    "firebase": "^9.6.10",
     "flatpickr": "^4.6.11",
     "moment": "^2.29.1",
     "prop-types": "^15.8.1",

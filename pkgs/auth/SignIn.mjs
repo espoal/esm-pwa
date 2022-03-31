@@ -1,9 +1,36 @@
-import { React, Link } from '@libs/vendors'
+import { React, Link, useContext, useNavigate } from '@libs/vendors'
+import { signIn as fbSignIn } from './firebase'
 
 import AuthImage from '@libs/assets/images/auth-image.jpg'
 import AuthDecoration from '@libs/assets/images/auth-decoration.png'
+import { AuthContext } from './AuthProvider'
 
 export const SignIn = () => {
+
+  const navigate = useNavigate()
+
+  const { signIn } = useContext(AuthContext)
+
+  const handleSubmit2 = async (event) => {
+    event.preventDefault()
+    const email = event.target[0].value
+    const pwd = event.target[1].value
+
+    console.log({ email, pwd })
+
+    try {
+      const { authId, authToken } = await fbSignIn({ email, pwd })
+      // setAuth(loginStatus)
+      console.log({ authId, authToken })
+      signIn({authId, authToken})
+      localStorage.setItem('authId', authId)
+      localStorage.setItem('authToken', authToken)
+      navigate('/3stats')
+    } catch (err) {
+      console.log({ err })
+    }
+  }
+
   return (
     <main className="bg-white">
 
@@ -48,7 +75,7 @@ export const SignIn = () => {
 
 
               {/* Form */}
-              <form>
+              <form onSubmit={handleSubmit2}>
                 <div className="space-y-4 pt-2">
                   <div>
                     <label className="block text-sm font-medium mb-1" htmlFor="email">Email Address</label>
@@ -63,7 +90,7 @@ export const SignIn = () => {
                   <div className="mr-1">
                     <Link className="text-sm underline hover:no-underline" to="/reset-password">Forgot Password?</Link>
                   </div>
-                  <Link className="btn bg-indigo-500 hover:bg-indigo-600 text-white ml-3" to="/">Sign In</Link>
+                  <button type="submit" className="btn bg-indigo-500 hover:bg-indigo-600 text-white ml-3">Sign In</button>
                 </div>
               </form>
               {/* Footer */}

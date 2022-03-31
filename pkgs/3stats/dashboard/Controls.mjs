@@ -6,24 +6,29 @@ import {
 
 import { Tooltip, ModalAction } from '@libs/components'
 
+const daysInSeconds = 60*60*24
+
 
 import { ItemFilter } from './ItemFilter'
 
 import { epochSeconds } from './utils.mjs'
 
-export const Controls = ({query, setQuery}) => {
+export const Controls = ({query, setQuery, trackedItems, setTrackedItems}) => {
 
-  const [trackedItems, setTrackedItems] = useState(['dcl:-23,30'])
-  const [endDate, setEndDate] = useState(epochSeconds())
-  const [startDate, setStartDate] = useState(epochSeconds() - 14*60*60*24)
-  const [eventType, setEventType] = useState('landInteraction')
+  const [dateRange, setDateRange] = useState([epochSeconds()- 14*daysInSeconds,epochSeconds()])
+  // const [eventType, setEventType] = useState('landInteraction')
   const [addLandModal, setAddLandModal] = useState(false)
 
 
 
   const updateQuery = () => {
-    const itemId = 'dcl:-23,30'
-    const newQuery = new URLSearchParams({itemId, eventType, startDate, endDate})
+    const itemId = trackedItems[0]
+    const newQuery = new URLSearchParams({
+      itemId,
+      eventType: 'landInteraction',
+      startDate: dateRange[0],
+      endDate: dateRange[1]
+    })
     setQuery(newQuery)
   }
 
@@ -37,7 +42,7 @@ export const Controls = ({query, setQuery}) => {
   }
 
 
-  useEffect(updateQuery, [trackedItems, startDate, endDate])
+  useEffect(updateQuery, [trackedItems, dateRange])
 
   return (
     <>
@@ -94,7 +99,7 @@ export const Controls = ({query, setQuery}) => {
         <ItemFilter align="right" {...{trackedItems, setTrackedItems, setAddLandModal}}/>
 
         {/* Datepicker built with flatpickr */}
-        <Datepicker align="right" />
+        <Datepicker align="right" {...{dateRange, setDateRange}} />
 
       </div>
 

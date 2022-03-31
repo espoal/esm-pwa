@@ -718,7 +718,7 @@ var require_react_development = __commonJS({
           }
           return children;
         }
-        function createContext(defaultValue) {
+        function createContext2(defaultValue) {
           var context = {
             $$typeof: REACT_CONTEXT_TYPE,
             _currentValue: defaultValue,
@@ -1779,7 +1779,7 @@ var require_react_development = __commonJS({
         exports.Suspense = REACT_SUSPENSE_TYPE;
         exports.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED = ReactSharedInternals;
         exports.cloneElement = cloneElement$1;
-        exports.createContext = createContext;
+        exports.createContext = createContext2;
         exports.createElement = createElement$1;
         exports.createFactory = createFactory;
         exports.createRef = createRef;
@@ -23131,7 +23131,7 @@ var require_react_router_development = __commonJS({
         } = _ref2;
         !useInRouterContext() ? invariant(false, "<Navigate> may be used only in the context of a <Router> component.") : void 0;
         warning(!React2.useContext(NavigationContext).static, "<Navigate> must not be used on the initial render in a <StaticRouter>. This is a no-op, but you should modify your code so the <Navigate> is only ever rendered in response to some user interaction or state change.");
-        let navigate = useNavigate();
+        let navigate = useNavigate2();
         React2.useEffect(() => {
           navigate(to, {
             replace,
@@ -23246,7 +23246,7 @@ var require_react_router_development = __commonJS({
         } = useLocation2();
         return React2.useMemo(() => matchPath(pattern, pathname), [pathname, pattern]);
       }
-      function useNavigate() {
+      function useNavigate2() {
         !useInRouterContext() ? invariant(false, "useNavigate() may be used only in the context of a <Router> component.") : void 0;
         let {
           basename,
@@ -23686,7 +23686,7 @@ var require_react_router_development = __commonJS({
       exports2.useInRouterContext = useInRouterContext;
       exports2.useLocation = useLocation2;
       exports2.useMatch = useMatch;
-      exports2.useNavigate = useNavigate;
+      exports2.useNavigate = useNavigate2;
       exports2.useNavigationType = useNavigationType;
       exports2.useOutlet = useOutlet;
       exports2.useOutletContext = useOutletContext;
@@ -30805,7 +30805,7 @@ var require_chart = __commonJS({
           max: keepZero(max, change)
         };
       }
-      function createContext(parentContext, context) {
+      function createContext2(parentContext, context) {
         return Object.assign(Object.create(parentContext), context);
       }
       const STATIC_POSITIONS = ["left", "top", "right", "bottom"];
@@ -31851,7 +31851,7 @@ var require_chart = __commonJS({
           let style;
           for (i = start + 1; i <= segment.end; i++) {
             const pt = points[i % count];
-            style = readStyle(segmentOptions.setContext(createContext(chartContext, {
+            style = readStyle(segmentOptions.setContext(createContext2(chartContext, {
               type: "segment",
               p0: prev,
               p1: pt,
@@ -31968,7 +31968,7 @@ var require_chart = __commonJS({
         toFont,
         resolve,
         _addGrace,
-        createContext,
+        createContext: createContext2,
         PI,
         TAU,
         PITAU,
@@ -32704,7 +32704,7 @@ var require_chart = __commonJS({
         return Object.keys(scales2).filter((key) => scales2[key].axis === axis).shift();
       }
       function createDatasetContext(parent, index) {
-        return createContext(parent, {
+        return createContext2(parent, {
           active: false,
           dataset: void 0,
           datasetIndex: index,
@@ -32714,7 +32714,7 @@ var require_chart = __commonJS({
         });
       }
       function createDataContext(parent, index, element) {
-        return createContext(parent, {
+        return createContext2(parent, {
           active: false,
           dataIndex: index,
           parsed: void 0,
@@ -33586,13 +33586,13 @@ var require_chart = __commonJS({
         return lines * font.lineHeight + padding.height;
       }
       function createScaleContext(parent, scale) {
-        return createContext(parent, {
+        return createContext2(parent, {
           scale,
           type: "scale"
         });
       }
       function createTickContext(parent, index, tick) {
-        return createContext(parent, {
+        return createContext2(parent, {
           tick,
           index,
           type: "tick"
@@ -35791,7 +35791,7 @@ var require_chart = __commonJS({
           return meta;
         }
         getContext() {
-          return this.$context || (this.$context = createContext(null, { chart: this, type: "chart" }));
+          return this.$context || (this.$context = createContext2(null, { chart: this, type: "chart" }));
         }
         getVisibleDatasetCount() {
           return this.getSortedVisibleDatasetMetas().length;
@@ -39734,7 +39734,7 @@ var require_chart = __commonJS({
         return pushOrConcat([], splitNewlines(callback2));
       }
       function createTooltipContext(parent, tooltip, tooltipItems) {
-        return createContext(parent, {
+        return createContext2(parent, {
           tooltip,
           tooltipItems,
           type: "tooltip"
@@ -41114,7 +41114,7 @@ var require_chart = __commonJS({
         ctx.restore();
       }
       function createPointLabelContext(parent, index, label) {
-        return createContext(parent, {
+        return createContext2(parent, {
           label,
           index,
           type: "pointLabel"
@@ -47961,10 +47961,12 @@ var export_Route = import_react_router_dom.Route;
 var export_Routes = import_react_router_dom.Routes;
 var export_TimeScale = import_chart.TimeScale;
 var export_Tooltip = import_chart.Tooltip;
+var export_createContext = import_react.createContext;
 var export_createRoot = import_client.createRoot;
 var export_useContext = import_react.useContext;
 var export_useEffect = import_react.useEffect;
 var export_useLocation = import_react_router_dom.useLocation;
+var export_useNavigate = import_react_router_dom.useNavigate;
 var export_useRef = import_react.useRef;
 var export_useState = import_react.useState;
 export {
@@ -47992,11 +47994,13 @@ export {
   export_Routes as Routes,
   export_TimeScale as TimeScale,
   export_Tooltip as Tooltip,
+  export_createContext as createContext,
   export_createRoot as createRoot,
   esm_exports as flatpickr,
   export_useContext as useContext,
   export_useEffect as useEffect,
   export_useLocation as useLocation,
+  export_useNavigate as useNavigate,
   export_useRef as useRef,
   export_useState as useState
 };

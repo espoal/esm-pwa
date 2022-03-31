@@ -2,8 +2,11 @@ import { React, Link } from '@libs/vendors'
 
 export const GeoCard = ({ geoDataSet }) => {
 
-  const otherCount = geoDataSet.splice(9).reduce((sum, { count = 0 }) => sum+count, 0)
+  const otherCount = geoDataSet.splice(7).reduce((sum, { count = 0 }) => sum+count, 0)
   // console.log({ geoDataSet })
+  geoDataSet.push({count: otherCount, countryCode: 'Other'})
+  const total = geoDataSet.reduce((sum, {count = 0}) => sum+count, 0)
+  geoDataSet = geoDataSet.map(el => ({countryShare: Math.round(el.count*100/total), ...el}))
 
   return (
     <div className="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white shadow-lg rounded-sm border border-slate-200">
@@ -23,21 +26,13 @@ export const GeoCard = ({ geoDataSet }) => {
 
               {geoDataSet.map(({ count, countryCode, countryShare }, index) => (
                 <li className="relative px-2 py-1" key={index}>
-                  <div className="absolute inset-0 bg-sky-100" aria-hidden="true" style={{width: `${count}%`}}></div>
+                  <div className="absolute inset-0 bg-sky-100" aria-hidden="true" style={{width: `${countryShare || 0}%`}}></div>
                   <div className="relative flex justify-between space-x-2">
                     <div>{countryCode}</div>
                     <div className="font-medium">{count}</div>
                   </div>
                 </li>
               ))}
-
-              <li className="relative px-2 py-1" key='other'>
-                <div className="absolute inset-0 bg-sky-100" aria-hidden="true" style={{width: `${otherCount}%`}}></div>
-                <div className="relative flex justify-between space-x-2">
-                  <div>Other</div>
-                  <div className="font-medium">{otherCount}</div>
-                </div>
-              </li>
 
             </ul>
           </div>

@@ -63,33 +63,22 @@ export const DashboardPage = () => {
           </div>
 
           {/* Right: Actions */}
-          <Controls {...{query, setQuery}}/>
+          <Controls {...{query, setQuery, trackedItems, setTrackedItems}}/>
 
         </div>
 
         {/* Cards */}
         <div className="grid grid-cols-12 gap-6">
 
-          <MainCard {...{ dataSet }}>
+          <MainCard {...{ dataSet }} />
 
-          </MainCard>
-
-          <RealTimeCard />
+          <RealTimeCard {...{ trackedItems }}/>
 
           <GeoCard {...{ geoDataSet }}/>
 
           <TransactionsCard />
 
-          <LandPicker {...{trackedItems, setTrackedItems}}/>
-
-
-
-
-
-
-
-
-
+          {/* <LandPicker {...{trackedItems, setTrackedItems}}/> */}
 
         </div>
 
