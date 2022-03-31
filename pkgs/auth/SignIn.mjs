@@ -1,5 +1,4 @@
 import { React, Link, useContext, useNavigate } from '@libs/vendors'
-import { signIn as fbSignIn } from './firebase'
 
 import AuthImage from '@libs/assets/images/auth-image.jpg'
 import AuthDecoration from '@libs/assets/images/auth-decoration.png'
@@ -8,27 +7,27 @@ import { AuthContext } from './AuthProvider'
 export const SignIn = () => {
 
   const navigate = useNavigate()
-
   const { signIn } = useContext(AuthContext)
 
-  const handleSubmit2 = async (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
     const email = event.target[0].value
     const pwd = event.target[1].value
 
-    console.log({ email, pwd })
+    //console.log({ email, pwd })
 
-    try {
-      const { authId, authToken } = await fbSignIn({ email, pwd })
-      // setAuth(loginStatus)
-      console.log({ authId, authToken })
-      signIn({authId, authToken})
-      localStorage.setItem('authId', authId)
-      localStorage.setItem('authToken', authToken)
-      navigate('/3stats')
-    } catch (err) {
-      console.log({ err })
-    }
+    const authResult = await signIn({ email, pwd })
+    //console.log({authResult})
+
+    if (authResult) navigate('/3stats')
+    else console.log('Auth failed')
+  }
+
+  const guestLogin = async event => {
+    event.preventDefault()
+    const authResult = await signIn({ method: 'guest' })
+    console.log({authResult})
+    if (authResult) navigate('/3stats')
   }
 
   return (
@@ -69,13 +68,13 @@ export const SignIn = () => {
               <h1 className="text-3xl text-slate-800 font-bold mb-6">Welcome back! ✨</h1>
 
               <div className="flex items-center justify-end mt-6">
-                <Link className="btn bg-indigo-500 hover:bg-indigo-600 text-white ml-3" to="/">Google</Link>
-                <Link className="btn bg-indigo-500 hover:bg-indigo-600 text-white ml-3" to="/">Guest</Link>
+                <button className="btn bg-indigo-500 hover:bg-indigo-600 text-white ml-3">Google</button>
+                <button onClick={guestLogin} className="btn bg-indigo-500 hover:bg-indigo-600 text-white ml-3">Guest</button>
               </div>
 
 
               {/* Form */}
-              <form onSubmit={handleSubmit2}>
+              <form onSubmit={handleSubmit}>
                 <div className="space-y-4 pt-2">
                   <div>
                     <label className="block text-sm font-medium mb-1" htmlFor="email">Email Address</label>

@@ -1,9 +1,6 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js'
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js'
 
-const firebaseConfig2 = {
-  // Insert firebase config here
-}
 
 const firebaseConfig = {
   apiKey: 'AIzaSyC9z7kYOnAsfI2FiAn0Ar5H6AbBa6BJudU',

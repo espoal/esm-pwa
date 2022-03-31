@@ -46,6 +46,23 @@ export const Controls = ({query, setQuery, trackedItems, setTrackedItems}) => {
 
   return (
     <>
+      <div className="grid grid-flow-col sm:auto-cols-max justify-start sm:justify-end gap-2">
+
+        {/* Button Add */}
+        {/*
+        <button className="btn bg-white border-slate-200 hover:border-slate-300"
+                onClick={(e)=> {e.stopPropagation(); setAddLandModal(true)}}
+        >
+          <svg className="w-4 h-4 fill-current text-slate-500 shrink-0" viewBox="0 0 16 16">
+            <path d="M11.7.3c-.4-.4-1-.4-1.4 0l-10 10c-.2.2-.3.4-.3.7v4c0 .6.4 1 1 1h4c.3 0 .5-.1.7-.3l10-10c.4-.4.4-1 0-1.4l-4-4zM4.6 14H2v-2.6l6-6L10.6 8l-6 6zM12 6.6L9.4 4 11 2.4 13.6 5 12 6.6z" />
+          </svg>
+        </button> */}
+
+        <ItemFilter align="right" {...{trackedItems, setTrackedItems, setAddLandModal}}/>
+
+        <Datepicker align="right" {...{dateRange, setDateRange}} />
+
+      </div>
       <ModalAction id="newsletter-modal" modalOpen={addLandModal} setModalOpen={setAddLandModal}>
         {/* Modal header */}
         <div className="mb-2 text-center">
@@ -81,31 +98,7 @@ export const Controls = ({query, setQuery, trackedItems, setTrackedItems}) => {
           </div>
         </div>
       </ModalAction>
-      <div className="grid grid-flow-col sm:auto-cols-max justify-start sm:justify-end gap-2">
-
-
-
-        {/* Start */}
-          <button className="btn bg-white border-slate-200 hover:border-slate-300"
-          onClick={(e)=> {e.stopPropagation(); setAddLandModal(true)}}
-          >
-            <svg className="w-4 h-4 fill-current text-slate-500 shrink-0" viewBox="0 0 16 16">
-              <path d="M11.7.3c-.4-.4-1-.4-1.4 0l-10 10c-.2.2-.3.4-.3.7v4c0 .6.4 1 1 1h4c.3 0 .5-.1.7-.3l10-10c.4-.4.4-1 0-1.4l-4-4zM4.6 14H2v-2.6l6-6L10.6 8l-6 6zM12 6.6L9.4 4 11 2.4 13.6 5 12 6.6z" />
-            </svg>
-          </button>
-          {/* End */}
-
-
-        <ItemFilter align="right" {...{trackedItems, setTrackedItems, setAddLandModal}}/>
-
-        {/* Datepicker built with flatpickr */}
-        <Datepicker align="right" {...{dateRange, setDateRange}} />
-
-      </div>
-
-
     </>
-
   )
 }
 
